@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Aravanta Tech — Empowering Cloud Transformation</title>
+  <meta name="description" content="Aravanta Tech architects intelligent cloud platforms, mission-critical software, and transformative digital experiences. Simpler. Safer. Smarter.">
+  <meta name="keywords" content="Aravanta Tech, Cloud Solutions, AI Engineering, Web Development, DevOps, Cybersecurity">
+  <meta name="theme-color" content="#05070a">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aravanta Tech — Empowering Cloud Transformation">
+  <meta property="og:description" content="Architecting intelligent cloud platforms, distributed systems, and transformative digital experiences.">
+  <meta property="og:image" content="/Primary%20Aravanta-Tech%20Logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/icon.png">
+
+  <!-- Fonts: Syne (Editorial Display) + Plus Jakarta Sans (Clean Sans Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 0. Lightweight Preloader -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-ring"></div>
+      <div class="loader-logo">
+        <span class="gold-text">ARAVANTA</span> TECH
+      </div>
+      <div class="loader-bar"><div id="loader-progress" class="loader-fill"></div></div>
+      <p class="loader-text">INITIALIZING 3D SPATIAL ENGINE</p>
+    </div>
+  </div>
+
+  <!-- Custom Inertial Cursor Follower -->
+  <div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Persistent Fullscreen 3D Background Canvas -->
+  <div id="webgl-container" class="webgl-container" aria-hidden="true"></div>
+  <div class="canvas-vignette" aria-hidden="true"></div>
+
+
+  <!-- Fixed Floating Capsule Navigation Header matching reference image -->
+  <header class="site-header floating-pill-header">
+    <div class="floating-pill-nav">
+      <a href="#hero" class="brand-link" aria-label="Aravanta Tech Home">
+        <div class="brand-mark">
+          <svg viewBox="0 0 40 40" width="24" height="24" fill="none">
+            <polygon points="20,4 36,34 4,34" stroke="#d4a342" stroke-width="2.5" fill="rgba(212,163,66,0.12)"/>
+            <polygon points="20,15 28,30 12,30" fill="#d4a342"/>
+          </svg>
+          <span class="brand-title">ARAVANTA <span class="gold-text">TECH</span></span>
+        </div>
+      </a>
+
+      <div class="pill-divider"></div>
+
+      <!-- Desktop Capsule Navigation Menu matching the image -->
+      <nav class="desktop-nav pill-nav-group" aria-label="Main Navigation">
+        <a href="#hero" class="nav-pill active" data-section="hero">
+          <svg class="pill-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home</span>
+        </a>
+        <a href="#services" class="nav-pill" data-section="services">
+          <svg class="pill-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+          <span>Features</span>
+        </a>
+        <a href="#process" class="nav-pill" data-section="process">
+          <svg class="pill-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="6" y1="3" x2="6" y2="15"></line>
+            <circle cx="18" cy="6" r="3"></circle>
+            <circle cx="6" cy="18" r="3"></circle>
+            <path d="M18 9a9 9 0 0 1-9 9"></path>
+          </svg>
+          <span>Process</span>
+        </a>
+        <a href="#work" class="nav-pill" data-section="work">
+          <svg class="pill-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z"></path>
+          </svg>
+          <span>Pricing</span>
+        </a>
+        <a href="#tech" class="nav-pill" data-section="tech">
+          <svg class="pill-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="pill-divider"></div>
+
+      <a href="#contact" class="pill-cta">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z"></path>
+        </svg>
+        <span>Let's Talk</span>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Fullscreen Mobile Navigation Overlay -->
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <nav class="mobile-nav-links">
+        <a href="#hero" class="mobile-link"><span>01</span> Home</a>
+        <a href="#about" class="mobile-link"><span>02</span> About</a>
+        <a href="#services" class="mobile-link"><span>03</span> Services</a>
+        <a href="#process" class="mobile-link"><span>04</span> Process</a>
+        <a href="#work" class="mobile-link"><span>05</span> Case Studies</a>
+        <a href="#tech" class="mobile-link"><span>06</span> Technology</a>
+        <a href="#testimonials" class="mobile-link"><span>07</span> Outcomes</a>
+        <a href="#contact" class="mobile-link"><span>08</span> Contact</a>
+      </nav>
+      <div class="mobile-menu-footer">
+        <p class="tagline">Empowering Cloud Transformation.</p>
+        <div class="social-pills">
+          <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://x.com" target="_blank" rel="noopener">Twitter/X</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Page Content Layers -->
+  <main class="page-content">
+
+    <!-- 1. Split Hero Section matching reference image -->
+    <section id="hero" class="section hero-section" data-scene="0">
+      <div class="container hero-split-container">
+        <!-- Left Column: Copy & Actions -->
+        <div class="hero-left-col">
+          <div class="hero-badge reveal-item">
+            <span class="pulse-dot"></span>
+            <span class="mono-tag">ENTERPRISE CLOUD & SOFTWARE ENGINEERING</span>
+          </div>
+
+          <h1 class="hero-title reveal-item">
+            People who care <br>
+            about your <span class="gold-gradient">growth.</span>
+          </h1>
+
+          <p class="hero-subtext reveal-item">
+            Powerful, self-serve cloud infrastructure, resilient software engineering, and modern DevOps built to help you convert, scale, and retain more.
+          </p>
+
+          <div class="hero-actions reveal-item">
+            <a href="#services" class="btn btn-outline-demo magnetic-btn">
+              <span class="play-icon">▶</span>
+              <span>Demo</span>
+            </a>
+            <a href="#contact" class="btn btn-primary magnetic-btn">
+              <span>Start a Project</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <div class="hero-proof-pills reveal-item">
+            <div class="proof-pill">
+              <span class="check-icon">✓</span>
+              <span>99.999% SLA Uptime</span>
+            </div>
+            <div class="proof-pill">
+              <span class="check-icon gold-check">✓</span>
+              <span>Zero-Drift IaC</span>
+            </div>
+            <div class="proof-pill">
+              <span class="check-icon cyan-check">✓</span>
+              <span>Zero-Trust Vault</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Arched Hero Visual with Brand Logo & Floating Cards -->
+        <div class="hero-right-col reveal-item">
+          <!-- Background Angled Hatch Decoration -->
+          <div class="hatch-decoration" aria-hidden="true"></div>
+
+          <!-- Main Arched Visual Frame -->
+          <div class="hero-arch-frame">
+            <div class="hero-arch-bg-grid"></div>
+            <div class="hero-arch-glow"></div>
+
+            <!-- Brand Logo Presentation -->
+            <div class="hero-logo-center">
+              <div class="emblem-halo">
+                <div class="emblem-minted-circle">
+                  <img src="/brand/icon.png" alt="Aravanta Tech Emblem" class="emblem-img">
+                </div>
+              </div>
+              <div class="emblem-title">ARAVANTA <span class="gold-text">TECH</span></div>
+              <div class="emblem-sub">SIMPLER. SAFER. SMARTER.</div>
+            </div>
+
+            <div class="hero-badge-corner">
+              <span class="pulse-dot green-dot"></span>
+              <span>CLOUD LABS</span>
+            </div>
+          </div>
+
+          <!-- Overlapping Floating UI Cards -->
+          <div class="floating-cards-stack">
+            <!-- Card 1: Cloud Core Migration -->
+            <div class="hero-floating-card">
+              <div class="fc-top">
+                <span class="fc-badge pink-badge">CLOUD</span>
+                <span class="fc-title">Core Migration — Multi-AZ</span>
+                <span class="fc-status-check">✓</span>
+              </div>
+              <div class="fc-mid">
+                <span>24 of 24 Workloads</span>
+                <span class="green-text">✓ Complete & Synced</span>
+              </div>
+              <div class="fc-progress-wrap">
+                <div class="fc-progress-bar"><div class="fc-progress-fill" style="width: 100%;"></div></div>
+                <span class="fc-percent">100%</span>
+              </div>
+            </div>
+
+            <!-- Card 2: CloudOS Telemetry Stream -->
+            <div class="hero-floating-card">
+              <div class="fc-top">
+                <span class="fc-badge purple-badge">TELEMETRY</span>
+                <span class="fc-title">Aravanta CloudOS Stream</span>
+                <span class="fc-spinner">⟳</span>
+              </div>
+              <div class="fc-mid">
+                <span>p99 Latency 28ms</span>
+                <span class="purple-text">Active Telemetry...</span>
+              </div>
+              <div class="fc-progress-wrap">
+                <div class="fc-progress-bar"><div class="fc-progress-fill purple-fill" style="width: 80%;"></div></div>
+                <span class="fc-percent">80%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. About Section -->
+    <section id="about" class="section about-section" data-scene="1">
+      <div class="container">
+        <div class="section-header">
+          <span class="mono-eyebrow">01 // PHILOSOPHY & VISION</span>
+          <h2 class="section-title">
+            Engineering Precision. <br>
+            <span class="gold-gradient">Zero Shortcuts.</span>
+          </h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-narrative">
+            <p class="lead-text">
+              Aravanta Tech was founded on a singular principle: enterprise technology should eliminate complexity, not compound it.
+            </p>
+            <p class="body-text">
+              We partner with high-growth organizations and engineering leaders to replace fragile legacy infrastructure with declarative, self-healing cloud ecosystems. From high-throughput distributed transaction systems to unified DevOps pipelines, our team delivers software that scales reliably under peak demand.
+            </p>
+            <div class="brand-pillars">
+              <div class="pillar-tag">Simpler Architecture</div>
+              <div class="pillar-tag">Safer Security Posture</div>
+              <div class="pillar-tag">Smarter Automation</div>
+            </div>
+          </div>
+
+          <!-- 3 Key Numbers -->
+          <div class="stats-card-group">
+            <div class="stat-card">
+              <span class="stat-number gold-text" data-target="8">8+</span>
+              <span class="stat-label">Years of Engineering Leadership</span>
+              <p class="stat-desc">Continuous track record delivering mission-critical systems.</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number cyan-text" data-target="140">140+</span>
+              <span class="stat-label">Production Deployments Shipped</span>
+              <p class="stat-desc">Zero-downtime cutovers across FinTech, SaaS & HealthTech.</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number green-text" data-target="99.99">99.99%</span>
+              <span class="stat-label">Operational Availability & SLA</span>
+              <p class="stat-desc">Multi-region active resilience built into every blueprint.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Services Section (Interactive Hover Shifts 3D Scene) -->
+    <section id="services" class="section services-section" data-scene="2">
+      <div class="container">
+        <div class="section-header">
+          <span class="mono-eyebrow">02 // CAPABILITIES</span>
+          <h2 class="section-title">
+            Specialized Disciplines. <br>
+            <span class="gold-gradient">End-to-End Execution.</span>
+          </h2>
+          <p class="section-subtext">Hover each capability to dynamically modulate the 3D quantum core.</p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Service 1: Cloud Solutions -->
+          <div class="service-card" data-accent="#d4a342" data-mode="cloud">
+            <div class="service-top">
+              <span class="service-num">01</span>
+              <div class="service-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d4a342" stroke-width="2">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="service-title">Cloud Solutions & Migration</h3>
+            <p class="service-desc">
+              Multi-region cloud topologies, zero-downtime database cutovers, serverless scaling, and cloud FinOps optimization that reduces unmanaged infrastructure expenditure.
+            </p>
+            <ul class="service-list">
+              <li>AWS / GCP / Azure Architecture</li>
+              <li>Live Strangler-Fig Migration</li>
+              <li>FinOps Cost Attribution & Guardrails</li>
+            </ul>
+            <div class="card-glow"></div>
+          </div>
+
+          <!-- Service 2: Software & AI Engineering -->
+          <div class="service-card" data-accent="#38bdf8" data-mode="software">
+            <div class="service-top">
+              <span class="service-num">02</span>
+              <div class="service-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+            </div>
+            <h3 class="service-title">Software & AI Development</h3>
+            <p class="service-desc">
+              Custom full-stack web applications, distributed APIs, low-latency microservices, and AI-assisted workflow engines built with modern type-safe standards.
+            </p>
+            <ul class="service-list">
+              <li>Next.js, TypeScript & React</li>
+              <li>Distributed Microservices in Go / Node</li>
+              <li>Vector Databases & LLM Integration</li>
+            </ul>
+            <div class="card-glow"></div>
+          </div>
+
+          <!-- Service 3: DevOps & Automation -->
+          <div class="service-card" data-accent="#10b981" data-mode="devops">
+            <div class="service-top">
+              <span class="service-num">03</span>
+              <div class="service-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+              </div>
+            </div>
+            <h3 class="service-title">DevOps & Infrastructure Automation</h3>
+            <p class="service-desc">
+              Declarative Infrastructure as Code (IaC), GitOps continuous delivery conduits, automated blue-green releases, and self-healing container fleets.
+            </p>
+            <ul class="service-list">
+              <li>Kubernetes & Docker Orchestration</li>
+              <li>Terraform / OpenTofu IaC Pipelines</li>
+              <li>Automated CI/CD Quality Gates</li>
+            </ul>
+            <div class="card-glow"></div>
+          </div>
+
+          <!-- Service 4: Cybersecurity & Governance -->
+          <div class="service-card" data-accent="#818cf8" data-mode="security">
+            <div class="service-top">
+              <span class="service-num">04</span>
+              <div class="service-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="service-title">Cybersecurity & Zero-Trust</h3>
+            <p class="service-desc">
+              Rigorous defense-in-depth security modeling, automated vulnerability gates, short-lived mutual TLS credentials, and cryptographic perimeter protection.
+            </p>
+            <ul class="service-list">
+              <li>Zero-Trust IAM & mTLS 1.3 Perimeters</li>
+              <li>SBOM & Automated Vulnerability Scans</li>
+              <li>SOC 2 / HIPAA Compliance Hardening</li>
+            </ul>
+            <div class="card-glow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Process Section (Pinned Step Sequence) -->
+    <section id="process" class="section process-section" data-scene="3">
+      <div class="container">
+        <div class="section-header">
+          <span class="mono-eyebrow">03 // METHODOLOGY</span>
+          <h2 class="section-title">
+            From Chaos to Clarity. <br>
+            <span class="gold-gradient">The 4-Step Delivery Conduit.</span>
+          </h2>
+        </div>
+
+        <div class="process-sequence">
+          <!-- Step 1 -->
+          <div class="process-step">
+            <div class="step-badge">STEP 01</div>
+            <h3 class="step-title">Discover & Audit</h3>
+            <p class="step-desc">
+              We audit your architecture, identify single points of failure, map data flows, and determine precise latency and cost drivers before writing code.
+            </p>
+            <div class="step-output">
+              <span class="label">DELIVERABLE:</span> Technical Debt & Topology RFC
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="process-step">
+            <div class="step-badge">STEP 02</div>
+            <h3 class="step-title">Architect & Design</h3>
+            <p class="step-desc">
+              We construct clean, decoupled specifications, define multi-zone disaster boundaries, and establish immutable zero-trust IAM policies.
+            </p>
+            <div class="step-output">
+              <span class="label">DELIVERABLE:</span> Target Blueprint & IaC Specs
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="process-step">
+            <div class="step-badge">STEP 03</div>
+            <h3 class="step-title">Build & Automate</h3>
+            <p class="step-desc">
+              Engineered in disciplined 2-week sprints with automated test suites, type-safety, and GitOps deployments with zero downtime.
+            </p>
+            <div class="step-output">
+              <span class="label">DELIVERABLE:</span> Production Codebase & Pipelines
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="process-step">
+            <div class="step-badge">STEP 04</div>
+            <h3 class="step-title">Launch & Observe</h3>
+            <p class="step-desc">
+              Canary releases, live telemetry dashboards, automated failover verification, and transparent engineering handoff to your team.
+            </p>
+            <div class="step-output">
+              <span class="label">DELIVERABLE:</span> SRE Runbooks & Live Systems
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Work / Case Studies Section -->
+    <section id="work" class="section work-section" data-scene="4">
+      <div class="container">
+        <div class="section-header">
+          <span class="mono-eyebrow">04 // PROVEN OUTCOMES</span>
+          <h2 class="section-title">
+            Selected Case Studies. <br>
+            <span class="gold-gradient">Real Engineering Results.</span>
+          </h2>
+        </div>
+
+        <div class="work-grid">
+          <!-- Case 1 -->
+          <div class="work-card">
+            <div class="work-meta">
+              <span class="work-tag">FINTECH TRANSACTION CORE</span>
+              <span class="work-year">2026</span>
+            </div>
+            <h3 class="work-title">Apex Ledger: Zero-Downtime Migration</h3>
+            <p class="work-desc">
+              Migrated a legacy payment settlement engine to a multi-AZ distributed database topology with zero seconds of planned customer transaction downtime.
+            </p>
+            <div class="work-metrics">
+              <div class="metric"><span class="val gold-text">$4.2B+</span> <span class="lbl">Annual Volume</span></div>
+              <div class="metric"><span class="val green-text">28ms</span> <span class="lbl">p99 Query Latency</span></div>
+              <div class="metric"><span class="val cyan-text">0 min</span> <span class="lbl">Cutover Downtime</span></div>
+            </div>
+            <div class="work-stack">
+              <span>PostgreSQL</span><span>AWS Multi-AZ</span><span>Go Workers</span><span>Terraform</span>
+            </div>
+          </div>
+
+          <!-- Case 2 -->
+          <div class="work-card">
+            <div class="work-meta">
+              <span class="work-tag">CLOUD INFRASTRUCTURE PLATFORM</span>
+              <span class="work-year">2026</span>
+            </div>
+            <h3 class="work-title">Aravanta CloudOS: Declarative State Convergence</h3>
+            <p class="work-desc">
+              Engineered a declarative multi-cloud control plane that automatically detects configuration drift, auto-heals nodes, and unifies telemetry across AWS, GCP, and bare-metal fleets.
+            </p>
+            <div class="work-metrics">
+              <div class="metric"><span class="val gold-text">94%</span> <span class="lbl">Drift Reduction</span></div>
+              <div class="metric"><span class="val green-text">Sub-Second</span> <span class="lbl">State Sync</span></div>
+              <div class="metric"><span class="val cyan-text">Multi-Cloud</span> <span class="lbl">Agnostic Drivers</span></div>
+            </div>
+            <div class="work-stack">
+              <span>Next.js</span><span>Rust / Go</span><span>Kubernetes</span><span>OpenTelemetry</span>
+            </div>
+          </div>
+
+          <!-- Case 3 -->
+          <div class="work-card">
+            <div class="work-meta">
+              <span class="work-tag">ENTERPRISE SAAS COMMERCE</span>
+              <span class="work-year">2025</span>
+            </div>
+            <h3 class="work-title">OmniScale: High-Burst Traffic Ingress</h3>
+            <p class="work-desc">
+              Re-architected an enterprise storefront experiencing flash-sale outages. Implemented edge caching, asynchronous queueing, and container auto-scaling.
+            </p>
+            <div class="work-metrics">
+              <div class="metric"><span class="val gold-text">120K req/s</span> <span class="lbl">Peak Load</span></div>
+              <div class="metric"><span class="val green-text">99.999%</span> <span class="lbl">Uptime</span></div>
+              <div class="metric"><span class="val cyan-text">-42%</span> <span class="lbl">Cloud Bill</span></div>
+            </div>
+            <div class="work-stack">
+              <span>Next.js</span><span>Redis Cluster</span><span>Kafka</span><span>Docker</span>
+            </div>
+          </div>
+
+          <!-- Case 4 -->
+          <div class="work-card">
+            <div class="work-meta">
+              <span class="work-tag">HEALTHCARE ANALYTICS</span>
+              <span class="work-year">2025</span>
+            </div>
+            <h3 class="work-title">PulseHealth: Zero-Trust HIPAA Enclave</h3>
+            <p class="work-desc">
+              Engineered an isolated cloud environment with mTLS 1.3 encrypted data enclaves, ephemeral least-privilege tokens, and automated compliance drift monitoring.
+            </p>
+            <div class="work-metrics">
+              <div class="metric"><span class="val gold-text">100%</span> <span class="lbl">Zero Static Keys</span></div>
+              <div class="metric"><span class="val green-text">Audit Ready</span> <span class="lbl">HIPAA & SOC 2</span></div>
+              <div class="metric"><span class="val cyan-text">Automated</span> <span class="lbl">OPA Guardrails</span></div>
+            </div>
+            <div class="work-stack">
+              <span>mTLS 1.3</span><span>OPA Policy</span><span>Python</span><span>AWS Secrets</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Tech Stack Section -->
+    <section id="tech" class="section tech-section" data-scene="5">
+      <div class="container">
+        <div class="section-header">
+          <span class="mono-eyebrow">05 // ARCHITECTURAL PRIMITIVES</span>
+          <h2 class="section-title">
+            Battle-Tested Tooling. <br>
+            <span class="gold-gradient">Modern Tech Stack.</span>
+          </h2>
+          <p class="section-subtext">We choose tools for speed, maintainability, reliability, and security.</p>
+        </div>
+
+        <div class="tech-grid">
+          <div class="tech-category">
+            <h4 class="category-title">Frontend & Spatial Web</h4>
+            <div class="tech-chips">
+              <span class="tech-pill">Next.js 14/15</span>
+              <span class="tech-pill">TypeScript</span>
+              <span class="tech-pill">React 18/19</span>
+              <span class="tech-pill">Three.js</span>
+              <span class="tech-pill">WebGL / WebGPU</span>
+              <span class="tech-pill">GSAP / Lenis</span>
+              <span class="tech-pill">Tailwind CSS</span>
+            </div>
+          </div>
+
+          <div class="tech-category">
+            <h4 class="category-title">Backend & Compute Runtimes</h4>
+            <div class="tech-chips">
+              <span class="tech-pill">Go (Golang)</span>
+              <span class="tech-pill">Node.js / Bun</span>
+              <span class="tech-pill">Rust</span>
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">GraphQL / REST</span>
+              <span class="tech-pill">gRPC / Protobuf</span>
+            </div>
+          </div>
+
+          <div class="tech-category">
+            <h4 class="category-title">Cloud Infrastructure & DevOps</h4>
+            <div class="tech-chips">
+              <span class="tech-pill">Amazon Web Services</span>
+              <span class="tech-pill">Google Cloud</span>
+              <span class="tech-pill">Kubernetes (K8s)</span>
+              <span class="tech-pill">Docker</span>
+              <span class="tech-pill">Terraform / OpenTofu</span>
+              <span class="tech-pill">GitHub Actions / CI</span>
+              <span class="tech-pill">GitOps / ArgoCD</span>
+            </div>
+          </div>
+
+          <div class="tech-category">
+            <h4 class="category-title">Data Storage & Observability</h4>
+            <div class="tech-chips">
+              <span class="tech-pill">PostgreSQL</span>
+              <span class="tech-pill">Redis</span>
+              <span class="tech-pill">Apache Kafka</span>
+              <span class="tech-pill">OpenTelemetry</span>
+              <span class="tech-pill">Prometheus & Grafana</span>
+              <span class="tech-pill">Vector / Qdrant</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Testimonials Section (Minimal Carousel) -->
+    <section id="testimonials" class="section testimonials-section" data-scene="6">
+      <div class="container">
+        <div class="section-header">
+          <span class="mono-eyebrow">06 // TRUSTED PARTNERSHIPS</span>
+          <h2 class="section-title">
+            Engineering Leaders <br>
+            <span class="gold-gradient">On Our Work.</span>
+          </h2>
+        </div>
+
+        <div class="testimonial-carousel">
+          <div class="testimonial-track" id="testimonial-track">
+            <!-- Slide 1 -->
+            <div class="testimonial-slide active">
+              <div class="quote-mark">“</div>
+              <p class="quote-text">
+                Aravanta Tech handled our core database migration with surgical precision. Over 4 billion dollars in transaction volume shifted across regions with zero disruption to our customers. Their team operates at the highest technical standard.
+              </p>
+              <div class="author-block">
+                <div class="author-avatar">MR</div>
+                <div>
+                  <h4 class="author-name">Marcus Reynolds</h4>
+                  <p class="author-role">Chief Technology Officer, Apex Financial Group</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="testimonial-slide">
+              <div class="quote-mark">“</div>
+              <p class="quote-text">
+                Most agencies give you slides. Aravanta Tech gave us battle-tested Terraform modules, automated CI/CD canary pipelines, and cut our AWS bill by 42% while tripling our peak request capacity.
+              </p>
+              <div class="author-block">
+                <div class="author-avatar">EL</div>
+                <div>
+                  <h4 class="author-name">Elena Lin</h4>
+                  <p class="author-role">VP of Engineering, CloudScale Commerce</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="testimonial-slide">
+              <div class="quote-mark">“</div>
+              <p class="quote-text">
+                Their zero-trust security framework helped us pass enterprise healthcare compliance audits seamlessly. They didn't just write code; they fundamentally elevated our operational maturity.
+              </p>
+              <div class="author-block">
+                <div class="author-avatar">DV</div>
+                <div>
+                  <h4 class="author-name">David Vance</h4>
+                  <p class="author-role">Head of Infrastructure & SecOps, PulseHealth</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <div class="carousel-nav">
+            <button id="prev-testimonial" class="carousel-btn" aria-label="Previous Testimonial">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            </button>
+            <div class="carousel-dots" id="carousel-dots">
+              <span class="dot active" data-index="0"></span>
+              <span class="dot" data-index="1"></span>
+              <span class="dot" data-index="2"></span>
+            </div>
+            <button id="next-testimonial" class="carousel-btn" aria-label="Next Testimonial">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Contact Section -->
+    <section id="contact" class="section contact-section" data-scene="7">
+      <div class="container">
+        <div class="contact-card-wrapper">
+          <div class="contact-info">
+            <span class="mono-eyebrow">07 // DIRECT COLLABORATION</span>
+            <h2 class="contact-title">
+              Let's Build Something <br>
+              <span class="gold-gradient">Exceptional.</span>
+            </h2>
+            <p class="contact-desc">
+              Have an upcoming cloud migration, application modernization project, or architectural challenge? Talk directly with our principal systems engineers.
+            </p>
+
+            <div class="direct-contact-items">
+              <div class="direct-item">
+                <span class="item-label">DIRECT INQUIRIES</span>
+                <a href="mailto:contact@aravantatech.com" class="item-val gold-text">contact@aravantatech.com</a>
+              </div>
+              <div class="direct-item">
+                <span class="item-label">PHONE / WHATSAPP</span>
+                <a href="tel:+1234567890" class="item-val">+1 (555) 019-2834</a>
+              </div>
+              <div class="direct-item">
+                <span class="item-label">OFFICE / HQ</span>
+                <span class="item-val">Silicon Valley, CA & Remote Global</span>
+              </div>
+            </div>
+
+            <div class="contact-socials">
+              <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+              <a href="https://github.com" target="_blank" rel="noopener" class="social-link">GitHub</a>
+              <a href="https://x.com" target="_blank" rel="noopener" class="social-link">X (Twitter)</a>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-container">
+            <form id="contact-form" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="name">Your Name / Organization *</label>
+                <input type="text" id="name" name="name" required placeholder="e.g. Sarah Connor, Tech Corp">
+              </div>
+
+              <div class="form-group">
+                <label for="email">Work Email *</label>
+                <input type="email" id="email" name="email" required placeholder="sarah@organization.com">
+              </div>
+
+              <div class="form-group">
+                <label for="service">Area of Interest</label>
+                <select id="service" name="service">
+                  <option value="cloud">Cloud Solutions & Migration</option>
+                  <option value="software">Software & AI Development</option>
+                  <option value="devops">DevOps & Infrastructure Automation</option>
+                  <option value="security">Cybersecurity & Zero-Trust</option>
+                  <option value="general">Architecture Review / Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Project Scope & Objectives *</label>
+                <textarea id="message" name="message" rows="4" required placeholder="Tell us about your workloads, technical challenges, or target timeline..."></textarea>
+              </div>
+
+              <button type="submit" id="submit-btn" class="btn btn-primary btn-submit magnetic-btn">
+                <span id="btn-text">Send Project Inquiry</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+
+              <div id="form-feedback" class="form-feedback" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Footer -->
+    <footer id="footer" class="site-footer">
+      <div class="container footer-container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="brand-mark">
+              <svg viewBox="0 0 40 40" width="28" height="28" fill="none">
+                <polygon points="20,4 36,34 4,34" stroke="#d4a342" stroke-width="2.5" fill="rgba(212,163,66,0.12)"/>
+                <polygon points="20,15 28,30 12,30" fill="#d4a342"/>
+              </svg>
+              <span class="brand-title">ARAVANTA <span class="gold-text">TECH</span></span>
+            </div>
+            <p class="footer-tagline">Empowering Cloud Transformation. Simpler. Safer. Smarter.</p>
+          </div>
+
+          <div class="footer-nav">
+            <div class="footer-col">
+              <h5>Navigation</h5>
+              <a href="#hero">Home</a>
+              <a href="#about">About</a>
+              <a href="#services">Services</a>
+              <a href="#process">Process</a>
+              <a href="#work">Case Studies</a>
+              <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-col">
+              <h5>Governance</h5>
+              <a href="/security">Trust Center</a>
+              <a href="/sla">Service Level Agreement</a>
+              <a href="/compliance">Responsible Disclosure</a>
+              <a href="/privacy">Privacy Policy</a>
+              <a href="/terms">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">© 2026 ARAVANTA TECH. All rights reserved.</p>
+          <p class="built-with">Engineered with Three.js WebGL & Precision Type Systems.</p>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- External Script Dependencies (Three.js + GSAP + ScrollTrigger) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Main JavaScript File -->
+  <script src="main.js"></script>
+</body>
+</html>
