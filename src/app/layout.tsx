@@ -42,25 +42,29 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "ARAVANTA TECH" }],
   creator: "ARAVANTA TECH",
-  metadataBase: new URL("https://aravantatech.com"),
+  metadataBase: new URL("https://aravanta.tech"),
   icons: {
     icon: [
-      { url: "/brand/icon.png", type: "image/png" },
+      { url: "/brand/icon.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/icon.png", sizes: "192x192", type: "image/png" },
       { url: "/favicon.ico" },
     ],
+    shortcut: "/brand/icon.png",
     apple: "/brand/icon.png",
   },
   openGraph: {
     title: "ARAVANTA TECH | Empowering Cloud Transformation",
     description:
-      "Modern technology consulting, cloud architecture, and software engineering. Build Smarter. Grow Faster.",
-    url: "https://aravantatech.com",
+      "Enterprise cloud solutions, scalable application engineering, automated GitOps pipelines, and zero-trust cybersecurity. Simpler. Safer. Smarter.",
+    url: "https://aravanta.tech",
     siteName: "ARAVANTA TECH",
     images: [
       {
-        url: "/brand/primary-logo.png",
-        width: 1536,
-        height: 1536,
+        url: "https://aravanta.tech/brand/primary-logo.png",
+        secureUrl: "https://aravanta.tech/brand/primary-logo.png",
+        width: 1200,
+        height: 630,
+        type: "image/png",
         alt: "ARAVANTA TECH - Empowering Cloud Transformation",
       },
     ],
@@ -71,8 +75,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ARAVANTA TECH | Empowering Cloud Transformation",
     description:
-      "Modern cloud architecture, software engineering, and digital transformation.",
-    images: ["/brand/primary-logo.png"],
+      "Enterprise cloud solutions, scalable application engineering, and zero-trust cybersecurity.",
+    images: ["https://aravanta.tech/brand/primary-logo.png"],
   },
   robots: {
     index: true,
@@ -89,6 +93,28 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <meta name="theme-color" content="#090a0d" />
+        {/* Favicons */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/brand/icon.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/brand/icon.png" />
+        <link rel="shortcut icon" href="/brand/icon.png" />
+        <link rel="apple-touch-icon" href="/brand/icon.png" />
+
+        {/* Explicit Social / WhatsApp OpenGraph Tags */}
+        <meta property="og:site_name" content="ARAVANTA TECH" />
+        <meta property="og:title" content="ARAVANTA TECH | Empowering Cloud Transformation" />
+        <meta
+          property="og:description"
+          content="Enterprise cloud solutions, scalable application engineering, automated GitOps pipelines, and zero-trust cybersecurity. Simpler. Safer. Smarter."
+        />
+        <meta property="og:image" content="https://aravanta.tech/brand/primary-logo.png" />
+        <meta property="og:image:secure_url" content="https://aravanta.tech/brand/primary-logo.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:url" content="https://aravanta.tech" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://aravanta.tech/brand/primary-logo.png" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans bg-brand-dark text-white min-h-screen flex flex-col antialiased selection:bg-brand-gold/20 selection:text-brand-gold`}

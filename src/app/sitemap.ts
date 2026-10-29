@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://aravantatech.com";
+  const baseUrl = "https://aravanta.tech";
   const now = new Date();
 
   const routes = [

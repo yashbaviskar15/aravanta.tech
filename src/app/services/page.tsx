@@ -69,22 +69,22 @@ export default function ServicesPage() {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surfaceElevated border border-brand-border">
               <span className="w-2 h-2 rounded-full bg-[#d4a342] animate-pulse" />
               <span className="text-xs font-mono text-[#d4a342] font-semibold uppercase tracking-wider">
-                Interactive Practice Focus
+                Core Engineering Disciplines
               </span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-              Flagship Engineering Capabilities
+              Flagship Architecture Practices
             </h2>
             <p className="text-sm text-brand-gray-300">
-              Interactive 3D card stack powered by SmoothUI. Scroll or swipe to explore our core architecture disciplines.
+              Interactive architectural preview of our specialized disciplines delivering multi-cloud resilience, high-concurrency systems, and zero-trust security.
             </p>
           </div>
 
-          <div className="relative z-10">
+          <div className="relative z-10 pb-6">
             <ScrollableCardStack
               items={aravantaServiceCards}
-              cardHeight={410}
-              cardWidth="w-[92vw] max-w-[580px]"
+              cardHeight={490}
+              cardWidth="w-[94vw] max-w-[620px]"
             />
           </div>
         </div>

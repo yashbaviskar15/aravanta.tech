@@ -5,15 +5,14 @@ import { motion, useMotionValue, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
-const SCROLL_TIMEOUT_OFFSET = 100;
-const MIN_SCROLL_INTERVAL = 300;
-const SCROLL_THRESHOLD = 20;
-const TOUCH_SCROLL_THRESHOLD = 60;
-const SCALE_FACTOR = 0.07;
+const SCROLL_TIMEOUT_OFFSET = 80;
+const MIN_SCROLL_INTERVAL = 250;
+const TOUCH_SCROLL_THRESHOLD = 40;
+const SCALE_FACTOR = 0.06;
 const MIN_SCALE = 0.2;
 const MAX_SCALE = 2;
 const HOVER_SCALE_MULTIPLIER = 1.02;
-const CARD_PADDING = 110;
+const CARD_PADDING = 90;
 
 export interface CardItem {
   id: string;
@@ -42,10 +41,75 @@ export interface ScrollableCardStackProps {
   showControls?: boolean;
 }
 
+/**
+ * Robust Visual Renderer for Card Stack Media
+ * Handles raw SVGs, data URIs, and standard image files with fallback
+ */
+function CardVisualMedia({ item }: { item: CardItem }) {
+  const [imgError, setImgError] = useState(false);
+  const rawImage = item.image || "";
+
+  // Check if image contains inline SVG or is an SVG data URI
+  const isSvg =
+    rawImage.includes("<svg") ||
+    rawImage.startsWith("data:image/svg+xml");
+
+  if (isSvg) {
+    let svgMarkup = rawImage;
+    if (svgMarkup.startsWith("data:image/svg+xml;utf8,")) {
+      svgMarkup = svgMarkup.replace("data:image/svg+xml;utf8,", "");
+    } else if (svgMarkup.startsWith("data:image/svg+xml;charset=utf-8,")) {
+      try {
+        svgMarkup = decodeURIComponent(
+          svgMarkup.replace("data:image/svg+xml;charset=utf-8,", "")
+        );
+      } catch {
+        // use markup as-is
+      }
+    }
+
+    if (svgMarkup.includes("<svg")) {
+      return (
+        <div
+          className="absolute inset-0 h-full w-full flex items-center justify-center overflow-hidden [&>svg]:w-full [&>svg]:h-full [&>svg]:object-cover pointer-events-none select-none"
+          dangerouslySetInnerHTML={{ __html: svgMarkup }}
+        />
+      );
+    }
+  }
+
+  // Fallback for standard images
+  if (imgError || !rawImage) {
+    return (
+      <div className="absolute inset-0 h-full w-full flex flex-col items-center justify-center bg-gradient-to-br from-[#0c101a] via-[#121828] to-[#07090f] p-6 text-center select-none">
+        <div className="w-10 h-10 rounded-xl bg-[#d4a342]/10 border border-[#d4a342]/30 flex items-center justify-center mb-2">
+          <span className="text-[#d4a342] font-mono font-bold text-sm">
+            {item.category?.slice(0, 3) || "SYS"}
+          </span>
+        </div>
+        <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider">
+          {item.name}
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      alt={item.imageAlt ?? `${item.name} visual preview`}
+      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover/image:scale-105"
+      decoding="async"
+      draggable={false}
+      onError={() => setImgError(true)}
+      src={rawImage}
+    />
+  );
+}
+
 export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
   items,
-  cardHeight = 420,
-  cardWidth = "w-[92vw] max-w-[620px]",
+  cardHeight = 490,
+  cardWidth = "w-[94vw] max-w-[620px]",
   perspective = 1100,
   transitionDuration = 220,
   className,
@@ -63,8 +127,8 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
   const totalItems = items.length;
   const maxIndex = Math.max(0, totalItems - 1);
 
-  // Constants for visual depth stacking
-  const FRAME_OFFSET = -28;
+  // Visual depth stacking constants
+  const FRAME_OFFSET = -30;
   const FRAMES_VISIBLE_LENGTH = 3;
   const SNAP_DISTANCE = 50;
 
@@ -99,29 +163,18 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
     [currentIndex, maxIndex, scrollY, isScrolling, transitionDuration, clamp]
   );
 
-  const handleScroll = useCallback(
-    (deltaY: number) => {
-      if (isDragging || isScrolling) return;
-      if (Math.abs(deltaY) < SCROLL_THRESHOLD) return;
-
-      const scrollDirection = deltaY > 0 ? 1 : -1;
-      scrollToCard(scrollDirection);
+  const goToCard = useCallback(
+    (index: number) => {
+      if (index === currentIndex || isScrolling) return;
+      const target = clamp(index, [0, maxIndex]);
+      setIsScrolling(true);
+      setCurrentIndex(target);
+      scrollY.set(target * SNAP_DISTANCE);
+      setTimeout(() => {
+        setIsScrolling(false);
+      }, transitionDuration + SCROLL_TIMEOUT_OFFSET);
     },
-    [isDragging, isScrolling, scrollToCard]
-  );
-
-  // Wheel events - allow natural page scroll when at boundaries
-  const handleWheel = useCallback(
-    (e: WheelEvent) => {
-      const isAtBottom = currentIndex === maxIndex && e.deltaY > 0;
-      const isAtTop = currentIndex === 0 && e.deltaY < 0;
-
-      if (!isAtBottom && !isAtTop) {
-        e.preventDefault();
-        handleScroll(e.deltaY);
-      }
-    },
-    [currentIndex, maxIndex, handleScroll]
+    [currentIndex, maxIndex, isScrolling, scrollY, transitionDuration, clamp]
   );
 
   // Keyboard navigation
@@ -144,47 +197,30 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
         }
         case "Home": {
           e.preventDefault();
-          if (currentIndex !== 0) {
-            setIsScrolling(true);
-            setCurrentIndex(0);
-            scrollY.set(0);
-            setTimeout(() => {
-              setIsScrolling(false);
-            }, transitionDuration + SCROLL_TIMEOUT_OFFSET);
-          }
+          goToCard(0);
           break;
         }
         case "End": {
           e.preventDefault();
-          if (currentIndex !== maxIndex) {
-            setIsScrolling(true);
-            setCurrentIndex(maxIndex);
-            scrollY.set(maxIndex * SNAP_DISTANCE);
-            setTimeout(() => {
-              setIsScrolling(false);
-            }, transitionDuration + SCROLL_TIMEOUT_OFFSET);
-          }
+          goToCard(maxIndex);
           break;
         }
       }
     },
-    [currentIndex, maxIndex, scrollY, isScrolling, scrollToCard, transitionDuration]
+    [isScrolling, scrollToCard, goToCard, maxIndex]
   );
 
-  // Touch handling
+  // Touch & Swipe handling
   const touchStartY = useRef(0);
   const touchStartX = useRef(0);
   const touchMoved = useRef(false);
 
-  const handleTouchStart = useCallback(
-    (e: React.TouchEvent) => {
-      touchStartY.current = e.touches[0].clientY;
-      touchStartX.current = e.touches[0].clientX;
-      touchMoved.current = false;
-      setIsDragging(true);
-    },
-    []
-  );
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+    touchStartX.current = e.touches[0].clientX;
+    touchMoved.current = false;
+    setIsDragging(true);
+  }, []);
 
   const handleTouchMove = useCallback(
     (e: React.TouchEvent) => {
@@ -195,7 +231,8 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
       const deltaY = touchStartY.current - currentY;
       const deltaX = touchStartX.current - currentX;
 
-      const dominantDelta = Math.abs(deltaY) > Math.abs(deltaX) ? deltaY : deltaX;
+      // Prefer horizontal or vertical swipe depending on user movement
+      const dominantDelta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
 
       if (Math.abs(dominantDelta) > TOUCH_SCROLL_THRESHOLD && !touchMoved.current) {
         const scrollDirection = dominantDelta > 0 ? 1 : -1;
@@ -210,18 +247,6 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
     setIsDragging(false);
     touchMoved.current = false;
   }, []);
-
-  // Set up event listeners
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    container.addEventListener("wheel", handleWheel, { passive: false });
-
-    return () => {
-      container.removeEventListener("wheel", handleWheel);
-    };
-  }, [handleWheel]);
 
   useEffect(() => {
     if (!isDragging) {
@@ -263,7 +288,7 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
   return (
     <section
       aria-atomic="true"
-      aria-label="Scrollable card stack"
+      aria-label="Interactive architecture cards"
       aria-live="polite"
       className={cn("relative mx-auto h-fit w-full max-w-4xl select-none", className)}
     >
@@ -280,13 +305,13 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
           minHeight: `${cardHeight + CARD_PADDING}px`,
           perspective: `${perspective}px`,
           perspectiveOrigin: "center 55%",
-          touchAction: "pan-y",
         }}
         tabIndex={0}
       >
         {items.map((item, i) => {
           const transform = getCardTransform(i);
           const isActive = i === currentIndex;
+          const isNext = i === currentIndex + 1;
           const isHovered = hoveredIndex === i;
 
           return (
@@ -303,26 +328,33 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
               }
               aria-hidden={!isActive}
               className={cn(
-                "absolute top-1/2 left-1/2 overflow-hidden rounded-2xl border transition-colors",
+                "absolute top-1/2 left-1/2 overflow-hidden rounded-2xl border transition-all",
                 cardWidth,
                 isActive
-                  ? "border-[#d4a342]/50 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(212,163,66,0.15)] ring-1 ring-[#d4a342]/20"
-                  : "border-white/10 shadow-lg"
+                  ? "border-[#d4a342]/60 shadow-[0_24px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(212,163,66,0.18)] ring-1 ring-[#d4a342]/30"
+                  : "border-white/10 shadow-lg cursor-pointer hover:border-white/25"
               )}
               data-active={isActive}
               initial={false}
+              onClick={(e) => {
+                // Clicking a background card brings it forward
+                if (!isActive) {
+                  e.stopPropagation();
+                  goToCard(i);
+                }
+              }}
               onBlur={() => setHoveredIndex(null)}
               onFocus={() => isActive && setHoveredIndex(i)}
-              onMouseEnter={() => isActive && setHoveredIndex(i)}
+              onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
               style={{
                 borderWidth: "1px",
                 filter: `blur(${transform.blur}px)`,
                 height: `${cardHeight}px`,
                 opacity: transform.opacity,
-                pointerEvents: isActive ? "auto" : "none",
+                pointerEvents: i < currentIndex ? "none" : "auto",
                 transformOrigin: "center center",
-                transitionDuration: shouldReduceMotion ? "0ms" : "220ms",
+                transitionDuration: shouldReduceMotion ? "0ms" : "240ms",
                 transitionProperty: shouldReduceMotion
                   ? "none"
                   : "opacity, filter, border-color",
@@ -337,18 +369,18 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
                 shouldReduceMotion
                   ? { duration: 0 }
                   : {
-                      damping: 22,
-                      duration: 0.28,
+                      damping: 24,
+                      duration: 0.3,
                       mass: 0.6,
                       stiffness: 260,
                       type: "spring" as const,
                     }
               }
               whileHover={
-                shouldReduceMotion || !isActive
+                shouldReduceMotion
                   ? {}
                   : {
-                      scale: transform.scale * HOVER_SCALE_MULTIPLIER,
+                      scale: transform.scale * (isActive ? HOVER_SCALE_MULTIPLIER : 1.01),
                       transition: {
                         damping: 22,
                         duration: 0.25,
@@ -362,23 +394,17 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
               {/* Card Container */}
               <div
                 className={cn(
-                  "flex h-full w-full flex-col justify-between rounded-2xl bg-gradient-to-b from-[#10141f] via-[#0b0e16] to-[#07090e] p-6 sm:p-7 relative overflow-hidden transition-all duration-200",
+                  "flex h-full w-full flex-col justify-between rounded-2xl bg-gradient-to-b from-[#10141f] via-[#0b0e16] to-[#07090e] p-5 sm:p-6 relative overflow-hidden transition-all duration-200",
                   isHovered && "brightness-105"
                 )}
               >
                 {/* Visual Top Bar / Image Area */}
-                <div className="relative w-full h-[180px] sm:h-[210px] rounded-xl overflow-hidden border border-white/10 bg-black/40 mb-4 group/image">
+                <div className="relative w-full h-[160px] sm:h-[185px] rounded-xl overflow-hidden border border-white/10 bg-black/50 mb-3 group/image shrink-0">
                   {/* Subtle Background Glow */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b0e16] via-transparent to-transparent z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b0e16] via-transparent to-transparent z-10 pointer-events-none" />
 
-                  {/* Image */}
-                  <img
-                    alt={item.imageAlt ?? `${item.name} visual preview`}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover/image:scale-105"
-                    decoding="async"
-                    draggable={false}
-                    src={item.image}
-                  />
+                  {/* Render Image or SVG Blueprint */}
+                  <CardVisualMedia item={item} />
 
                   {/* Top Badge Overlay */}
                   <div className="absolute top-3 left-3 z-20 flex items-center gap-2">
@@ -394,13 +420,13 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
                     )}
                   </div>
 
-                  {/* Metric Pill if present */}
+                  {/* Metric Pill */}
                   {item.metrics && (
                     <div className="absolute bottom-3 right-3 z-20 px-3 py-1 rounded-lg bg-[#05070a]/90 border border-white/15 backdrop-blur-md text-right">
                       <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">
                         {item.metrics.label}
                       </div>
-                      <div className="text-sm font-bold font-mono text-white">
+                      <div className="text-xs sm:text-sm font-bold font-mono text-white">
                         {item.metrics.value}
                       </div>
                     </div>
@@ -408,10 +434,10 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
                 </div>
 
                 {/* Card Main Info */}
-                <div className="flex-1 flex flex-col justify-between">
-                  <div className="space-y-2">
+                <div className="flex-1 flex flex-col justify-between min-h-0">
+                  <div className="space-y-1.5">
                     <div className="flex items-start justify-between gap-3">
-                      <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug">
+                      <h3 className="text-base sm:text-lg font-bold text-white tracking-tight leading-snug line-clamp-1">
                         {item.name}
                       </h3>
                       {item.handle && (
@@ -422,7 +448,7 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
                     </div>
 
                     {item.tagline && (
-                      <p className="text-xs sm:text-sm font-medium text-[#d4a342]">
+                      <p className="text-xs sm:text-sm font-medium text-[#d4a342] line-clamp-1">
                         {item.tagline}
                       </p>
                     )}
@@ -435,7 +461,7 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
                   </div>
 
                   {/* Tags & Action Link Footer */}
-                  <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-2 mt-auto">
+                  <div className="pt-3 border-t border-white/10 flex items-center justify-between gap-2 mt-2 shrink-0">
                     {/* Tags */}
                     <div className="flex items-center gap-1.5 flex-wrap">
                       {item.tags?.slice(0, 3).map((tag, tIdx) => (
@@ -448,21 +474,22 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
                       ))}
                     </div>
 
-                    {/* CTA / Profile Link */}
+                    {/* CTA / Practice Link */}
                     {item.href ? (
                       <a
                         aria-label={`Explore ${item.name}`}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold font-mono text-[#d4a342] bg-[#d4a342]/10 hover:bg-[#d4a342]/20 border border-[#d4a342]/30 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold font-mono text-[#d4a342] bg-[#d4a342]/10 hover:bg-[#d4a342]/20 border border-[#d4a342]/40 transition-colors shrink-0"
                         href={item.href}
+                        onClick={(e) => e.stopPropagation()}
                       >
                         {item.avatar && (
                           <img
-                            alt={`${item.name} avatar`}
-                            className="h-4 w-4 rounded-full"
+                            alt=""
+                            className="h-3.5 w-3.5 rounded-full"
                             src={item.avatar}
                           />
                         )}
-                        <span>{item.ctaText ?? "Inspect Architecture"}</span>
+                        <span>{item.ctaText ?? "Explore Practice"}</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     ) : null}
@@ -473,62 +500,63 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
           );
         })}
 
-        {/* Navigation Dots and Controls */}
+        {/* Navigation Dots, Buttons and Chapter Cue */}
         <div
           aria-label="Card stack navigation"
-          className="absolute -bottom-2 left-1/2 flex -translate-x-1/2 items-center gap-3"
-          style={{ zIndex: items.length + 2 }}
+          className="absolute -bottom-10 left-1/2 flex -translate-x-1/2 items-center gap-3 sm:gap-4 z-30"
           role="tablist"
         >
           {showControls && (
             <button
               aria-label="Previous card"
-              className="p-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-zinc-300 hover:text-white transition-colors disabled:opacity-30 disabled:pointer-events-none"
+              className="p-2 rounded-full bg-black/70 hover:bg-[#d4a342]/20 border border-white/20 hover:border-[#d4a342]/60 text-zinc-300 hover:text-[#d4a342] transition-all disabled:opacity-30 disabled:pointer-events-none shadow-lg backdrop-blur-md"
               disabled={currentIndex === 0 || isScrolling}
-              onClick={() => scrollToCard(-1)}
+              onClick={(e) => {
+                e.stopPropagation();
+                scrollToCard(-1);
+              }}
               type="button"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
           )}
 
-          {/* Dots */}
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
+          {/* Numbered Dots / Pills */}
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/80 border border-white/15 backdrop-blur-md shadow-xl">
             {Array.from({ length: totalItems }, (_, i) => (
               <motion.button
                 key={`scrollable-indicator-${items[i]?.id || i}`}
                 aria-label={`Go to card ${i + 1} of ${totalItems}`}
                 aria-selected={i === currentIndex}
                 className={cn(
-                  "h-2 rounded-full transition-all duration-200 focus:outline-none",
+                  "h-2.5 rounded-full transition-all duration-300 focus:outline-none flex items-center justify-center font-mono text-[9px] font-bold",
                   i === currentIndex
-                    ? "w-6 bg-[#d4a342] shadow-[0_0_10px_rgba(212,163,66,0.6)]"
-                    : "w-2 bg-zinc-600 hover:bg-zinc-400"
+                    ? "w-8 bg-[#d4a342] text-black shadow-[0_0_12px_rgba(212,163,66,0.8)]"
+                    : "w-2.5 bg-zinc-600 hover:bg-zinc-400"
                 )}
-                onClick={() => {
-                  if (i !== currentIndex && !isScrolling) {
-                    setIsScrolling(true);
-                    setCurrentIndex(i);
-                    scrollY.set(i * SNAP_DISTANCE);
-                    setTimeout(() => {
-                      setIsScrolling(false);
-                    }, transitionDuration + SCROLL_TIMEOUT_OFFSET);
-                  }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToCard(i);
                 }}
                 role="tab"
                 type="button"
-                whileHover={{ scale: 1.2 }}
+                whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
-              />
+              >
+                {i === currentIndex ? `0${i + 1}` : ""}
+              </motion.button>
             ))}
           </div>
 
           {showControls && (
             <button
               aria-label="Next card"
-              className="p-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-zinc-300 hover:text-white transition-colors disabled:opacity-30 disabled:pointer-events-none"
+              className="p-2 rounded-full bg-black/70 hover:bg-[#d4a342]/20 border border-white/20 hover:border-[#d4a342]/60 text-zinc-300 hover:text-[#d4a342] transition-all disabled:opacity-30 disabled:pointer-events-none shadow-lg backdrop-blur-md"
               disabled={currentIndex === maxIndex || isScrolling}
-              onClick={() => scrollToCard(1)}
+              onClick={(e) => {
+                e.stopPropagation();
+                scrollToCard(1);
+              }}
               type="button"
             >
               <ChevronRight className="w-4 h-4" />
@@ -538,7 +566,7 @@ export const ScrollableCardStack: React.FC<ScrollableCardStackProps> = ({
 
         {/* Screen Reader instructions */}
         <div aria-live="polite" className="sr-only">
-          {`Card ${currentIndex + 1} of ${totalItems} selected. Use arrow keys, mouse wheel, or click the navigation dots.`}
+          {`Card ${currentIndex + 1} of ${totalItems} selected. Click navigation buttons or dots to change cards.`}
         </div>
       </div>
     </section>

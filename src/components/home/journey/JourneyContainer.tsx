@@ -109,26 +109,27 @@ export function JourneyContainer() {
         <Scene02Cloud />
 
         {/* SmoothUI 3D Scrollable Card Stack Section */}
+        {/* Flagship Architecture Practices Card Stack Section */}
         <section id="capabilities-stack" className="py-20 sm:py-28 bg-[#06080e]/95 border-y border-brand-border/60 relative overflow-hidden backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-surfaceElevated border border-brand-border mb-3">
               <span className="w-2 h-2 rounded-full bg-[#d4a342] animate-pulse" />
               <span className="text-xs font-mono text-[#d4a342] font-semibold uppercase tracking-wider">
-                Interactive Practice Focus
+                Core Engineering Disciplines
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Flagship Engineering Capabilities
+              Flagship Architecture Practices
             </h2>
             <p className="text-sm sm:text-base text-brand-gray-300 max-w-2xl mx-auto mt-3">
-              Interactive 3D practice deck powered by SmoothUI. Scroll or swipe through our core architecture disciplines across cloud, application, and security practices.
+              Battle-tested engineering capabilities engineered for multi-cloud resiliency, distributed microservices, automated GitOps pipelines, and zero-trust security postures.
             </p>
           </div>
-          <div className="max-w-6xl mx-auto px-4">
+          <div className="max-w-6xl mx-auto px-4 pb-6">
             <ScrollableCardStack
               items={aravantaServiceCards}
-              cardHeight={410}
-              cardWidth="w-[92vw] max-w-[580px]"
+              cardHeight={490}
+              cardWidth="w-[94vw] max-w-[620px]"
             />
           </div>
         </section>
