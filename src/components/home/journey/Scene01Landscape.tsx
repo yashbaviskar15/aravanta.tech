@@ -47,8 +47,17 @@ export function Scene01Landscape() {
               Powerful, self-serve cloud infrastructure, resilient software engineering, and modern DevOps built to help you convert, scale, and retain more.
             </p>
 
-            {/* CTA Buttons side-by-side matching reference image */}
+            {/* CTA Buttons side-by-side matching Swiss Enterprise editorial style */}
             <div className="pt-2 flex flex-wrap items-center gap-4">
+              {/* Primary Start Project Button */}
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-zinc-100 text-[#08090d] font-bold text-sm shadow-[0_8px_30px_rgba(255,255,255,0.18)] transition-all select-none group"
+              >
+                <span>Start a Project</span>
+                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-[#08090d]" />
+              </Link>
+
               {/* Secondary Demo Button */}
               <a
                 href="#scene-06"
@@ -57,17 +66,8 @@ export function Scene01Landscape() {
                 <div className="w-5 h-5 rounded-full border border-white/40 flex items-center justify-center group-hover:scale-105 transition-transform">
                   <Play className="w-2.5 h-2.5 fill-white text-white ml-0.5" />
                 </div>
-                <span>Interactive Demo</span>
+                <span>Interactive CloudOS Demo</span>
               </a>
-
-              {/* Primary Sign Up / Start Project Button */}
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#7c3aed] via-[#6d28d9] to-[#d4a342] hover:brightness-110 text-white font-bold text-sm shadow-[0_10px_25px_rgba(109,40,217,0.35)] transition-all select-none group"
-              >
-                <span>Start a project</span>
-                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-              </Link>
             </div>
 
             {/* Proof Badges Bar */}

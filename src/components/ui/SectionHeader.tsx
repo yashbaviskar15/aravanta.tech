@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 interface SectionHeaderProps {
   eyebrow?: string;
+  badgeVariant?: "emerald" | "lime" | "gold" | "neutral" | "cyan";
   title: string;
   description?: string;
   align?: "left" | "center";
@@ -12,6 +13,7 @@ interface SectionHeaderProps {
 
 export function SectionHeader({
   eyebrow,
+  badgeVariant = "emerald",
   title,
   description,
   align = "left",
@@ -26,17 +28,17 @@ export function SectionHeader({
       )}
     >
       {eyebrow && (
-        <div className="mb-3">
-          <Badge variant="gold" size="sm">
+        <div className={cn("mb-3.5", align === "center" && "flex justify-center")}>
+          <Badge variant={badgeVariant} size="sm" dot>
             {eyebrow}
           </Badge>
         </div>
       )}
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight font-sans">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-base sm:text-lg text-brand-gray-300 leading-relaxed">
+        <p className="mt-4 text-base sm:text-lg text-zinc-400 leading-relaxed font-normal">
           {description}
         </p>
       )}

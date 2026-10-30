@@ -4,22 +4,27 @@ import { cn } from "@/lib/utils";
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   hoverEffect?: boolean;
   activeBorder?: boolean;
+  variant?: "default" | "glass" | "subtle";
 }
 
 export function Card({
   className,
   hoverEffect = true,
   activeBorder = false,
+  variant = "default",
   children,
   ...props
 }: CardProps) {
   return (
     <div
       className={cn(
-        "rounded-xl bg-brand-surface border border-brand-border p-6 md:p-8 transition-all duration-300 relative",
+        "rounded-2xl p-6 md:p-8 transition-all duration-300 relative",
+        variant === "default" && "bg-[#0d0f15] border border-white/10",
+        variant === "glass" && "bg-[#0d0f15]/80 backdrop-blur-xl border border-white/10",
+        variant === "subtle" && "bg-white/[0.02] border border-white/5",
         hoverEffect &&
-          "hover:border-brand-borderHighlight hover:bg-brand-surfaceElevated hover:shadow-lg hover:shadow-black/40 hover:-translate-y-0.5",
-        activeBorder && "border-brand-gold/40 shadow-sm shadow-brand-gold/10",
+          "hover:border-white/20 hover:bg-[#12151e] hover:shadow-[0_12px_40px_rgba(0,0,0,0.6)] hover:-translate-y-0.5",
+        activeBorder && "border-emerald-500/40 shadow-sm shadow-emerald-500/10",
         className
       )}
       {...props}
@@ -48,7 +53,7 @@ export function CardTitle({
 }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={cn("text-xl font-bold text-white tracking-tight", className)}
+      className={cn("text-xl font-bold text-white tracking-tight font-sans", className)}
       {...props}
     >
       {children}
@@ -63,7 +68,7 @@ export function CardDescription({
 }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
     <p
-      className={cn("text-sm text-brand-gray-400 leading-relaxed mt-2", className)}
+      className={cn("text-sm text-zinc-400 leading-relaxed mt-2", className)}
       {...props}
     >
       {children}

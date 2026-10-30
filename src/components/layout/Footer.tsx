@@ -1,27 +1,71 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
   ShieldCheck,
-  Cpu,
-  Terminal,
-  ArrowRight,
+  ChevronDown,
   ArrowUpRight,
-  Lock,
   FileCheck,
+  ArrowUp,
   Sparkles,
-  Server,
-  Mail,
-  Clock,
-  Layers,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const [openSection, setOpenSection] = useState<string | null>(null);
+
+  const toggleSection = (id: string) => {
+    setOpenSection((prev) => (prev === id ? null : id));
+  };
+
+  const scrollToTop = () => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const exploreLinks = [
+    { label: "Home", href: "/" },
+    { label: "About Us", href: "/about" },
+    { label: "Capabilities", href: "/technology" },
+    { label: "Case Studies", href: "/case-studies" },
+    { label: "Solutions", href: "/solutions" },
+    { label: "Careers", href: "/careers" },
+    { label: "FAQ", href: "/faq" },
+  ];
+
+  const serviceLinks = [
+    { label: "Cloud Solutions", href: "/services/cloud-solutions" },
+    { label: "Application Dev", href: "/services/application-development" },
+    { label: "IT Infrastructure", href: "/services/it-infrastructure" },
+    { label: "DevOps & GitOps", href: "/services/devops-automation" },
+    { label: "Cybersecurity", href: "/services/cybersecurity" },
+    { label: "Modernization", href: "/services/digital-transformation" },
+    { label: "Architecture Review", href: "/services/it-consulting" },
+  ];
+
+  const platformLinks = [
+    { label: "Aravanta CloudOS", href: "/cloudos", badge: "Preview" },
+    { label: "Architecture Explorer", href: "/cloudos#architecture" },
+    { label: "Platform Roadmap", href: "/cloudos#roadmap" },
+    { label: "Request Briefing", href: "/contact?interest=CloudOS", external: true },
+  ];
+
+  const trustLinks = [
+    { label: "Trust Center", href: "/security", icon: ShieldCheck },
+    { label: "SLA (99.999%)", href: "/sla", icon: FileCheck },
+    { label: "Compliance", href: "/compliance" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Cookie Policy", href: "/cookies" },
+  ];
 
   return (
     <footer
-      className="relative z-30 bg-[#05070a] border-t border-brand-border text-brand-gray-300 pt-12 sm:pt-16 pb-10 shadow-2xl"
+      className="relative z-30 bg-[#05070a] border-t border-white/10 text-zinc-400 pt-10 sm:pt-16 pb-8 shadow-2xl"
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">
@@ -29,289 +73,285 @@ export function Footer() {
       </h2>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Grid - 2 cols on mobile, 6 cols on desktop */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-10 mb-12 sm:mb-16">
-          {/* Brand & Mission Column (Full width on mobile, spans 2 on desktop) */}
-          <div className="col-span-2 sm:col-span-2 lg:col-span-2 space-y-3.5 pr-0 lg:pr-4">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-lg"
-              aria-label="ARAVANTA TECH Home"
-            >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-b from-[#ffffff] via-[#f4f4f6] to-[#d8dade] p-1 border border-brand-gold/60 shadow-sm flex items-center justify-center shrink-0">
-                <Image
-                  src="/brand/icon.png"
-                  alt="Aravanta Tech Emblem"
-                  width={28}
-                  height={28}
-                  className="object-contain w-full h-full"
-                />
-              </div>
-              <span className="font-extrabold text-base tracking-tight text-white font-mono">
-                ARAVANTA<span className="text-brand-gold ml-0.5">TECH</span>
-              </span>
-            </Link>
+        {/* Main Grid: Desktop 6-col / Mobile Compact */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-10 mb-8 sm:mb-14">
+          
+          {/* Brand & Mission Column */}
+          <div className="md:col-span-3 lg:col-span-2 space-y-3.5 pr-0 lg:pr-4">
+            <div className="flex items-center justify-between">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-lg group"
+                aria-label="ARAVANTA TECH Home"
+              >
+                <div className="w-8 h-8 rounded-full bg-gradient-to-b from-[#ffffff] via-[#f4f4f6] to-[#d8dade] p-1 border border-brand-gold/60 shadow-sm flex items-center justify-center shrink-0">
+                  <Image
+                    src="/brand/icon.png"
+                    alt="Aravanta Tech Emblem"
+                    width={28}
+                    height={28}
+                    className="object-contain w-full h-full"
+                  />
+                </div>
+                <span className="font-extrabold text-base tracking-tight text-white font-mono">
+                  ARAVANTA<span className="text-brand-gold ml-0.5">TECH</span>
+                </span>
+              </Link>
 
-            <p className="text-xs sm:text-sm text-brand-gray-400 max-w-sm leading-relaxed">
+              {/* Mobile Back To Top Shortcut */}
+              <button
+                onClick={scrollToTop}
+                aria-label="Back to top"
+                className="md:hidden flex items-center gap-1 text-[11px] font-mono text-zinc-400 hover:text-white px-2.5 py-1 rounded-full bg-white/5 border border-white/10 transition-colors"
+              >
+                <span>Top</span>
+                <ArrowUp className="w-3 h-3" />
+              </button>
+            </div>
+
+            <p className="text-xs sm:text-sm text-zinc-400 max-w-sm leading-relaxed">
               Empowering Cloud Transformation through pragmatic engineering,
               resilient distributed architecture, and zero-compromise security standards.
             </p>
 
             <div className="pt-1 flex flex-wrap gap-2">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0f1422] border border-brand-border text-[11px] sm:text-xs text-brand-gold font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0d0f15] border border-white/10 text-[11px] sm:text-xs text-brand-gold font-mono">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span>Simpler. Safer. Smarter.</span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0f1422] border border-brand-border text-[11px] sm:text-xs text-white/80 font-mono">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0d0f15] border border-white/10 text-[11px] sm:text-xs text-zinc-300 font-mono">
                 <span>Build Smarter. Grow Faster.</span>
               </div>
             </div>
 
-            <div className="pt-1 text-[11px] sm:text-xs text-brand-gray-400 font-mono">
-              <span className="text-white/60">Practice:</span> Cloud &amp; Distributed Systems Engineering
+            <div className="text-[11px] text-zinc-400 font-mono pt-1">
+              <span className="text-zinc-500">Practice:</span> Cloud &amp; Distributed Systems Engineering
             </div>
           </div>
 
-          {/* Column 1: Explore */}
-          <div className="col-span-1">
+          {/* Desktop Link Columns (Visible on md and up) */}
+          <div className="hidden md:block col-span-1">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-white mb-3 font-mono border-b border-white/10 pb-1.5">
               Explore
             </h3>
             <ul className="space-y-2 text-xs sm:text-sm" role="list">
-              <li>
-                <Link
-                  href="/"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/technology"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Capabilities
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/case-studies"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Case Studies
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/solutions"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Solutions
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/careers"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/faq"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  FAQ
-                </Link>
-              </li>
+              {exploreLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-zinc-400 hover:text-brand-gold transition-colors inline-block py-0.5"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 2: Engineering Practices */}
-          <div className="col-span-1">
+          <div className="hidden md:block col-span-1">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-white mb-3 font-mono border-b border-white/10 pb-1.5">
               Services
             </h3>
             <ul className="space-y-2 text-xs sm:text-sm" role="list">
-              <li>
-                <Link
-                  href="/services/cloud-solutions"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Cloud Solutions
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/application-development"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Application Dev
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/it-infrastructure"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  IT Infrastructure
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/devops-automation"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  DevOps &amp; GitOps
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/cybersecurity"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Cybersecurity
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/digital-transformation"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Modernization
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/it-consulting"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Architecture Review
-                </Link>
-              </li>
+              {serviceLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-zinc-400 hover:text-brand-gold transition-colors inline-block py-0.5"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 3: Platform & Products */}
-          <div className="col-span-1">
+          <div className="hidden md:block col-span-1">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-white mb-3 font-mono border-b border-white/10 pb-1.5">
               Platform
             </h3>
             <ul className="space-y-2 text-xs sm:text-sm" role="list">
-              <li>
-                <Link
-                  href="/cloudos"
-                  className="text-white hover:text-brand-gold transition-colors font-medium flex items-center gap-1.5 py-0.5"
-                >
-                  <span>Aravanta CloudOS</span>
-                  <span className="text-[9px] bg-brand-gold/15 text-brand-gold px-1.5 py-0.2 rounded font-mono border border-brand-gold/30">
-                    Preview
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/cloudos#architecture"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Architecture Explorer
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/cloudos#roadmap"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Platform Roadmap
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact?interest=CloudOS"
-                  className="text-brand-gold hover:text-brand-gold-light transition-colors inline-flex items-center gap-1 py-0.5"
-                >
-                  <span>Request Briefing</span>
-                  <ArrowUpRight className="w-3 h-3" />
-                </Link>
-              </li>
+              {platformLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "transition-colors inline-flex items-center gap-1.5 py-0.5",
+                      item.external
+                        ? "text-brand-gold hover:text-brand-gold-light"
+                        : "text-zinc-400 hover:text-white"
+                    )}
+                  >
+                    <span>{item.label}</span>
+                    {item.badge && (
+                      <span className="text-[9px] bg-brand-gold/15 text-brand-gold px-1.5 py-0.2 rounded font-mono border border-brand-gold/30">
+                        {item.badge}
+                      </span>
+                    )}
+                    {item.external && <ArrowUpRight className="w-3 h-3" />}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 4: Governance & Legal */}
-          <div className="col-span-1">
+          <div className="hidden md:block col-span-1">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-white mb-3 font-mono border-b border-white/10 pb-1.5">
               Trust &amp; Legal
             </h3>
             <ul className="space-y-2 text-xs sm:text-sm" role="list">
-              <li>
-                <Link
-                  href="/security"
-                  className="text-white hover:text-brand-gold transition-colors font-medium flex items-center gap-1.5 py-0.5"
-                >
-                  <ShieldCheck className="w-3.5 h-3.5 text-brand-gold shrink-0" />
-                  <span>Trust Center</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/sla"
-                  className="text-white hover:text-brand-gold transition-colors font-medium flex items-center gap-1.5 py-0.5"
-                >
-                  <FileCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>SLA (99.999%)</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/compliance"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Compliance
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/cookies"
-                  className="text-brand-gray-400 hover:text-brand-gold transition-colors inline-block py-0.5"
-                >
-                  Cookie Policy
-                </Link>
-              </li>
+              {trustLinks.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-zinc-400 hover:text-brand-gold transition-colors inline-flex items-center gap-1.5 py-0.5"
+                    >
+                      {Icon && <Icon className="w-3.5 h-3.5 text-brand-gold shrink-0" />}
+                      <span>{item.label}</span>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
+          </div>
+
+          {/* Mobile Collapsible Accordion Sections (Solves lengthy footer on mobile) */}
+          <div className="md:hidden col-span-1 space-y-2 pt-2 border-t border-white/10">
+            {/* Explore Accordion */}
+            <div className="rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleSection("explore")}
+                className="w-full flex items-center justify-between p-3.5 text-xs font-mono font-bold uppercase tracking-wider text-white text-left focus:outline-none"
+              >
+                <span>Explore ({exploreLinks.length})</span>
+                <ChevronDown
+                  className={cn(
+                    "w-4 h-4 text-zinc-400 transition-transform duration-200",
+                    openSection === "explore" && "rotate-180 text-brand-gold"
+                  )}
+                />
+              </button>
+              {openSection === "explore" && (
+                <div className="px-3.5 pb-3 pt-1 grid grid-cols-2 gap-2 text-xs border-t border-white/5">
+                  {exploreLinks.map((item) => (
+                    <Link
+                      key={`mob-${item.href}`}
+                      href={item.href}
+                      className="text-zinc-400 hover:text-brand-gold py-1"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Services Accordion */}
+            <div className="rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleSection("services")}
+                className="w-full flex items-center justify-between p-3.5 text-xs font-mono font-bold uppercase tracking-wider text-white text-left focus:outline-none"
+              >
+                <span>Services ({serviceLinks.length})</span>
+                <ChevronDown
+                  className={cn(
+                    "w-4 h-4 text-zinc-400 transition-transform duration-200",
+                    openSection === "services" && "rotate-180 text-brand-gold"
+                  )}
+                />
+              </button>
+              {openSection === "services" && (
+                <div className="px-3.5 pb-3 pt-1 grid grid-cols-1 gap-1.5 text-xs border-t border-white/5">
+                  {serviceLinks.map((item) => (
+                    <Link
+                      key={`mob-${item.href}`}
+                      href={item.href}
+                      className="text-zinc-400 hover:text-brand-gold py-1 flex items-center justify-between"
+                    >
+                      <span>{item.label}</span>
+                      <span className="text-[10px] text-zinc-600 font-mono">→</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Platform & Products Accordion */}
+            <div className="rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleSection("platform")}
+                className="w-full flex items-center justify-between p-3.5 text-xs font-mono font-bold uppercase tracking-wider text-white text-left focus:outline-none"
+              >
+                <span>Platform ({platformLinks.length})</span>
+                <ChevronDown
+                  className={cn(
+                    "w-4 h-4 text-zinc-400 transition-transform duration-200",
+                    openSection === "platform" && "rotate-180 text-brand-gold"
+                  )}
+                />
+              </button>
+              {openSection === "platform" && (
+                <div className="px-3.5 pb-3 pt-1 space-y-1.5 text-xs border-t border-white/5">
+                  {platformLinks.map((item) => (
+                    <Link
+                      key={`mob-${item.href}`}
+                      href={item.href}
+                      className="text-zinc-400 hover:text-brand-gold py-1 flex items-center justify-between"
+                    >
+                      <span>{item.label}</span>
+                      {item.badge && (
+                        <span className="text-[9px] bg-brand-gold/15 text-brand-gold px-1.5 py-0.2 rounded font-mono border border-brand-gold/30">
+                          {item.badge}
+                        </span>
+                      )}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Trust & Legal Accordion */}
+            <div className="rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleSection("trust")}
+                className="w-full flex items-center justify-between p-3.5 text-xs font-mono font-bold uppercase tracking-wider text-white text-left focus:outline-none"
+              >
+                <span>Trust &amp; Legal ({trustLinks.length})</span>
+                <ChevronDown
+                  className={cn(
+                    "w-4 h-4 text-zinc-400 transition-transform duration-200",
+                    openSection === "trust" && "rotate-180 text-brand-gold"
+                  )}
+                />
+              </button>
+              {openSection === "trust" && (
+                <div className="px-3.5 pb-3 pt-1 grid grid-cols-2 gap-2 text-xs border-t border-white/5">
+                  {trustLinks.map((item) => (
+                    <Link
+                      key={`mob-${item.href}`}
+                      href={item.href}
+                      className="text-zinc-400 hover:text-brand-gold py-1"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Operational Transparency Banner */}
-        <div className="border-t border-brand-border/60 pt-6 pb-6 text-xs text-brand-gray-400">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3.5 p-4 sm:p-5 rounded-xl bg-[#0a0e14] border border-brand-border shadow-lg">
-            <div className="flex items-start sm:items-center gap-3">
-              <ShieldCheck className="w-5 h-5 text-brand-gold shrink-0 mt-0.5 sm:mt-0" />
+        {/* Enterprise Commitment Banner */}
+        <div className="border-t border-white/10 pt-5 pb-5 text-xs text-zinc-400">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-[#0a0d14] border border-white/10 shadow-lg">
+            <div className="flex items-start sm:items-center gap-2.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5 sm:mt-0" />
               <span className="leading-relaxed text-[11px] sm:text-xs">
                 <strong className="text-white">Enterprise Commitment:</strong> All
                 client architectures and consulting engagements are operated under strict NDAs,
@@ -320,21 +360,21 @@ export function Footer() {
             </div>
             <Link
               href="/contact"
-              className="text-brand-gold hover:text-brand-gold-light font-medium inline-flex items-center gap-1 shrink-0 px-3 py-1.5 rounded-lg bg-brand-gold/10 border border-brand-gold/30 hover:bg-brand-gold/20 transition-all font-mono text-xs w-full sm:w-auto justify-center"
+              className="text-brand-gold hover:text-brand-gold-light font-medium inline-flex items-center gap-1 shrink-0 px-3 py-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/30 hover:bg-brand-gold/20 transition-all font-mono text-xs w-full sm:w-auto justify-center"
             >
-              <span>Schedule Architecture Review</span>
+              <span>Schedule Review</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
 
         {/* Bottom Bar: Copyright & Direct Links */}
-        <div className="border-t border-brand-border/40 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-brand-gray-400 gap-3 text-center sm:text-left">
-          <p className="font-mono text-[11px] sm:text-xs">
+        <div className="border-t border-white/10 pt-5 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 gap-3 text-center sm:text-left">
+          <p className="font-mono text-[11px]">
             © {currentYear} ARAVANTA TECH. All rights reserved.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 font-mono text-[11px]">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 font-mono text-[11px]">
             <Link href="/security" className="hover:text-white transition-colors">
               Security
             </Link>
@@ -350,7 +390,7 @@ export function Footer() {
             <Link href="/compliance" className="hover:text-white transition-colors">
               Compliance
             </Link>
-            <Link href="/contact" className="hover:text-brand-gold transition-colors text-white font-semibold">
+            <Link href="/contact" className="hover:text-brand-gold transition-colors text-zinc-300 font-semibold">
               Contact
             </Link>
           </div>

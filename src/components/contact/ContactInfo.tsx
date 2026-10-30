@@ -1,63 +1,66 @@
 import React from "react";
-import { Mail, Clock, ShieldCheck, Terminal, HelpCircle, Phone } from "lucide-react";
+import { Mail, Clock, ShieldCheck, Terminal, HelpCircle, Phone, Lock, FileText } from "lucide-react";
 import Link from "next/link";
 import DynamicIsland from "@/components/ui/dynamic-island";
 
 export function ContactInfo() {
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl bg-brand-surface border border-brand-border p-6 md:p-8 space-y-6">
-        <h3 className="text-xl font-bold text-white">Inquiry Channels</h3>
+      <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 md:p-8 space-y-6 shadow-2xl backdrop-blur-xl">
+        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+          <h3 className="text-xl font-bold text-white font-sans">Inquiry Channels</h3>
+          <span className="font-mono text-xs text-emerald-400">DESK_ACTIVE</span>
+        </div>
 
         <div className="space-y-5">
           <div className="flex items-start gap-3.5">
-            <div className="w-10 h-10 rounded-lg bg-brand-surfaceElevated border border-brand-border flex items-center justify-center text-brand-gold shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 shrink-0">
               <Mail className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs font-mono uppercase text-brand-gray-400">Direct Contact</div>
-              <div className="text-sm font-semibold text-white mt-0.5">
-                contact@aravantatech.com
+              <div className="text-xs font-mono uppercase text-zinc-400">Direct Inquiries</div>
+              <div className="text-sm font-semibold text-white mt-0.5 font-mono">
+                contact@aravanta.tech
               </div>
-              <div className="text-xs text-brand-gray-400 mt-1">
-                For architectural reviews, RFPs, and consulting partnerships.
+              <div className="text-xs text-zinc-400 mt-1 font-sans">
+                For architectural evaluations, RFPs, and enterprise transformation retainers.
               </div>
             </div>
           </div>
 
           <div className="flex items-start gap-3.5">
-            <div className="w-10 h-10 rounded-lg bg-brand-surfaceElevated border border-brand-border flex items-center justify-center text-brand-gold shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 shrink-0">
               <Clock className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs font-mono uppercase text-brand-gray-400">Response Window</div>
+              <div className="text-xs font-mono uppercase text-zinc-400">Response SLA</div>
               <div className="text-sm font-semibold text-white mt-0.5">
                 Within 1 Business Day
               </div>
-              <div className="text-xs text-brand-gray-400 mt-1">
-                Submissions are triaged directly by principal architects, not sales call centers.
+              <div className="text-xs text-zinc-400 mt-1 font-sans">
+                Inquiries are triaged directly by principal architects, not sales call centers.
               </div>
             </div>
           </div>
 
           <div className="flex items-start gap-3.5">
-            <div className="w-10 h-10 rounded-lg bg-brand-surfaceElevated border border-brand-border flex items-center justify-center text-brand-gold shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs font-mono uppercase text-brand-gray-400">Confidentiality Guarantee</div>
+              <div className="text-xs font-mono uppercase text-zinc-400">Confidentiality Protocol</div>
               <div className="text-sm font-semibold text-white mt-0.5">
-                NDA Readiness
+                Mutual NDA Standard
               </div>
-              <div className="text-xs text-brand-gray-400 mt-1">
-                Mutual NDAs executed prior to inspecting proprietary source code or topologies.
+              <div className="text-xs text-zinc-400 mt-1 font-sans">
+                Pre-scoping mutual NDAs executed prior to inspecting proprietary source repositories or cloud topologies.
               </div>
             </div>
           </div>
         </div>
 
         {/* Dynamic Island Architect Availability Capsule */}
-        <div className="pt-2 border-t border-brand-border/60 flex justify-center">
+        <div className="pt-4 border-t border-white/10 flex justify-center">
           <DynamicIsland
             showControls={false}
             variant="dock"
@@ -70,7 +73,7 @@ export function ContactInfo() {
                   <p className="pointer-events-none font-medium text-xs text-white">
                     Solutions Architects Live
                   </p>
-                  <p className="pointer-events-none text-white/60 text-[11px]">
+                  <p className="pointer-events-none text-zinc-400 text-[11px]">
                     Average Response &lt; 2 Hours
                   </p>
                 </div>
@@ -82,21 +85,28 @@ export function ContactInfo() {
         </div>
       </div>
 
-      <div className="rounded-2xl bg-brand-surfaceElevated/60 border border-brand-border p-6 text-xs text-brand-gray-400 space-y-3">
-        <div className="flex items-center gap-2 text-brand-gold font-semibold">
+      <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 text-xs text-zinc-400 space-y-3">
+        <div className="flex items-center gap-2 text-emerald-400 font-semibold font-mono">
           <Terminal className="w-4 h-4" />
-          <span>Integration & Environment Notice</span>
+          <span>Security &amp; API Integration</span>
         </div>
-        <p className="leading-relaxed">
-          Form submissions are validated through our secure Next.js server runtime. For production email delivery, configure the <code className="text-brand-gold font-mono">CONTACT_NOTIFICATION_EMAIL</code> and SMTP provider credentials in your environment variables.
+        <p className="leading-relaxed font-sans">
+          Inquiries are validated and encrypted through our Next.js edge runtime. Telemetry logs are purged within 7 days.
         </p>
-        <div className="pt-2">
+        <div className="pt-2 border-t border-white/10 flex flex-col gap-2">
           <Link
             href="/faq"
-            className="text-white hover:text-brand-gold transition-colors inline-flex items-center gap-1.5"
+            className="text-white hover:text-emerald-400 transition-colors inline-flex items-center gap-2"
           >
-            <HelpCircle className="w-3.5 h-3.5 text-brand-gold" />
-            <span>Have questions before submitting? Read our FAQ</span>
+            <HelpCircle className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Read our Enterprise FAQ before scheduling</span>
+          </Link>
+          <Link
+            href="/security"
+            className="text-white hover:text-emerald-400 transition-colors inline-flex items-center gap-2"
+          >
+            <Lock className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Review our Zero-Trust Security Architecture</span>
           </Link>
         </div>
       </div>

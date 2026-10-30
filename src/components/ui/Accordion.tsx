@@ -39,7 +39,7 @@ export function Accordion({
   };
 
   return (
-    <div className={cn("divide-y divide-brand-border/60", className)}>
+    <div className={cn("divide-y divide-white/10", className)}>
       {items.map((item) => {
         const isOpen = openIds.includes(item.id);
         const headingId = `faq-heading-${item.id}`;
@@ -54,15 +54,15 @@ export function Accordion({
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => toggle(item.id)}
-                className="w-full flex items-center justify-between text-left py-2 font-medium text-white hover:text-brand-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded px-1 group"
+                className="w-full flex items-center justify-between text-left py-2 font-medium text-white hover:text-emerald-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 rounded px-1 group"
               >
                 <span className="text-base md:text-lg font-semibold tracking-tight pr-4">
                   {item.question}
                 </span>
                 <ChevronDown
                   className={cn(
-                    "w-5 h-5 text-brand-gray-400 group-hover:text-brand-gold transition-transform duration-200 shrink-0",
-                    isOpen && "rotate-180 text-brand-gold"
+                    "w-5 h-5 text-zinc-400 group-hover:text-emerald-400 transition-transform duration-200 shrink-0",
+                    isOpen && "rotate-180 text-emerald-400"
                   )}
                   aria-hidden="true"
                 />
@@ -74,10 +74,10 @@ export function Accordion({
               aria-labelledby={headingId}
               className={cn(
                 "overflow-hidden transition-all duration-300 ease-in-out",
-                isOpen ? "max-h-96 opacity-100 pt-2 pb-3" : "max-h-0 opacity-0"
+                isOpen ? "max-h-[500px] opacity-100 pt-2 pb-3" : "max-h-0 opacity-0"
               )}
             >
-              <div className="text-brand-gray-300 text-sm md:text-base leading-relaxed pl-1 pr-6">
+              <div className="text-zinc-300 text-sm md:text-base leading-relaxed pl-1 pr-6 font-sans">
                 {item.answer}
               </div>
             </div>

@@ -19,16 +19,17 @@ export function CloudCostCalculator() {
   const migrationWeeks = Math.max(4, Math.round(workloadCount * 0.65));
 
   return (
-    <section className="py-20 md:py-28 bg-[#090a0d] border-t border-brand-border/60 relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-[#06070a] border-t border-white/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeader
-          eyebrow="FINOPS & VALUE ESTIMATOR"
+          eyebrow="FINOPS &amp; VALUE ESTIMATOR"
+          badgeVariant="emerald"
           title="Calculate Your Cloud Optimization Potential"
           description="Estimate potential annual cloud waste reduction, latency improvements, and migration timelines based on your current workload scale."
           align="center"
         />
 
-        <div className="max-w-4xl mx-auto rounded-2xl bg-brand-surface border border-brand-border p-6 sm:p-8 md:p-10 shadow-2xl gold-border-glow">
+        <div className="max-w-4xl mx-auto rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 shadow-2xl">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             
             {/* Left Inputs */}
@@ -36,8 +37,8 @@ export function CloudCostCalculator() {
               {/* Slider 1: Monthly Spend */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-xs font-mono">
-                  <span className="text-brand-gray-300 uppercase">Estimated Monthly Cloud Spend</span>
-                  <span className="text-brand-gold font-bold text-sm">
+                  <span className="text-zinc-400 uppercase">Estimated Monthly Cloud Spend</span>
+                  <span className="text-emerald-400 font-bold text-sm">
                     ${monthlySpend.toLocaleString()} / mo
                   </span>
                 </div>
@@ -48,9 +49,9 @@ export function CloudCostCalculator() {
                   step={5000}
                   value={monthlySpend}
                   onChange={(e) => setMonthlySpend(Number(e.target.value))}
-                  className="w-full h-2 bg-brand-surfaceElevated rounded-lg appearance-none cursor-pointer accent-brand-gold"
+                  className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-emerald-400"
                 />
-                <div className="flex justify-between text-[10px] text-brand-gray-500 font-mono">
+                <div className="flex justify-between text-[10px] text-zinc-500 font-mono">
                   <span>$5,000</span>
                   <span>$100,000</span>
                   <span>$200,000+</span>
@@ -60,7 +61,7 @@ export function CloudCostCalculator() {
               {/* Slider 2: Number of Workloads */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-xs font-mono">
-                  <span className="text-brand-gray-300 uppercase">Production Workloads & Services</span>
+                  <span className="text-zinc-400 uppercase">Production Workloads &amp; Services</span>
                   <span className="text-white font-bold text-sm">
                     {workloadCount} Services
                   </span>
@@ -72,9 +73,9 @@ export function CloudCostCalculator() {
                   step={1}
                   value={workloadCount}
                   onChange={(e) => setWorkloadCount(Number(e.target.value))}
-                  className="w-full h-2 bg-brand-surfaceElevated rounded-lg appearance-none cursor-pointer accent-brand-gold"
+                  className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-emerald-400"
                 />
-                <div className="flex justify-between text-[10px] text-brand-gray-500 font-mono">
+                <div className="flex justify-between text-[10px] text-zinc-500 font-mono">
                   <span>3 Services</span>
                   <span>40 Services</span>
                   <span>80+ Services</span>
@@ -83,17 +84,17 @@ export function CloudCostCalculator() {
 
               {/* Stage Selector */}
               <div className="space-y-2">
-                <div className="text-xs font-mono text-brand-gray-300 uppercase">
+                <div className="text-xs font-mono text-zinc-400 uppercase">
                   Current Infrastructure Posture
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   <button
                     type="button"
                     onClick={() => setCloudStage("legacy")}
-                    className={`p-2.5 rounded-lg text-xs font-mono border text-center transition-all ${
+                    className={`p-2.5 rounded-xl text-xs font-mono border text-center transition-all ${
                       cloudStage === "legacy"
-                        ? "bg-brand-gold/15 border-brand-gold text-brand-gold font-bold"
-                        : "bg-brand-surfaceElevated border-brand-border text-brand-gray-400 hover:text-white"
+                        ? "bg-emerald-500/15 border-emerald-500/50 text-emerald-400 font-bold"
+                        : "bg-white/[0.03] border-white/10 text-zinc-400 hover:text-white"
                     }`}
                   >
                     On-Prem / Legacy
@@ -101,10 +102,10 @@ export function CloudCostCalculator() {
                   <button
                     type="button"
                     onClick={() => setCloudStage("lift-and-shift")}
-                    className={`p-2.5 rounded-lg text-xs font-mono border text-center transition-all ${
+                    className={`p-2.5 rounded-xl text-xs font-mono border text-center transition-all ${
                       cloudStage === "lift-and-shift"
-                        ? "bg-brand-gold/15 border-brand-gold text-brand-gold font-bold"
-                        : "bg-brand-surfaceElevated border-brand-border text-brand-gray-400 hover:text-white"
+                        ? "bg-emerald-500/15 border-emerald-500/50 text-emerald-400 font-bold"
+                        : "bg-white/[0.03] border-white/10 text-zinc-400 hover:text-white"
                     }`}
                   >
                     Unoptimized Cloud
@@ -112,10 +113,10 @@ export function CloudCostCalculator() {
                   <button
                     type="button"
                     onClick={() => setCloudStage("hybrid")}
-                    className={`p-2.5 rounded-lg text-xs font-mono border text-center transition-all ${
+                    className={`p-2.5 rounded-xl text-xs font-mono border text-center transition-all ${
                       cloudStage === "hybrid"
-                        ? "bg-brand-gold/15 border-brand-gold text-brand-gold font-bold"
-                        : "bg-brand-surfaceElevated border-brand-border text-brand-gray-400 hover:text-white"
+                        ? "bg-emerald-500/15 border-emerald-500/50 text-emerald-400 font-bold"
+                        : "bg-white/[0.03] border-white/10 text-zinc-400 hover:text-white"
                     }`}
                   >
                     Hybrid Mesh
@@ -125,13 +126,13 @@ export function CloudCostCalculator() {
             </div>
 
             {/* Right Projection Card */}
-            <div className="md:col-span-6 rounded-xl bg-brand-surfaceElevated border border-brand-border p-6 sm:p-7 space-y-5">
-              <div className="border-b border-brand-border/60 pb-3">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-brand-gold font-semibold">
+            <div className="md:col-span-6 rounded-2xl bg-white/[0.02] border border-white/10 p-6 sm:p-7 space-y-5">
+              <div className="border-b border-white/10 pb-3">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-semibold">
                   Projected Annual Cloud Waste Reduction
                 </span>
                 <div className="text-3xl sm:text-4xl font-extrabold text-white font-mono mt-1">
-                  ${annualSavings.toLocaleString()} <span className="text-xs text-brand-gray-400 font-normal">/ year</span>
+                  ${annualSavings.toLocaleString()} <span className="text-xs text-zinc-400 font-normal">/ year</span>
                 </div>
                 <div className="text-xs text-emerald-400 font-mono mt-0.5">
                   Approx. ${monthlySavings.toLocaleString()} saved every month
@@ -139,9 +140,9 @@ export function CloudCostCalculator() {
               </div>
 
               <div className="grid grid-cols-2 gap-3 text-xs font-mono">
-                <div className="p-3 rounded-lg bg-brand-dark border border-brand-border">
-                  <div className="text-brand-gray-400 flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-brand-gold" />
+                <div className="p-3 rounded-xl bg-[#08090d] border border-white/10">
+                  <div className="text-zinc-400 flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-emerald-400" />
                     <span>Est. Migration</span>
                   </div>
                   <div className="text-white font-bold text-sm mt-1">
@@ -149,8 +150,8 @@ export function CloudCostCalculator() {
                   </div>
                 </div>
 
-                <div className="p-3 rounded-lg bg-brand-dark border border-brand-border">
-                  <div className="text-brand-gray-400 flex items-center gap-1.5">
+                <div className="p-3 rounded-xl bg-[#08090d] border border-white/10">
+                  <div className="text-zinc-400 flex items-center gap-1.5">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
                     <span>Target Recovery</span>
                   </div>
@@ -167,14 +168,14 @@ export function CloudCostCalculator() {
                   )}`}
                   variant="primary"
                   size="md"
-                  className="w-full font-bold shadow-md shadow-brand-gold/20"
+                  className="w-full"
                 >
                   <span>Request Full Architecture Audit</span>
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Button>
               </div>
 
-              <p className="text-[10px] text-brand-gray-500 font-mono text-center">
+              <p className="text-[10px] text-zinc-500 font-mono text-center">
                 Calculations based on standard instance right-sizing and multi-zone architectural patterns.
               </p>
             </div>

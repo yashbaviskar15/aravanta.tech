@@ -5,7 +5,14 @@ import { cn } from "@/lib/utils";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "goldOutline";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "emerald"
+    | "emeraldOutline"
+    | "goldOutline"
+    | "outline"
+    | "ghost";
   size?: "sm" | "md" | "lg";
   isLoading?: boolean;
   href?: string;
@@ -28,25 +35,29 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-medium transition-all duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.98]";
+      "inline-flex items-center justify-center font-medium transition-all duration-200 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.98]";
 
     const sizeStyles = {
-      sm: "text-xs px-3.5 py-1.5 gap-1.5 h-8",
-      md: "text-sm px-5 py-2.5 gap-2 h-11",
-      lg: "text-base px-6 py-3.5 gap-2.5 h-13",
+      sm: "text-xs px-3.5 py-1.5 gap-1.5 h-8 font-mono",
+      md: "text-sm px-5 py-2.5 gap-2 h-10",
+      lg: "text-base px-6 py-3 gap-2.5 h-12",
     };
 
     const variantStyles = {
       primary:
-        "bg-brand-gold text-brand-dark font-semibold hover:bg-brand-gold-light shadow-md hover:shadow-brand-gold/20",
+        "bg-white text-black font-semibold hover:bg-zinc-200 shadow-md transition-colors",
+      emerald:
+        "bg-emerald-500 text-black font-semibold hover:bg-emerald-400 shadow-md shadow-emerald-950/40 transition-colors",
+      emeraldOutline:
+        "border border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500 font-mono transition-colors",
       secondary:
-        "bg-brand-surfaceElevated text-white hover:bg-brand-surfaceHover border border-brand-border hover:border-brand-borderHighlight",
+        "bg-brand-surfaceElevated text-white hover:bg-brand-surfaceHover border border-white/10 hover:border-white/20 transition-colors",
       outline:
-        "border border-brand-border text-brand-gray-200 hover:text-white hover:bg-brand-surfaceElevated hover:border-brand-gray-400",
+        "border border-white/12 text-brand-gray-200 hover:text-white hover:bg-white/5 hover:border-white/25 transition-colors",
       goldOutline:
-        "border border-brand-gold/60 text-brand-gold hover:bg-brand-gold/10 hover:border-brand-gold",
+        "border border-amber-500/40 text-amber-400 hover:bg-amber-500/10 hover:border-amber-500 font-mono transition-colors",
       ghost:
-        "text-brand-gray-300 hover:text-white hover:bg-brand-surfaceElevated/60",
+        "text-brand-gray-300 hover:text-white hover:bg-white/5 transition-colors",
     };
 
     const combinedClassName = cn(
@@ -91,3 +102,5 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = "Button";
+
+export default Button;

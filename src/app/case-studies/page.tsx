@@ -1,14 +1,14 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, ArrowRight, ShieldCheck, Database, Server, Cpu, ArrowLeft } from "lucide-react";
+import { CheckCircle2, ArrowRight, ShieldCheck, Database, Server, Cpu, ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { ScrollableCardStack } from "@/components/ui/scrollable-card-stack";
 import { aravantaArchitectureCards } from "@/lib/content/cardStackData";
 
 export const metadata: Metadata = {
-  title: "Case Studies & Architecture Blueprints",
+  title: "Case Studies & Architecture Dossiers | ARAVANTA TECH",
   description:
     "Real-world architectural transformation blueprints across FinTech, Enterprise SaaS, Healthcare, and Logistics engineered by ARAVANTA TECH.",
 };
@@ -17,6 +17,7 @@ const caseStudies = [
   {
     id: "fintech-migration",
     category: "FINANCIAL SERVICES",
+    badgeVariant: "emerald" as const,
     title: "Zero-Downtime Core Database & Workload Migration",
     clientType: "Mid-Market Payment Gateway & FinTech",
     problem:
@@ -33,6 +34,7 @@ const caseStudies = [
   {
     id: "saas-modernization",
     category: "ENTERPRISE SAAS",
+    badgeVariant: "cyan" as const,
     title: "Strangler-Fig Modernization of a Multi-Tenant Monolith",
     clientType: "Enterprise B2B Workflow Platform",
     problem:
@@ -49,6 +51,7 @@ const caseStudies = [
   {
     id: "healthtech-security",
     category: "HEALTHCARE TECH",
+    badgeVariant: "lime" as const,
     title: "Zero-Trust Architecture & HIPAA-Compliant Infrastructure",
     clientType: "Clinical Data Analytics Provider",
     problem:
@@ -65,6 +68,7 @@ const caseStudies = [
   {
     id: "logistics-finops",
     category: "SUPPLY CHAIN & IOT",
+    badgeVariant: "gold" as const,
     title: "Event-Driven Telemetry Ingestion & FinOps Optimization",
     clientType: "Global Fleet Logistics Operator",
     problem:
@@ -82,31 +86,31 @@ const caseStudies = [
 
 export default function CaseStudiesPage() {
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28">
+    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <div className="mb-6">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-brand-gold hover:text-brand-gold-light transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-white transition-colors"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <ArrowLeft className="w-3.5 h-3.5 text-emerald-400" />
             <span>Back to Home</span>
           </Link>
         </div>
 
         <div className="max-w-3xl space-y-4">
-          <Badge variant="gold" size="sm">
+          <Badge variant="emerald" size="sm" dot>
             PROVEN ARCHITECTURAL EXCELLENCE
           </Badge>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            Case Studies & <br />
-            <span className="gold-gradient-text">Architecture Blueprints.</span>
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+            Case Studies &amp; <br />
+            <span className="emerald-gradient-text">Architecture Blueprints.</span>
           </h1>
-          <p className="text-xl text-brand-gold font-light">
-            Simpler. Safer. Smarter. in production action.
+          <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
+            Simpler. Safer. Smarter. in verified production.
           </p>
-          <p className="text-base text-brand-gray-300 leading-relaxed pt-2">
+          <p className="text-base sm:text-lg text-zinc-400 leading-relaxed pt-1">
             Explore how ARAVANTA TECH solves high-stakes infrastructure, modernization, and cloud engineering challenges. We focus on verifiable technical outcomes rather than superficial claims.
           </p>
         </div>
@@ -114,25 +118,20 @@ export default function CaseStudiesPage() {
 
       {/* Interactive Architecture Blueprints Stack */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="rounded-2xl bg-gradient-to-b from-[#0b0e16] to-[#06080e] border border-brand-border p-8 md:p-12 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-1/4 w-[400px] h-[300px] bg-brand-gold/5 blur-[120px] pointer-events-none rounded-full" />
-          
+        <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-10 md:p-12 shadow-2xl relative overflow-hidden">
           <div className="text-center max-w-2xl mx-auto mb-10 space-y-3 relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surfaceElevated border border-brand-border">
-              <span className="w-2 h-2 rounded-full bg-[#d4a342] animate-pulse" />
-              <span className="text-xs font-mono text-[#d4a342] font-semibold uppercase tracking-wider">
-                Interactive Architecture Stack
-              </span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <Badge variant="emerald" size="sm" dot>
+              INTERACTIVE ARCHITECTURE STACK
+            </Badge>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
               Flagship Transformation Blueprints
             </h2>
-            <p className="text-sm text-brand-gray-300">
+            <p className="text-sm text-zinc-400">
               Scroll with mouse wheel, swipe gestures, or click the navigation indicators to cycle through core engineering systems.
             </p>
           </div>
 
-          <div className="relative z-10">
+          <div className="relative z-10 pb-4">
             <ScrollableCardStack
               items={aravantaArchitectureCards}
               cardHeight={410}
@@ -143,23 +142,23 @@ export default function CaseStudiesPage() {
       </div>
 
       {/* Case Studies Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         {caseStudies.map((cs) => (
           <div
             key={cs.id}
             id={cs.id}
-            className="rounded-2xl bg-brand-surface border border-brand-border p-8 md:p-12 hover:border-brand-borderHighlight transition-all duration-300"
+            className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 hover:border-white/20 transition-all duration-300 shadow-xl"
           >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-brand-border/60 gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-white/10 gap-3">
               <div>
-                <span className="text-xs font-mono uppercase tracking-wider text-brand-gold font-semibold">
+                <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
                   {cs.category} • {cs.clientType}
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">
+                <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1 tracking-tight">
                   {cs.title}
                 </h2>
               </div>
-              <Badge variant="outline" size="sm" className="self-start sm:self-auto font-mono">
+              <Badge variant={cs.badgeVariant} size="sm" className="self-start sm:self-auto font-mono">
                 VERIFIED OUTCOME
               </Badge>
             </div>
@@ -168,32 +167,32 @@ export default function CaseStudiesPage() {
               {/* Problem & Solution */}
               <div className="lg:col-span-7 space-y-6">
                 <div>
-                  <h3 className="text-xs font-mono uppercase tracking-wider text-red-400 font-semibold mb-2">
-                    The Challenge & Technical Risk
+                  <h3 className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold mb-2">
+                    The Challenge &amp; Technical Risk
                   </h3>
-                  <p className="text-sm text-brand-gray-300 leading-relaxed">
+                  <p className="text-sm text-zinc-400 leading-relaxed font-normal">
                     {cs.problem}
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-xs font-mono uppercase tracking-wider text-brand-gold font-semibold mb-2">
+                  <h3 className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold mb-2">
                     The Architectural Solution
                   </h3>
-                  <p className="text-sm text-brand-gray-300 leading-relaxed">
+                  <p className="text-sm text-zinc-400 leading-relaxed font-normal">
                     {cs.solution}
                   </p>
                 </div>
 
                 <div>
-                  <div className="text-xs font-mono uppercase tracking-wider text-brand-gray-400 mb-2">
+                  <div className="text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
                     Architecture Stack:
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {cs.techStack.map((tech, tIdx) => (
                       <span
                         key={tIdx}
-                        className="px-2.5 py-1 rounded bg-brand-surfaceElevated border border-brand-border text-brand-gray-200 text-xs font-mono"
+                        className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-zinc-300 text-xs font-mono"
                       >
                         {tech}
                       </span>
@@ -203,28 +202,28 @@ export default function CaseStudiesPage() {
               </div>
 
               {/* Outcomes Box */}
-              <div className="lg:col-span-5 bg-brand-surfaceElevated border border-brand-gold/30 rounded-xl p-6 space-y-4">
-                <div className="text-xs font-mono uppercase tracking-wider text-brand-gold font-semibold">
+              <div className="lg:col-span-5 bg-white/[0.02] border border-emerald-500/30 rounded-2xl p-6 space-y-4">
+                <div className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
                   Key Technical Outcomes
                 </div>
                 <ul className="space-y-3">
                   {cs.outcomes.map((outcome, oIdx) => (
                     <li
                       key={oIdx}
-                      className="text-xs sm:text-sm text-brand-gray-200 flex items-start gap-2.5 leading-relaxed"
+                      className="text-xs sm:text-sm text-zinc-300 flex items-start gap-2.5 leading-relaxed"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                       <span>{outcome}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="pt-4 border-t border-brand-border/40">
+                <div className="pt-4 border-t border-white/10">
                   <Button
-                    href={`/contact?service=Case%20Study%20-${encodeURIComponent(cs.title)}`}
+                    href={`/contact?service=Case%20Study%20-%20${encodeURIComponent(cs.title)}`}
                     variant="primary"
                     size="sm"
-                    className="w-full font-semibold"
+                    className="w-full"
                   >
                     <span>Discuss Similar Architecture</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
@@ -237,15 +236,15 @@ export default function CaseStudiesPage() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="mt-20 pt-16 border-t border-brand-border/60 max-w-4xl mx-auto px-4 text-center space-y-6">
-        <h2 className="text-3xl font-extrabold text-white">
+      <div className="mt-20 pt-16 border-t border-white/10 max-w-4xl mx-auto px-4 text-center space-y-6">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
           Have an Architecture Challenge of Your Own?
         </h2>
-        <p className="text-base text-brand-gray-300">
+        <p className="text-base text-zinc-400 leading-relaxed max-w-2xl mx-auto">
           Connect directly with our principal architects for a confidential review of your system topology, migration risks, or performance bottlenecks.
         </p>
-        <div className="pt-2">
-          <Button href="/contact" variant="primary" size="lg" className="font-semibold">
+        <div className="pt-2 flex justify-center">
+          <Button href="/contact" variant="primary" size="lg">
             <span>Schedule Architecture Scoping Session</span>
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
