@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Application Development & Systems Engineering | ARAVANTA TECH",
@@ -127,74 +128,89 @@ export default function ApplicationDevelopmentPage() {
   return (
     <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Bespoke App Engineering Hero */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 md:mb-28">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 md:mb-28">
+        {/* Subtle Ambient Radial Glow */}
+        <div className="absolute -top-10 left-1/3 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-5">
-            <div className="inline-flex items-center gap-2">
-              <Badge variant="cyan" size="sm" dot>
-                FULL-STACK &amp; DISTRIBUTED SYSTEMS
-              </Badge>
-            </div>
+          <div className="lg:col-span-7 space-y-6">
+            <ScrollReveal direction="up" delay={0.05} duration={0.65} distance={16}>
+              <div className="inline-flex items-center gap-2">
+                <Badge variant="cyan" size="sm" dot>
+                  FULL-STACK &amp; DISTRIBUTED SYSTEMS
+                </Badge>
+              </div>
+            </ScrollReveal>
 
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
-              High-Concurrency <br />
-              <span className="cyan-gradient-text">Application Engineering.</span>
-            </h1>
+            <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
+              <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+                High-Concurrency <br />
+                <span className="cyan-gradient-text">Application Engineering.</span>
+              </h1>
+            </ScrollReveal>
 
-            <p className="text-xl text-zinc-300 font-light font-mono">
-              Typed. Observable. Sub-Second Performance.
-            </p>
+            <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
+              <p className="text-xl text-zinc-300 font-light font-mono">
+                Typed. Observable. Sub-Second Performance.
+              </p>
+            </ScrollReveal>
 
-            <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl font-normal">
-              We engineer mission-critical web applications, typed APIs, and distributed event systems. By combining Next.js Server Components, rigorous TypeScript contracts, and resilient database connection topologies, we deliver software that never buckles under traffic spikes.
-            </p>
+            <ScrollReveal direction="up" delay={0.28} duration={0.7} distance={18}>
+              <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl font-normal">
+                We engineer mission-critical web applications, typed APIs, and distributed event systems. By combining Next.js Server Components, rigorous TypeScript contracts, and resilient database connection topologies, we deliver software that never buckles under traffic spikes.
+              </p>
+            </ScrollReveal>
 
-            <div className="pt-3 flex flex-wrap items-center gap-4">
-              <Button href="/contact?service=Application%20Development" variant="primary" size="md">
-                <span>Start Software Scoping</span>
-                <ArrowRight className="w-4 h-4 ml-1.5" />
-              </Button>
-              <Button href="/technology" variant="secondary" size="md">
-                <span>Explore Full-Stack Stack</span>
-                <ArrowUpRight className="w-4 h-4 ml-1.5" />
-              </Button>
-            </div>
+            <ScrollReveal direction="up" delay={0.35} duration={0.7} distance={18}>
+              <div className="pt-3 flex flex-wrap items-center gap-4">
+                <Button href="/contact?service=Application%20Development" variant="primary" size="md">
+                  <span>Start Software Scoping</span>
+                  <ArrowRight className="w-4 h-4 ml-1.5" />
+                </Button>
+                <Button href="/technology" variant="secondary" size="md">
+                  <span>Explore Full-Stack Stack</span>
+                  <ArrowUpRight className="w-4 h-4 ml-1.5" />
+                </Button>
+              </div>
+            </ScrollReveal>
           </div>
 
           {/* Interactive Full-Stack Runtime Pipeline Visual */}
           <div className="lg:col-span-5">
-            <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-7 shadow-2xl relative overflow-hidden">
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
-                <div className="flex items-center gap-2 font-mono text-xs text-cyan-400">
-                  <Code2 className="w-4 h-4" />
-                  <span>APP RUNTIME ARCHITECTURE</span>
-                </div>
-                <span className="text-[10px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded">
-                  LATENCY: OPTIMAL
-                </span>
-              </div>
-
-              {/* Stack Layers Flow */}
-              <div className="space-y-2.5 font-mono text-xs">
-                {appArchitectureLayers.map((layer, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3 rounded-xl bg-white/[0.02] border border-white/10 hover:border-cyan-500/30 transition-all space-y-1"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-bold text-white font-sans">{layer.layer}</span>
-                      <span className="text-[10px] text-cyan-400 font-mono">{layer.metric}</span>
-                    </div>
-                    <div className="text-[10px] text-zinc-400">{layer.tech}</div>
+            <ScrollReveal direction="left" delay={0.2} duration={0.8} distance={26}>
+              <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-7 shadow-2xl relative overflow-hidden hover:border-cyan-500/40 transition-all">
+                <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+                  <div className="flex items-center gap-2 font-mono text-xs text-cyan-400">
+                    <Code2 className="w-4 h-4" />
+                    <span>APP RUNTIME ARCHITECTURE</span>
                   </div>
-                ))}
-              </div>
+                  <span className="text-[10px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded">
+                    LATENCY: OPTIMAL
+                  </span>
+                </div>
 
-              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-500">
-                <span>Contract: Strict TypeScript</span>
-                <span className="text-cyan-400">p99 Target: &lt; 35ms</span>
+                {/* Stack Layers Flow */}
+                <div className="space-y-2.5 font-mono text-xs">
+                  {appArchitectureLayers.map((layer, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3 rounded-xl bg-white/[0.02] border border-white/10 hover:border-cyan-500/30 transition-all space-y-1"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-bold text-white font-sans">{layer.layer}</span>
+                        <span className="text-[10px] text-cyan-400 font-mono">{layer.metric}</span>
+                      </div>
+                      <div className="text-[10px] text-zinc-400">{layer.tech}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-500">
+                  <span>Contract: Strict TypeScript</span>
+                  <span className="text-cyan-400">p99 Target: &lt; 35ms</span>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -202,46 +218,49 @@ export default function ApplicationDevelopmentPage() {
       {/* Core Capabilities */}
       <section className="py-16 md:py-24 border-t border-white/10 bg-[#06070a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-12">
-            <Badge variant="cyan" size="sm" dot className="mb-3">
-              ENGINEERING DISCIPLINES
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Software Crafted For Scale
-            </h2>
-            <p className="text-sm sm:text-base text-zinc-400 mt-2">
-              Zero tolerance for untyped contracts, unhandled exceptions, and unprofiled database queries.
-            </p>
-          </div>
+          <ScrollReveal direction="up" delay={0.1} duration={0.65}>
+            <div className="max-w-2xl mb-12">
+              <Badge variant="cyan" size="sm" dot className="mb-3">
+                ENGINEERING DISCIPLINES
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                Software Crafted For Scale
+              </h2>
+              <p className="text-sm sm:text-base text-zinc-400 mt-2">
+                Zero tolerance for untyped contracts, unhandled exceptions, and unprofiled database queries.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {capabilities.map((cap, idx) => {
               const Icon = cap.icon;
               return (
-                <div
-                  key={idx}
-                  className="rounded-2xl bg-[#0d0f15] border border-white/10 p-7 hover:border-cyan-500/30 transition-all space-y-4"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
-                    <Icon className="w-5 h-5" />
+                <ScrollReveal key={idx} direction="up" delay={0.08 + idx * 0.08} duration={0.65}>
+                  <div
+                    className="h-full rounded-2xl bg-[#0d0f15] border border-white/10 p-7 hover:border-cyan-500/30 hover:bg-[#12151e] transition-all space-y-4 shadow-lg"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white tracking-tight">
+                      {cap.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                      {cap.description}
+                    </p>
+                    <div className="pt-2 flex flex-wrap gap-2 border-t border-white/5">
+                      {cap.specs.map((spec, sIdx) => (
+                        <span
+                          key={sIdx}
+                          className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-[11px] font-mono text-zinc-300"
+                        >
+                          ✓ {spec}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-white tracking-tight">
-                    {cap.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                    {cap.description}
-                  </p>
-                  <div className="pt-2 flex flex-wrap gap-2 border-t border-white/5">
-                    {cap.specs.map((spec, sIdx) => (
-                      <span
-                        key={sIdx}
-                        className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-[11px] font-mono text-zinc-300"
-                      >
-                        ✓ {spec}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                </ScrollReveal>
               );
             })}
           </div>
@@ -251,36 +270,39 @@ export default function ApplicationDevelopmentPage() {
       {/* Engineering Process */}
       <section className="py-16 md:py-24 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-12">
-            <Badge variant="gold" size="sm" dot className="mb-3">
-              METHODOLOGY
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Spec-Driven Development Cadence
-            </h2>
-            <p className="text-sm sm:text-base text-zinc-400 mt-2">
-              How we guarantee reliability before software is promoted to production.
-            </p>
-          </div>
+          <ScrollReveal direction="up" delay={0.1} duration={0.65}>
+            <div className="max-w-2xl mb-12">
+              <Badge variant="gold" size="sm" dot className="mb-3">
+                METHODOLOGY
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                Spec-Driven Development Cadence
+              </h2>
+              <p className="text-sm sm:text-base text-zinc-400 mt-2">
+                How we guarantee reliability before software is promoted to production.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {engineeringProcess.map((proc, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl bg-[#0d0f15] border border-white/10 p-6 space-y-3 flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-xl font-black font-mono text-cyan-400">
-                    {proc.step}
-                  </span>
-                  <h3 className="text-base font-bold text-white mt-1">
-                    {proc.title}
-                  </h3>
-                  <p className="text-xs text-zinc-400 leading-relaxed mt-2">
-                    {proc.description}
-                  </p>
+              <ScrollReveal key={idx} direction="up" delay={0.06 + idx * 0.06} duration={0.65}>
+                <div
+                  className="h-full rounded-2xl bg-[#0d0f15] border border-white/10 p-6 space-y-3 flex flex-col justify-between hover:border-white/20 transition-all shadow-md"
+                >
+                  <div>
+                    <span className="text-xl font-black font-mono text-cyan-400">
+                      {proc.step}
+                    </span>
+                    <h3 className="text-base font-bold text-white mt-1">
+                      {proc.title}
+                    </h3>
+                    <p className="text-xs text-zinc-400 leading-relaxed mt-2">
+                      {proc.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -289,44 +311,47 @@ export default function ApplicationDevelopmentPage() {
       {/* Production Case Studies */}
       <section className="py-16 md:py-24 border-t border-white/10 bg-[#06070a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-12">
-            <Badge variant="emerald" size="sm" dot className="mb-3">
-              PRODUCTION IMPACT
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Verified Production Deployments
-            </h2>
-            <p className="text-sm sm:text-base text-zinc-400 mt-2">
-              Real application engineering challenges solved for enterprise software products.
-            </p>
-          </div>
+          <ScrollReveal direction="up" delay={0.1} duration={0.65}>
+            <div className="max-w-2xl mb-12">
+              <Badge variant="emerald" size="sm" dot className="mb-3">
+                PRODUCTION IMPACT
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                Verified Production Deployments
+              </h2>
+              <p className="text-sm sm:text-base text-zinc-400 mt-2">
+                Real application engineering challenges solved for enterprise software products.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {useCases.map((uc, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl bg-[#0d0f15] border border-white/10 p-6 space-y-3.5 flex flex-col justify-between"
-              >
-                <div className="space-y-2.5">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400">
-                    {uc.category}
-                  </span>
-                  <div>
-                    <div className="text-xs font-semibold text-zinc-300">Challenge:</div>
-                    <p className="text-xs text-zinc-400 leading-relaxed mt-0.5">{uc.challenge}</p>
+              <ScrollReveal key={idx} direction="up" delay={0.08 + idx * 0.08} duration={0.65}>
+                <div
+                  className="h-full rounded-2xl bg-[#0d0f15] border border-white/10 p-6 space-y-3.5 flex flex-col justify-between hover:border-cyan-500/30 transition-all shadow-lg"
+                >
+                  <div className="space-y-2.5">
+                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400">
+                      {uc.category}
+                    </span>
+                    <div>
+                      <div className="text-xs font-semibold text-zinc-300">Challenge:</div>
+                      <p className="text-xs text-zinc-400 leading-relaxed mt-0.5">{uc.challenge}</p>
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold text-zinc-300">Engineering Solution:</div>
+                      <p className="text-xs text-zinc-400 leading-relaxed mt-0.5">{uc.solution}</p>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-xs font-semibold text-zinc-300">Engineering Solution:</div>
-                    <p className="text-xs text-zinc-400 leading-relaxed mt-0.5">{uc.solution}</p>
+                  <div className="pt-3 border-t border-white/10">
+                    <div className="text-xs font-mono text-cyan-400 font-bold flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                      <span>{uc.outcome}</span>
+                    </div>
                   </div>
                 </div>
-                <div className="pt-3 border-t border-white/10">
-                  <div className="text-xs font-mono text-cyan-400 font-bold flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                    <span>{uc.outcome}</span>
-                  </div>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -334,28 +359,30 @@ export default function ApplicationDevelopmentPage() {
 
       {/* Related Practices & CTA */}
       <section className="py-12 border-t border-white/10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <span className="text-xs font-mono text-zinc-500 uppercase tracking-wider">Related Practices</span>
-            <div className="flex flex-wrap items-center gap-3 mt-1">
-              <Link href="/services/cloud-solutions" className="text-sm text-zinc-300 hover:text-white flex items-center gap-1">
-                Cloud Solutions <ArrowRight className="w-3 h-3 text-cyan-400" />
-              </Link>
-              <span className="text-zinc-600">•</span>
-              <Link href="/services/devops-automation" className="text-sm text-zinc-300 hover:text-white flex items-center gap-1">
-                DevOps &amp; GitOps <ArrowRight className="w-3 h-3 text-cyan-400" />
-              </Link>
-              <span className="text-zinc-600">•</span>
-              <Link href="/services/digital-transformation" className="text-sm text-zinc-300 hover:text-white flex items-center gap-1">
-                Digital Transformation <ArrowRight className="w-3 h-3 text-cyan-400" />
-              </Link>
+        <ScrollReveal direction="up" delay={0.1} duration={0.65}>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-xs font-mono text-zinc-500 uppercase tracking-wider">Related Practices</span>
+              <div className="flex flex-wrap items-center gap-3 mt-1">
+                <Link href="/services/cloud-solutions" className="text-sm text-zinc-300 hover:text-white flex items-center gap-1">
+                  Cloud Solutions <ArrowRight className="w-3 h-3 text-cyan-400" />
+                </Link>
+                <span className="text-zinc-600">•</span>
+                <Link href="/services/devops-automation" className="text-sm text-zinc-300 hover:text-white flex items-center gap-1">
+                  DevOps &amp; GitOps <ArrowRight className="w-3 h-3 text-cyan-400" />
+                </Link>
+                <span className="text-zinc-600">•</span>
+                <Link href="/services/digital-transformation" className="text-sm text-zinc-300 hover:text-white flex items-center gap-1">
+                  Digital Transformation <ArrowRight className="w-3 h-3 text-cyan-400" />
+                </Link>
+              </div>
             </div>
+            <Button href="/contact?service=Application%20Development" variant="primary" size="md">
+              <span>Scope Application Build</span>
+              <ArrowRight className="w-4 h-4 ml-1.5" />
+            </Button>
           </div>
-          <Button href="/contact?service=Application%20Development" variant="primary" size="md">
-            <span>Scope Application Build</span>
-            <ArrowRight className="w-4 h-4 ml-1.5" />
-          </Button>
-        </div>
+        </ScrollReveal>
       </section>
     </div>
   );

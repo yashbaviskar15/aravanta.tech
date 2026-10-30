@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, ShieldCheck, Zap, Lock, Database, CheckCircle2, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Industry Solutions & Architecture Blueprints | ARAVANTA TECH",
@@ -94,7 +95,10 @@ export default function SolutionsPage() {
   return (
     <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        {/* Subtle Ambient Radial Glow */}
+        <div className="absolute -top-10 left-1/3 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
         <div className="mb-6">
           <Link
             href="/"
@@ -106,110 +110,124 @@ export default function SolutionsPage() {
         </div>
 
         <div className="max-w-3xl space-y-4">
-          <Badge variant="emerald" size="sm" dot>
-            INDUSTRY-SPECIFIC ARCHITECTURES
-          </Badge>
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
-            Tailored Industry <br />
-            <span className="emerald-gradient-text">Solutions.</span>
-          </h1>
-          <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
-            Engineered for your domain&apos;s unique performance and compliance demands.
-          </p>
-          <p className="text-base sm:text-lg text-zinc-400 leading-relaxed pt-1">
-            Every industry operates under distinct regulatory constraints, scaling patterns, and operational risks. We design specialized architecture frameworks that directly solve your domain-specific bottlenecks.
-          </p>
+          <ScrollReveal direction="up" delay={0.05} duration={0.65} distance={16}>
+            <Badge variant="emerald" size="sm" dot>
+              INDUSTRY-SPECIFIC ARCHITECTURES
+            </Badge>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+              Tailored Industry <br />
+              <span className="emerald-gradient-text">Solutions.</span>
+            </h1>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
+            <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
+              Engineered for your domain&apos;s unique performance and compliance demands.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={0.28} duration={0.7} distance={18}>
+            <p className="text-base sm:text-lg text-zinc-400 leading-relaxed pt-1">
+              Every industry operates under distinct regulatory constraints, scaling patterns, and operational risks. We design specialized architecture frameworks that directly solve your domain-specific bottlenecks.
+            </p>
+          </ScrollReveal>
         </div>
       </div>
 
       {/* Solutions Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        {solutions.map((sol) => (
-          <div
-            key={sol.slug}
-            id={sol.slug}
-            className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 hover:border-white/20 transition-all duration-300 shadow-xl"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              <div className="lg:col-span-7 space-y-4">
-                <Badge variant={sol.badgeVariant} size="sm">
-                  {sol.category}
-                </Badge>
-                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  {sol.title}
-                </h2>
-                <p className="text-sm sm:text-base font-medium text-zinc-300 font-mono">
-                  {sol.tagline}
-                </p>
-                <p className="text-sm text-zinc-400 leading-relaxed font-normal">
-                  {sol.description}
-                </p>
+        {solutions.map((sol, idx) => (
+          <ScrollReveal key={sol.slug} direction="up" delay={0.08 + idx * 0.08} duration={0.65}>
+            <div
+              id={sol.slug}
+              className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 hover:border-emerald-500/40 hover:bg-[#10131d] transition-all duration-300 shadow-xl"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div className="lg:col-span-7 space-y-4">
+                  <Badge variant={sol.badgeVariant} size="sm">
+                    {sol.category}
+                  </Badge>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    {sol.title}
+                  </h2>
+                  <p className="text-sm sm:text-base font-medium text-zinc-300 font-mono">
+                    {sol.tagline}
+                  </p>
+                  <p className="text-sm text-zinc-400 leading-relaxed font-normal">
+                    {sol.description}
+                  </p>
 
-                <div className="pt-3">
-                  <div className="text-xs font-mono text-zinc-400 mb-2">
-                    Associated Practices:
+                  <div className="pt-3">
+                    <div className="text-xs font-mono text-zinc-400 mb-2">
+                      Associated Practices:
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {sol.recommendedServices.map((svc, i) => (
+                        <Link
+                          key={i}
+                          href={svc.href}
+                          className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-zinc-300 hover:text-white hover:border-emerald-500/40 text-xs font-mono transition-colors"
+                        >
+                          {svc.name} →
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {sol.recommendedServices.map((svc, i) => (
-                      <Link
-                        key={i}
-                        href={svc.href}
-                        className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-zinc-300 hover:text-white hover:border-emerald-500/40 text-xs font-mono transition-colors"
+                </div>
+
+                <div className="lg:col-span-5 bg-white/[0.02] border border-white/10 rounded-2xl p-6 space-y-4">
+                  <div className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
+                    Architectural Pillars
+                  </div>
+                  <ul className="space-y-3">
+                    {sol.pillars.map((pillar, pIdx) => (
+                      <li
+                        key={pIdx}
+                        className="text-xs sm:text-sm text-zinc-300 flex items-start gap-2.5 leading-relaxed"
                       >
-                        {svc.name} →
-                      </Link>
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                        <span>{pillar}</span>
+                      </li>
                     ))}
-                  </div>
-                </div>
-              </div>
+                  </ul>
 
-              <div className="lg:col-span-5 bg-white/[0.02] border border-white/10 rounded-2xl p-6 space-y-4">
-                <div className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
-                  Architectural Pillars
-                </div>
-                <ul className="space-y-3">
-                  {sol.pillars.map((pillar, pIdx) => (
-                    <li
-                      key={pIdx}
-                      className="text-xs sm:text-sm text-zinc-300 flex items-start gap-2.5 leading-relaxed"
+                  <div className="pt-4 border-t border-white/10">
+                    <Button
+                      href={`/contact?service=Solution%20-%20${encodeURIComponent(sol.title)}`}
+                      variant="primary"
+                      size="sm"
+                      className="w-full"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                      <span>{pillar}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="pt-4 border-t border-white/10">
-                  <Button
-                    href={`/contact?service=Solution%20-%20${encodeURIComponent(sol.title)}`}
-                    variant="primary"
-                    size="sm"
-                    className="w-full"
-                  >
-                    <span>Request Domain Blueprint</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                  </Button>
+                      <span>Request Domain Blueprint</span>
+                      <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
 
       {/* Bottom CTA */}
       <div className="mt-20 pt-16 border-t border-white/10 max-w-4xl mx-auto px-4 text-center space-y-6">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Operating in Another Regulated Domain?
-        </h2>
-        <p className="text-base text-zinc-400 leading-relaxed max-w-2xl mx-auto">
-          We frequently partner with organizations in aerospace, energy, and defense technology to solve extreme resilience and compliance challenges.
-        </p>
-        <div className="pt-2 flex justify-center">
-          <Button href="/contact" variant="primary" size="lg">
-            <span>Consult Solutions Architects</span>
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
-        </div>
+        <ScrollReveal direction="up" delay={0.1} duration={0.65}>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Operating in Another Regulated Domain?
+          </h2>
+          <p className="text-base text-zinc-400 leading-relaxed max-w-2xl mx-auto pt-2">
+            We frequently partner with organizations in aerospace, energy, and defense technology to solve extreme resilience and compliance challenges.
+          </p>
+          <div className="pt-4 flex justify-center">
+            <Button href="/contact" variant="primary" size="lg">
+              <span>Consult Solutions Architects</span>
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+        </ScrollReveal>
       </div>
     </div>
   );

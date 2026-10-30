@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { ScrollableCardStack } from "@/components/ui/scrollable-card-stack";
 import { aravantaArchitectureCards } from "@/lib/content/cardStackData";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Case Studies & Architecture Dossiers | ARAVANTA TECH",
@@ -88,7 +89,10 @@ export default function CaseStudiesPage() {
   return (
     <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        {/* Subtle Ambient Radial Glow */}
+        <div className="absolute -top-10 left-1/3 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
         <div className="mb-6">
           <Link
             href="/"
@@ -100,155 +104,171 @@ export default function CaseStudiesPage() {
         </div>
 
         <div className="max-w-3xl space-y-4">
-          <Badge variant="emerald" size="sm" dot>
-            PROVEN ARCHITECTURAL EXCELLENCE
-          </Badge>
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
-            Case Studies &amp; <br />
-            <span className="emerald-gradient-text">Architecture Blueprints.</span>
-          </h1>
-          <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
-            Simpler. Safer. Smarter. in verified production.
-          </p>
-          <p className="text-base sm:text-lg text-zinc-400 leading-relaxed pt-1">
-            Explore how ARAVANTA TECH solves high-stakes infrastructure, modernization, and cloud engineering challenges. We focus on verifiable technical outcomes rather than superficial claims.
-          </p>
+          <ScrollReveal direction="up" delay={0.05} duration={0.65} distance={16}>
+            <Badge variant="emerald" size="sm" dot>
+              PROVEN ARCHITECTURAL EXCELLENCE
+            </Badge>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+              Case Studies &amp; <br />
+              <span className="emerald-gradient-text">Architecture Blueprints.</span>
+            </h1>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
+            <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
+              Simpler. Safer. Smarter. in verified production.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={0.28} duration={0.7} distance={18}>
+            <p className="text-base sm:text-lg text-zinc-400 leading-relaxed pt-1">
+              Explore how ARAVANTA TECH solves high-stakes infrastructure, modernization, and cloud engineering challenges. We focus on verifiable technical outcomes rather than superficial claims.
+            </p>
+          </ScrollReveal>
         </div>
       </div>
 
       {/* Interactive Architecture Blueprints Stack */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-10 md:p-12 shadow-2xl relative overflow-hidden">
-          <div className="text-center max-w-2xl mx-auto mb-10 space-y-3 relative z-10">
-            <Badge variant="emerald" size="sm" dot>
-              INTERACTIVE ARCHITECTURE STACK
-            </Badge>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Flagship Transformation Blueprints
-            </h2>
-            <p className="text-sm text-zinc-400">
-              Scroll with mouse wheel, swipe gestures, or click the navigation indicators to cycle through core engineering systems.
-            </p>
-          </div>
+        <ScrollReveal direction="up" delay={0.15} duration={0.75} distance={24}>
+          <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-10 md:p-12 shadow-2xl relative overflow-hidden">
+            <div className="text-center max-w-2xl mx-auto mb-10 space-y-3 relative z-10">
+              <Badge variant="emerald" size="sm" dot>
+                INTERACTIVE ARCHITECTURE STACK
+              </Badge>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                Flagship Transformation Blueprints
+              </h2>
+              <p className="text-sm text-zinc-400">
+                Scroll with mouse wheel, swipe gestures, or click the navigation indicators to cycle through core engineering systems.
+              </p>
+            </div>
 
-          <div className="relative z-10 pb-4">
-            <ScrollableCardStack
-              items={aravantaArchitectureCards}
-              cardHeight={410}
-              cardWidth="w-[92vw] max-w-[580px]"
-            />
+            <div className="relative z-10 pb-4">
+              <ScrollableCardStack
+                items={aravantaArchitectureCards}
+                cardHeight={410}
+                cardWidth="w-[92vw] max-w-[580px]"
+              />
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
 
       {/* Case Studies Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        {caseStudies.map((cs) => (
-          <div
-            key={cs.id}
-            id={cs.id}
-            className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 hover:border-white/20 transition-all duration-300 shadow-xl"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-white/10 gap-3">
-              <div>
-                <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
-                  {cs.category} • {cs.clientType}
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1 tracking-tight">
-                  {cs.title}
-                </h2>
+        {caseStudies.map((cs, idx) => (
+          <ScrollReveal key={cs.id} direction="up" delay={0.08 + idx * 0.08} duration={0.65}>
+            <div
+              id={cs.id}
+              className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 hover:border-emerald-500/40 hover:bg-[#10131d] transition-all duration-300 shadow-xl"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-white/10 gap-3">
+                <div>
+                  <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
+                    {cs.category} • {cs.clientType}
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1 tracking-tight">
+                    {cs.title}
+                  </h2>
+                </div>
+                <Badge variant={cs.badgeVariant} size="sm" className="self-start sm:self-auto font-mono">
+                  VERIFIED OUTCOME
+                </Badge>
               </div>
-              <Badge variant={cs.badgeVariant} size="sm" className="self-start sm:self-auto font-mono">
-                VERIFIED OUTCOME
-              </Badge>
-            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Problem & Solution */}
-              <div className="lg:col-span-7 space-y-6">
-                <div>
-                  <h3 className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold mb-2">
-                    The Challenge &amp; Technical Risk
-                  </h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed font-normal">
-                    {cs.problem}
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold mb-2">
-                    The Architectural Solution
-                  </h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed font-normal">
-                    {cs.solution}
-                  </p>
-                </div>
-
-                <div>
-                  <div className="text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
-                    Architecture Stack:
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                {/* Problem & Solution */}
+                <div className="lg:col-span-7 space-y-6">
+                  <div>
+                    <h3 className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold mb-2">
+                      The Challenge &amp; Technical Risk
+                    </h3>
+                    <p className="text-sm text-zinc-400 leading-relaxed font-normal">
+                      {cs.problem}
+                    </p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {cs.techStack.map((tech, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-zinc-300 text-xs font-mono"
+
+                  <div>
+                    <h3 className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold mb-2">
+                      The Architectural Solution
+                    </h3>
+                    <p className="text-sm text-zinc-400 leading-relaxed font-normal">
+                      {cs.solution}
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                      Architecture Stack:
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {cs.techStack.map((tech, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-zinc-300 text-xs font-mono"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Outcomes Box */}
+                <div className="lg:col-span-5 bg-white/[0.02] border border-emerald-500/30 rounded-2xl p-6 space-y-4">
+                  <div className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
+                    Key Technical Outcomes
+                  </div>
+                  <ul className="space-y-3">
+                    {cs.outcomes.map((outcome, oIdx) => (
+                      <li
+                        key={oIdx}
+                        className="text-xs sm:text-sm text-zinc-300 flex items-start gap-2.5 leading-relaxed"
                       >
-                        {tech}
-                      </span>
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                        <span>{outcome}</span>
+                      </li>
                     ))}
+                  </ul>
+
+                  <div className="pt-4 border-t border-white/10">
+                    <Button
+                      href={`/contact?service=Case%20Study%20-%20${encodeURIComponent(cs.title)}`}
+                      variant="primary"
+                      size="sm"
+                      className="w-full"
+                    >
+                      <span>Discuss Similar Architecture</span>
+                      <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+                    </Button>
                   </div>
                 </div>
               </div>
-
-              {/* Outcomes Box */}
-              <div className="lg:col-span-5 bg-white/[0.02] border border-emerald-500/30 rounded-2xl p-6 space-y-4">
-                <div className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
-                  Key Technical Outcomes
-                </div>
-                <ul className="space-y-3">
-                  {cs.outcomes.map((outcome, oIdx) => (
-                    <li
-                      key={oIdx}
-                      className="text-xs sm:text-sm text-zinc-300 flex items-start gap-2.5 leading-relaxed"
-                    >
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                      <span>{outcome}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="pt-4 border-t border-white/10">
-                  <Button
-                    href={`/contact?service=Case%20Study%20-%20${encodeURIComponent(cs.title)}`}
-                    variant="primary"
-                    size="sm"
-                    className="w-full"
-                  >
-                    <span>Discuss Similar Architecture</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                  </Button>
-                </div>
-              </div>
             </div>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
 
       {/* Bottom CTA */}
       <div className="mt-20 pt-16 border-t border-white/10 max-w-4xl mx-auto px-4 text-center space-y-6">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Have an Architecture Challenge of Your Own?
-        </h2>
-        <p className="text-base text-zinc-400 leading-relaxed max-w-2xl mx-auto">
-          Connect directly with our principal architects for a confidential review of your system topology, migration risks, or performance bottlenecks.
-        </p>
-        <div className="pt-2 flex justify-center">
-          <Button href="/contact" variant="primary" size="lg">
-            <span>Schedule Architecture Scoping Session</span>
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
-        </div>
+        <ScrollReveal direction="up" delay={0.1} duration={0.65}>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Have an Architecture Challenge of Your Own?
+          </h2>
+          <p className="text-base text-zinc-400 leading-relaxed max-w-2xl mx-auto pt-2">
+            Connect directly with our principal architects for a confidential review of your system topology, migration risks, or performance bottlenecks.
+          </p>
+          <div className="pt-4 flex justify-center">
+            <Button href="/contact" variant="primary" size="lg">
+              <span>Schedule Architecture Scoping Session</span>
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+        </ScrollReveal>
       </div>
     </div>
   );

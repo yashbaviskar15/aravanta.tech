@@ -10,6 +10,9 @@ import {
   FileCheck,
   ArrowUp,
   Sparkles,
+  Activity,
+  Server,
+  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -23,7 +26,11 @@ export function Footer() {
 
   const scrollToTop = () => {
     if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if ((window as any).__lenis) {
+        (window as any).__lenis.scrollTo(0, { duration: 1.2 });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }
   };
 
@@ -73,6 +80,36 @@ export function Footer() {
       </h2>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Live Global Operations Telemetry Ticker */}
+        <div className="mb-10 sm:mb-14 p-3 sm:p-4 rounded-2xl bg-[#0a0d15] border border-white/10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+          <div className="flex items-center gap-2.5">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
+            </span>
+            <span className="text-white font-bold uppercase tracking-wider">
+              OPERATIONAL STATUS:
+            </span>
+            <span className="text-emerald-400 font-semibold">ALL SYSTEMS NOMINAL (99.999% SLA)</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] text-zinc-400">
+            <div className="flex items-center gap-1.5">
+              <Server className="w-3.5 h-3.5 text-[#d4a342]" />
+              <span>REGIONS: US-EAST • EU-CENTRAL • AP-SOUTH</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Activity className="w-3.5 h-3.5 text-cyan-400" />
+              <span>p99 LATENCY: &lt;12ms</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <span>ZERO-TRUST: ACTIVE</span>
+            </div>
+          </div>
+        </div>
+
         {/* Main Grid: Desktop 6-col / Mobile Compact */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-10 mb-8 sm:mb-14">
           
@@ -139,7 +176,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-zinc-400 hover:text-brand-gold transition-colors inline-block py-0.5"
+                    className="hover:text-white transition-colors duration-200 block py-0.5"
                   >
                     {item.label}
                   </Link>
@@ -157,7 +194,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-zinc-400 hover:text-brand-gold transition-colors inline-block py-0.5"
+                    className="hover:text-white transition-colors duration-200 block py-0.5 truncate"
                   >
                     {item.label}
                   </Link>
@@ -175,20 +212,14 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={cn(
-                      "transition-colors inline-flex items-center gap-1.5 py-0.5",
-                      item.external
-                        ? "text-brand-gold hover:text-brand-gold-light"
-                        : "text-zinc-400 hover:text-white"
-                    )}
+                    className="hover:text-white transition-colors duration-200 flex items-center justify-between py-0.5"
                   >
                     <span>{item.label}</span>
                     {item.badge && (
-                      <span className="text-[9px] bg-brand-gold/15 text-brand-gold px-1.5 py-0.2 rounded font-mono border border-brand-gold/30">
+                      <span className="text-[9px] bg-brand-gold/15 text-brand-gold px-1.5 py-0.5 rounded font-mono border border-brand-gold/30">
                         {item.badge}
                       </span>
                     )}
-                    {item.external && <ArrowUpRight className="w-3 h-3" />}
                   </Link>
                 </li>
               ))}
@@ -200,25 +231,21 @@ export function Footer() {
               Trust &amp; Legal
             </h3>
             <ul className="space-y-2 text-xs sm:text-sm" role="list">
-              {trustLinks.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="text-zinc-400 hover:text-brand-gold transition-colors inline-flex items-center gap-1.5 py-0.5"
-                    >
-                      {Icon && <Icon className="w-3.5 h-3.5 text-brand-gold shrink-0" />}
-                      <span>{item.label}</span>
-                    </Link>
-                  </li>
-                );
-              })}
+              {trustLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="hover:text-white transition-colors duration-200 block py-0.5 truncate"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Mobile Collapsible Accordion Sections (Solves lengthy footer on mobile) */}
-          <div className="md:hidden col-span-1 space-y-2 pt-2 border-t border-white/10">
+          {/* Mobile Accordion Nav (Visible only below md) */}
+          <div className="md:hidden col-span-1 space-y-2 pt-2">
             {/* Explore Accordion */}
             <div className="rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
               <button
@@ -265,22 +292,21 @@ export function Footer() {
                 />
               </button>
               {openSection === "services" && (
-                <div className="px-3.5 pb-3 pt-1 grid grid-cols-1 gap-1.5 text-xs border-t border-white/5">
+                <div className="px-3.5 pb-3 pt-1 grid grid-cols-2 gap-2 text-xs border-t border-white/5">
                   {serviceLinks.map((item) => (
                     <Link
                       key={`mob-${item.href}`}
                       href={item.href}
-                      className="text-zinc-400 hover:text-brand-gold py-1 flex items-center justify-between"
+                      className="text-zinc-400 hover:text-brand-gold py-1"
                     >
-                      <span>{item.label}</span>
-                      <span className="text-[10px] text-zinc-600 font-mono">→</span>
+                      {item.label}
                     </Link>
                   ))}
                 </div>
               )}
             </div>
 
-            {/* Platform & Products Accordion */}
+            {/* Platform Accordion */}
             <div className="rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
               <button
                 type="button"
@@ -368,7 +394,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Direct Links */}
+        {/* Bottom Bar: Copyright, Direct Links & Desktop Back-To-Top */}
         <div className="border-t border-white/10 pt-5 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 gap-3 text-center sm:text-left">
           <p className="font-mono text-[11px]">
             © {currentYear} ARAVANTA TECH. All rights reserved.
@@ -394,6 +420,16 @@ export function Footer() {
               Contact
             </Link>
           </div>
+
+          {/* Desktop Back To Top Shortcut */}
+          <button
+            onClick={scrollToTop}
+            aria-label="Scroll back to top"
+            className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono text-zinc-400 hover:text-white px-3 py-1 rounded-full bg-white/5 border border-white/10 hover:border-white/20 transition-all group"
+          >
+            <span>Back to top</span>
+            <ArrowUp className="w-3 h-3 group-hover:-translate-y-0.5 transition-transform text-[#d4a342]" />
+          </button>
         </div>
       </div>
     </footer>

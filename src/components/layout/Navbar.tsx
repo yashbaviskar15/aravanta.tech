@@ -27,6 +27,7 @@ import {
   HelpCircle,
   FileCheck,
   Boxes,
+  Activity,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -146,7 +147,20 @@ export function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<"services" | "solutions" | "company" | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Scroll Progress Tracker for subtle top/capsule progress glow
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollProgress(Math.min(1, Math.max(0, window.scrollY / totalScroll)));
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close menus on route change
   useEffect(() => {
@@ -189,7 +203,7 @@ export function Navbar() {
     }, 180);
   };
 
-  // Nav item list matching the user's capsule screenshot
+  // Nav item list matching the Swiss Enterprise capsule design
   const navItems = [
     {
       id: "home",
@@ -247,8 +261,14 @@ export function Navbar() {
   return (
     <header className="fixed top-4 sm:top-5 left-0 right-0 z-[100] px-3 sm:px-6 pointer-events-none flex justify-center">
       {/* Floating Pill Capsule Bar */}
-      <div className="pointer-events-auto relative inline-flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-[#12141a]/95 backdrop-blur-2xl border border-white/12 shadow-[0_12px_40px_rgba(0,0,0,0.85),0_0_20px_rgba(212,163,66,0.08)] max-w-full">
+      <div className="pointer-events-auto relative inline-flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-[#12141a]/95 backdrop-blur-2xl border border-white/12 shadow-[0_12px_40px_rgba(0,0,0,0.85),0_0_20px_rgba(212,163,66,0.08)] max-w-full overflow-hidden">
         
+        {/* Subtle Bottom Scroll Progress Line */}
+        <div
+          className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-emerald-500 via-[#d4a342] to-cyan-400 opacity-80 pointer-events-none transition-all duration-100 ease-out"
+          style={{ width: `${scrollProgress * 100}%` }}
+        />
+
         {/* Brand Emblem on Left */}
         <Link
           href="/"
@@ -269,6 +289,12 @@ export function Navbar() {
             ARAVANTA<span className="text-brand-gold ml-0.5">TECH</span>
           </span>
         </Link>
+
+        {/* Live Systems Nominal Micro-Badge */}
+        <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/8 text-[10px] font-mono text-zinc-300">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span>99.999% SLA</span>
+        </div>
 
         {/* Divider */}
         <div className="hidden lg:block h-5 w-[1px] bg-white/12 mx-1" />
@@ -427,7 +453,7 @@ export function Navbar() {
         {/* CTA "Let's Talk" Button */}
         <Link
           href="/contact"
-          className="relative inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-bold text-[#090a0d] bg-gradient-to-r from-[#d4a342] via-[#e5b85a] to-[#f3cc72] hover:brightness-110 shadow-[0_0_15px_rgba(212,163,66,0.35)] transition-all duration-200 select-none group shrink-0"
+          className="relative inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-bold text-[#090a0d] bg-gradient-to-r from-[#d4a342] via-[#e5b85a] to-[#f3cc72] hover:brightness-110 shadow-[0_0_15px_rgba(212,163,66,0.35)] transition-all duration-200 select-none group shrink-0 active:scale-[0.98]"
         >
           <Sparkles className="w-3.5 h-3.5 text-[#090a0d] group-hover:rotate-12 transition-transform" />
           <span className="font-mono uppercase tracking-wider">Let's Talk</span>
@@ -478,53 +504,29 @@ export function Navbar() {
                   <Link
                     key={`mobile-${item.id}`}
                     href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
                     className={cn(
-                      "flex items-center gap-2.5 px-3 py-2.5 rounded-2xl text-xs font-medium border transition-colors",
+                      "flex items-center gap-2 p-3 rounded-2xl border text-xs font-medium transition-colors",
                       isCurrent
-                        ? "bg-[#272a33] text-white border-white/20 font-semibold shadow-sm"
-                        : "bg-white/5 text-zinc-300 border-white/5 hover:bg-white/10 hover:text-white"
+                        ? "bg-[#272a33] border-brand-gold/40 text-white"
+                        : "bg-white/[0.03] border-white/8 text-zinc-300 hover:text-white hover:bg-white/[0.06]"
                     )}
                   >
-                    <Icon className={cn("w-4 h-4", isCurrent ? "text-white" : "text-brand-gold")} />
+                    <Icon className="w-4 h-4 text-brand-gold" />
                     <span>{item.label}</span>
                   </Link>
                 );
               })}
             </div>
 
-            {/* Sub-sections quick links */}
-            <div className="space-y-4 pt-2">
-              <div>
-                <div className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider mb-2">
-                  Key Practices
-                </div>
-                <div className="grid grid-cols-1 gap-1">
-                  {servicesList.slice(0, 4).map((s) => (
-                    <Link
-                      key={`mob-serv-${s.href}`}
-                      href={s.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center justify-between p-2 rounded-xl text-xs text-zinc-300 hover:bg-white/5 hover:text-white"
-                    >
-                      <span>{s.title}</span>
-                      <ArrowRight className="w-3 h-3 text-brand-gold" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Mobile CTA */}
-              <div className="pt-2">
-                <Link
-                  href="/contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-full text-xs font-bold text-[#090a0d] bg-gradient-to-r from-[#d4a342] to-[#f3cc72] shadow-lg shadow-brand-gold/20"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  <span className="font-mono uppercase tracking-wider">Start a Project / Let's Talk</span>
-                </Link>
-              </div>
+            {/* Direct Contact Shortcut on Mobile */}
+            <div className="pt-2 border-t border-white/10">
+              <Link
+                href="/contact"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-[#d4a342] to-[#e5b85a] text-[#08090d] font-bold text-xs font-mono uppercase tracking-wider shadow-lg"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-[#08090d]" />
+                <span>Start Technical Scoping</span>
+              </Link>
             </div>
           </motion.div>
         )}

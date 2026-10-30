@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Service Level Agreement (SLA) & Uptime Benchmarks | ARAVANTA TECH",
@@ -67,133 +68,156 @@ const SEVERITY_LEVELS = [
 export default function SlaPage() {
   return (
     <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Subtle Ambient Radial Glow */}
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[600px] h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
         {/* Header Hero */}
-        <div className="max-w-4xl mx-auto text-center space-y-4 mb-16">
-          <Badge variant="emerald" size="sm" dot>
-            ENTERPRISE OPERATIONAL SLA
-          </Badge>
+        <div className="max-w-4xl mx-auto text-center space-y-4 mb-16 relative z-10">
+          <ScrollReveal direction="up" delay={0.05} duration={0.65} distance={16}>
+            <Badge variant="emerald" size="sm" dot>
+              ENTERPRISE OPERATIONAL SLA
+            </Badge>
+          </ScrollReveal>
 
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
-            Service Level Agreement <br />
-            <span className="emerald-gradient-text">&amp; Uptime Commitments.</span>
-          </h1>
+          <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+              Service Level Agreement <br />
+              <span className="emerald-gradient-text">&amp; Uptime Commitments.</span>
+            </h1>
+          </ScrollReveal>
 
-          <p className="text-lg sm:text-xl text-zinc-300 leading-relaxed font-normal max-w-2xl mx-auto">
-            We provide enterprise clients with contractual uptime benchmarks, disciplined incident escalation tiers, and transparent service level standards.
-          </p>
+          <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
+            <p className="text-lg sm:text-xl text-zinc-300 leading-relaxed font-normal max-w-2xl mx-auto">
+              We provide enterprise clients with contractual uptime benchmarks, disciplined incident escalation tiers, and transparent service level standards.
+            </p>
+          </ScrollReveal>
 
-          <p className="text-xs font-mono text-zinc-500">
-            Effective Date: October 2026 • Applies to Active Enterprise Engineering &amp; SRE Engagements
-          </p>
+          <ScrollReveal direction="up" delay={0.28} duration={0.7} distance={18}>
+            <p className="text-xs font-mono text-zinc-500">
+              Effective Date: October 2026 • Applies to Active Enterprise Engineering &amp; SRE Engagements
+            </p>
+          </ScrollReveal>
         </div>
 
         {/* 99.99% Availability Commitment Card */}
-        <div className="max-w-5xl mx-auto p-6 sm:p-8 rounded-3xl bg-[#0d0f15] border border-emerald-500/30 shadow-2xl backdrop-blur-xl mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            <div className="md:col-span-2 space-y-3">
-              <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider font-bold">
-                SYSTEM AVAILABILITY BENCHMARK
-              </span>
-              <h2 className="text-3xl font-extrabold text-white tracking-tight">99.99% Production Uptime</h2>
-              <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-normal">
-                For enterprise multi-zone active-active architectures and managed cloud clusters, ARAVANTA TECH commits to achieving 99.99% monthly availability (excluding scheduled maintenance). Unscheduled downtime is backed by our formal service credit program.
-              </p>
-            </div>
+        <ScrollReveal direction="up" delay={0.15} duration={0.7} distance={20}>
+          <div className="max-w-5xl mx-auto p-6 sm:p-8 rounded-3xl bg-[#0d0f15] border border-emerald-500/30 shadow-2xl backdrop-blur-xl mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+              <div className="md:col-span-2 space-y-3">
+                <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider font-bold">
+                  SYSTEM AVAILABILITY BENCHMARK
+                </span>
+                <h2 className="text-3xl font-extrabold text-white tracking-tight">99.99% Production Uptime</h2>
+                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-normal">
+                  For enterprise multi-zone active-active architectures and managed cloud clusters, ARAVANTA TECH commits to achieving 99.99% monthly availability (excluding scheduled maintenance). Unscheduled downtime is backed by our formal service credit program.
+                </p>
+              </div>
 
-            <div className="p-5 rounded-2xl bg-[#08090d] border border-white/10 text-center font-mono space-y-2">
-              <div className="text-3xl font-bold text-emerald-400">&lt; 4.38 min</div>
-              <div className="text-xs text-zinc-400">Maximum Allowed Monthly Outage at 99.99% SLA</div>
-              <div className="text-[11px] text-emerald-400/80 pt-2 border-t border-white/10">
-                MULTI-ZONE RECOVERY RTO &lt; 30 SEC
+              <div className="p-5 rounded-2xl bg-[#08090d] border border-white/10 text-center font-mono space-y-2 shadow-inner">
+                <div className="text-3xl font-bold text-emerald-400">&lt; 4.38 min</div>
+                <div className="text-xs text-zinc-400">Maximum Allowed Monthly Outage at 99.99% SLA</div>
+                <div className="text-[11px] text-emerald-400/80 pt-2 border-t border-white/10">
+                  MULTI-ZONE RECOVERY RTO &lt; 30 SEC
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Incident Severity Matrix */}
         <div className="max-w-5xl mx-auto space-y-6 mb-20">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2">
-              Incident Severity Classification &amp; Response Times
-            </h2>
-            <p className="text-sm text-zinc-400">
-              When an operational disruption occurs, incidents are categorized and dispatched immediately according to severity:
-            </p>
-          </div>
+          <ScrollReveal direction="up" delay={0.1} duration={0.65}>
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2">
+                Incident Severity Classification &amp; Response Times
+              </h2>
+              <p className="text-sm text-zinc-400">
+                When an operational disruption occurs, incidents are categorized and dispatched immediately according to severity:
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="space-y-4">
             {SEVERITY_LEVELS.map((s, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-2xl bg-[#0d0f15] border border-white/10 backdrop-blur-xl space-y-4 hover:border-white/20 transition-colors"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
-                  <div className="flex items-center gap-3">
-                    <span className="text-base font-bold text-white">{s.level}</span>
-                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono border ${s.badgeColor}`}>
-                      {s.badge}
-                    </span>
+              <ScrollReveal key={idx} direction="up" delay={0.08 + idx * 0.06} duration={0.65}>
+                <div
+                  className="p-6 rounded-2xl bg-[#0d0f15] border border-white/10 backdrop-blur-xl space-y-4 hover:border-emerald-500/30 hover:bg-[#12151e] transition-all shadow-lg"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
+                    <div className="flex items-center gap-3">
+                      <span className="text-base font-bold text-white">{s.level}</span>
+                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono border ${s.badgeColor}`}>
+                        {s.badge}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 font-mono text-xs text-emerald-400">
+                      <Clock className="w-3.5 h-3.5" />
+                      <span>Response SLA: {s.responseSla}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 font-mono text-xs text-emerald-400">
-                    <Clock className="w-3.5 h-3.5" />
-                    <span>Response SLA: {s.responseSla}</span>
+
+                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-normal">
+                    {s.description}
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-mono">
+                    <div className="p-3 rounded-xl bg-[#08090d] border border-white/10">
+                      <span className="text-zinc-500 block text-[10px] uppercase">Resolution Target:</span>
+                      <span className="text-white font-medium">{s.resolutionTarget}</span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-[#08090d] border border-white/10">
+                      <span className="text-zinc-500 block text-[10px] uppercase">Coverage Window:</span>
+                      <span className="text-emerald-400 font-medium">{s.coverage}</span>
+                    </div>
                   </div>
                 </div>
-
-                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-normal">
-                  {s.description}
-                </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-mono">
-                  <div className="p-3 rounded-xl bg-[#08090d] border border-white/10">
-                    <span className="text-zinc-500 block text-[10px] uppercase">Resolution Target:</span>
-                    <span className="text-white font-medium">{s.resolutionTarget}</span>
-                  </div>
-                  <div className="p-3 rounded-xl bg-[#08090d] border border-white/10">
-                    <span className="text-zinc-500 block text-[10px] uppercase">Coverage Window:</span>
-                    <span className="text-emerald-400 font-medium">{s.coverage}</span>
-                  </div>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
 
         {/* Maintenance & Service Credits */}
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          <div className="p-6 sm:p-7 rounded-2xl bg-[#0d0f15] border border-white/10 space-y-3">
-            <h3 className="text-lg font-bold text-white tracking-tight">Scheduled Maintenance Windows</h3>
-            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Planned infrastructure upgrades, database migrations, or kernel updates are scheduled during predefined off-peak hours (typically 01:00–04:00 UTC). Clients receive a minimum of <strong>5 business days advance notice</strong> for any maintenance requiring potential traffic rerouting.
-            </p>
-          </div>
+          <ScrollReveal direction="up" delay={0.1} duration={0.65}>
+            <div className="h-full p-6 sm:p-7 rounded-2xl bg-[#0d0f15] border border-white/10 space-y-3 hover:border-white/20 transition-colors shadow-lg">
+              <h3 className="text-lg font-bold text-white tracking-tight">Scheduled Maintenance Windows</h3>
+              <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                Planned infrastructure upgrades, database migrations, or kernel updates are scheduled during predefined off-peak hours (typically 01:00–04:00 UTC). Clients receive a minimum of <strong>5 business days advance notice</strong> for any maintenance requiring potential traffic rerouting.
+              </p>
+            </div>
+          </ScrollReveal>
 
-          <div className="p-6 sm:p-7 rounded-2xl bg-[#0d0f15] border border-white/10 space-y-3">
-            <h3 className="text-lg font-bold text-white tracking-tight">Service Credit Schedule</h3>
-            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              If monthly availability falls below the 99.99% benchmark due to an ARAVANTA TECH managed system failure, clients are entitled to service credits ranging from <strong>10% to 50%</strong> of the monthly engagement retainer upon verification.
-            </p>
-          </div>
+          <ScrollReveal direction="up" delay={0.16} duration={0.65}>
+            <div className="h-full p-6 sm:p-7 rounded-2xl bg-[#0d0f15] border border-white/10 space-y-3 hover:border-white/20 transition-colors shadow-lg">
+              <h3 className="text-lg font-bold text-white tracking-tight">Service Credit Schedule</h3>
+              <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                If monthly availability falls below the 99.99% benchmark due to an ARAVANTA TECH managed system failure, clients are entitled to service credits ranging from <strong>10% to 50%</strong> of the monthly engagement retainer upon verification.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
 
         {/* CTA & Links */}
         <div className="max-w-4xl mx-auto pt-10 text-center space-y-6">
-          <p className="text-sm text-zinc-400">
-            Have questions about custom enterprise SLAs, dedicated SRE coverage, or disaster recovery drills?
-          </p>
-          <Button href="/contact" variant="primary" size="md">
-            <span>Inquire About Enterprise Support Options</span>
-            <ArrowRight className="w-4 h-4 ml-1.5" />
-          </Button>
+          <ScrollReveal direction="up" delay={0.1} duration={0.65}>
+            <p className="text-sm text-zinc-400">
+              Have questions about custom enterprise SLAs, dedicated SRE coverage, or disaster recovery drills?
+            </p>
+            <div className="pt-3">
+              <Button href="/contact" variant="primary" size="md">
+                <span>Inquire About Enterprise Support Options</span>
+                <ArrowRight className="w-4 h-4 ml-1.5" />
+              </Button>
+            </div>
 
-          <div className="pt-8 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-zinc-500 border-t border-white/10">
-            <Link href="/security" className="hover:text-white transition-colors">Security Whitepaper →</Link>
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy →</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service →</Link>
-            <Link href="/compliance" className="hover:text-white transition-colors">Responsible Disclosure →</Link>
-          </div>
+            <div className="pt-8 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-zinc-500 border-t border-white/10">
+              <Link href="/security" className="hover:text-white transition-colors">Security Whitepaper →</Link>
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy →</Link>
+              <Link href="/terms" className="hover:text-white transition-colors">Terms of Service →</Link>
+              <Link href="/compliance" className="hover:text-white transition-colors">Responsible Disclosure →</Link>
+            </div>
+          </ScrollReveal>
         </div>
 
       </div>

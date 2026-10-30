@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Careers & Engineering Culture | ARAVANTA TECH",
@@ -89,7 +90,10 @@ export default function CareersPage() {
   return (
     <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        {/* Subtle Ambient Radial Glow */}
+        <div className="absolute -top-10 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
         <div className="mb-6">
           <Link
             href="/"
@@ -101,19 +105,30 @@ export default function CareersPage() {
         </div>
 
         <div className="max-w-3xl space-y-4">
-          <Badge variant="emerald" size="sm" dot>
-            ENGINEERING CULTURE &amp; OPPORTUNITIES
-          </Badge>
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
-            Build Systems That <br />
-            <span className="emerald-gradient-text">Matter.</span>
-          </h1>
-          <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
-            Simpler. Safer. Smarter.
-          </p>
-          <p className="text-base sm:text-lg text-zinc-400 leading-relaxed pt-1">
-            We are a team of senior engineers and architecture specialists who care deeply about craft, type-safety, resilience, and operational honesty. We build production systems without bloated buzzwords.
-          </p>
+          <ScrollReveal direction="up" delay={0.05} duration={0.65} distance={16}>
+            <Badge variant="emerald" size="sm" dot>
+              ENGINEERING CULTURE &amp; OPPORTUNITIES
+            </Badge>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+              Build Systems That <br />
+              <span className="emerald-gradient-text">Matter.</span>
+            </h1>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
+            <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
+              Simpler. Safer. Smarter.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={0.28} duration={0.7} distance={18}>
+            <p className="text-base sm:text-lg text-zinc-400 leading-relaxed pt-1">
+              We are a team of senior engineers and architecture specialists who care deeply about craft, type-safety, resilience, and operational honesty. We build production systems without bloated buzzwords.
+            </p>
+          </ScrollReveal>
         </div>
       </div>
 
@@ -123,20 +138,21 @@ export default function CareersPage() {
           {hiringValues.map((val, idx) => {
             const Icon = val.icon;
             return (
-              <div
-                key={idx}
-                className="rounded-2xl bg-[#0d0f15] border border-white/10 p-6 sm:p-7 hover:border-emerald-500/30 transition-all"
-              >
-                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-emerald-400 mb-4">
-                  <Icon className="w-5 h-5" />
+              <ScrollReveal key={idx} direction="up" delay={0.08 + idx * 0.06} duration={0.65}>
+                <div
+                  className="h-full rounded-2xl bg-[#0d0f15] border border-white/10 p-6 sm:p-7 hover:border-emerald-500/40 hover:bg-[#12151e] transition-all shadow-lg"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-emerald-400 mb-4">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    {val.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                    {val.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">
-                  {val.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                  {val.description}
-                </p>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>
@@ -144,79 +160,84 @@ export default function CareersPage() {
 
       {/* Open Positions */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="max-w-2xl mb-8">
-          <Badge variant="gold" size="sm" dot className="mb-2">
-            JOIN THE TEAM
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Current Open Roles
-          </h2>
-          <p className="text-sm text-zinc-400 mt-2">
-            We are always interested in speaking with talented senior practitioners across cloud and systems engineering.
-          </p>
-        </div>
+        <ScrollReveal direction="up" delay={0.1} duration={0.65}>
+          <div className="max-w-2xl mb-8">
+            <Badge variant="gold" size="sm" dot className="mb-2">
+              JOIN THE TEAM
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              Current Open Roles
+            </h2>
+            <p className="text-sm text-zinc-400 mt-2">
+              We are always interested in speaking with talented senior practitioners across cloud and systems engineering.
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="space-y-4">
           {openRoles.map((role, i) => (
-            <div
-              key={i}
-              className="rounded-2xl bg-[#0d0f15] border border-white/10 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-white/25 transition-all"
-            >
-              <div className="space-y-2 max-w-2xl">
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <h3 className="text-xl font-bold text-white tracking-tight">
-                    {role.title}
-                  </h3>
-                  <Badge variant={role.badgeVariant} size="sm">
-                    {role.type}
-                  </Badge>
-                  <span className="text-xs font-mono text-zinc-400">
-                    {role.location}
-                  </span>
+            <ScrollReveal key={i} direction="up" delay={0.08 + i * 0.06} duration={0.65}>
+              <div
+                className="rounded-2xl bg-[#0d0f15] border border-white/10 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-emerald-500/40 hover:bg-[#10131d] transition-all shadow-lg"
+              >
+                <div className="space-y-2 max-w-2xl">
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    <h3 className="text-xl font-bold text-white tracking-tight">
+                      {role.title}
+                    </h3>
+                    <Badge variant={role.badgeVariant} size="sm">
+                      {role.type}
+                    </Badge>
+                    <span className="text-xs font-mono text-zinc-400">
+                      {role.location}
+                    </span>
+                  </div>
+                  <div className="text-xs font-mono text-emerald-400 font-semibold">
+                    {role.practice}
+                  </div>
+                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed pt-1">
+                    {role.description}
+                  </p>
                 </div>
-                <div className="text-xs font-mono text-emerald-400 font-semibold">
-                  {role.practice}
-                </div>
-                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed pt-1">
-                  {role.description}
-                </p>
-              </div>
 
-              <div className="shrink-0">
-                <Button
-                  href={`/contact?interest=Careers%20-%20${encodeURIComponent(role.title)}`}
-                  variant="outline"
-                  size="md"
-                >
-                  <span>Apply / Inquire</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Button>
+                <div className="shrink-0">
+                  <Button
+                    href={`/contact?interest=Careers%20-%20${encodeURIComponent(role.title)}`}
+                    variant="outline"
+                    size="md"
+                  >
+                    <span>Apply / Inquire</span>
+                    <ArrowRight className="w-4 h-4 ml-1.5" />
+                  </Button>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </section>
 
       {/* Closing General Inquiry */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl bg-[#0d0f15] border border-white/10 p-8 md:p-12 text-center max-w-3xl mx-auto space-y-4">
-          <h3 className="text-2xl font-bold text-white">
-            Don't see your specific specialization?
-          </h3>
-          <p className="text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed">
-            If you are an exceptional engineer with a passion for distributed systems, high concurrency, or cloud security, we’d love to connect.
-          </p>
-          <div className="pt-2 flex justify-center">
-            <Button
-              href="/contact?interest=General%20Careers%20Inquiry"
-              variant="primary"
-              size="md"
-            >
-              <span>Send General Inquiry</span>
-              <ArrowRight className="w-4 h-4 ml-1.5" />
-            </Button>
+        <ScrollReveal direction="up" delay={0.1} duration={0.65}>
+          <div className="rounded-2xl bg-[#0d0f15] border border-white/10 p-8 md:p-12 text-center max-w-3xl mx-auto space-y-4 shadow-xl">
+            <h3 className="text-2xl font-bold text-white">
+              Don't see your specific specialization?
+            </h3>
+            <p className="text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed">
+              If you are an exceptional engineer with a passion for distributed systems, high concurrency, or cloud security, we’d love to connect.
+            </p>
+            <div className="pt-2 flex justify-center">
+              <Button
+                href="/contact?interest=General%20Careers%20Inquiry"
+                variant="primary"
+                size="md"
+              >
+                <span>Send General Inquiry</span>
+                <ArrowRight className="w-4 h-4 ml-1.5" />
+              </Button>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </div>
   );
