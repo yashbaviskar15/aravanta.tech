@@ -342,8 +342,8 @@ export function Navbar() {
                         initial={{ opacity: 0, y: -6, scale: 0.98 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -6, scale: 0.98 }}
-                        transition={{ duration: 0.16, ease: "easeOut" }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50 pointer-events-auto"
+                        transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50 pointer-events-auto gpu-accelerated"
                       >
                         <div
                           className="bg-[#0e1017]/95 border border-white/12 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(212,163,66,0.1)] backdrop-blur-2xl"

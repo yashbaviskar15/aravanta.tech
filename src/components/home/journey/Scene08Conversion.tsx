@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Send, CheckCircle2, AlertCircle, HelpCircle, ChevronDown, Sliders, Users, Calendar, Sparkles, Check } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 interface FAQItem {
   q: string;
@@ -136,7 +137,7 @@ export function Scene08Conversion() {
       <div className="max-w-7xl mx-auto w-full space-y-20">
         
         {/* Section Header */}
-        <div className="text-left space-y-4">
+        <ScrollReveal direction="up" delay={0.05} duration={0.7} distance={20} className="text-left space-y-4">
           <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-[#0a0e14]/90 border border-[#222533] backdrop-blur-md">
             <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse" />
             <span className="text-xs font-semibold tracking-wider uppercase text-brand-gold font-mono">
@@ -152,13 +153,13 @@ export function Scene08Conversion() {
           <p className="text-base sm:text-xl text-brand-gray-300 leading-relaxed font-normal max-w-3xl">
             Have a technology challenge or a modernization project in mind? Configure your scope profile below or connect directly with our engineering team for an objective architectural assessment.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Dual Grid: Project Scope Estimator (Left) + Inquiry Form (Right) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Column: Interactive Project Scope Estimator */}
-          <div className="lg:col-span-6">
+          <ScrollReveal direction="up" delay={0.1} duration={0.75} distance={20} className="lg:col-span-6">
             <div className="p-6 sm:p-7 rounded-2xl bg-[#0a0e14]/95 border border-[#222533] backdrop-blur-xl shadow-2xl space-y-6">
               
               <div className="flex items-center justify-between pb-4 border-b border-brand-border/70">
@@ -307,10 +308,10 @@ export function Scene08Conversion() {
               </div>
 
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column: Live Inquiry Terminal */}
-          <div className="lg:col-span-6" id="inquiry-form-card">
+          <ScrollReveal direction="left" delay={0.2} duration={0.8} distance={20} className="lg:col-span-6" id="inquiry-form-card">
             <div className="p-6 sm:p-8 rounded-2xl bg-[#0a0e14]/95 border border-brand-gold/40 shadow-2xl backdrop-blur-xl">
               <div className="flex items-center justify-between pb-3 border-b border-brand-border/60 mb-5">
                 <h3 className="text-lg font-bold text-white">Direct Engineering Inquiry</h3>
@@ -424,12 +425,12 @@ export function Scene08Conversion() {
                 </Button>
               </form>
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
 
         {/* Bottom Section: Curated Frequently Asked Questions */}
-        <div className="pt-12 border-t border-brand-border/60 max-w-4xl mx-auto text-left">
+        <ScrollReveal direction="up" delay={0.15} duration={0.7} distance={20} className="pt-12 border-t border-brand-border/60 max-w-4xl mx-auto text-left">
           <div className="flex items-center gap-2 mb-8">
             <HelpCircle className="w-5 h-5 text-brand-gold" />
             <h3 className="text-2xl font-bold text-white tracking-tight">Frequently Asked Questions</h3>
@@ -463,7 +464,7 @@ export function Scene08Conversion() {
               );
             })}
           </div>
-        </div>
+        </ScrollReveal>
 
       </div>
     </section>

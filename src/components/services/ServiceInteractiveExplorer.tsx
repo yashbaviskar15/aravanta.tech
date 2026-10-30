@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Cloud,
   Workflow,
@@ -48,75 +49,75 @@ const PRACTICES: PracticeVisual[] = [
       subtitle: "Zero-downtime failover & fiscal control",
     },
     deliverables: ["Terraform Blueprints", "FinOps Tagging Policy", "Disaster Recovery RTO < 1m"],
-    metricHeadline: "Continuous multi-zone elasticity & automated right-sizing",
+    metricHeadline: "Measurable cloud infrastructure resilience and cost transparency",
   },
   {
     slug: "digital-transformation",
     name: "Digital Transformation",
     icon: Workflow,
     inputState: {
-      title: "Legacy Monolithic Silos",
-      subtitle: "Spreadsheet bottlenecks & manual inputs",
+      title: "Monolithic Data Silos",
+      subtitle: "Slow releases & manual operational workflows",
     },
     processState: {
-      title: "Strangler-Fig Modernization",
-      subtitle: "API abstraction & event-driven queues",
+      title: "Event-Driven Modernization",
+      subtitle: "Strangler migrations & asynchronous pipelines",
     },
     outputState: {
-      title: "Automated Digital Operations",
-      subtitle: "Unified data flow & zero double-entry",
+      title: "Autonomous Digital Core",
+      subtitle: "Real-time data synchronization & decoupled velocity",
     },
-    deliverables: ["API Adapter Layer", "Event-Driven Webhooks", "Automated Audit Trails"],
-    metricHeadline: "Elimination of brittle manual dependencies",
+    deliverables: ["Legacy Decommissioning Plan", "Event Stream Architecture", "Automated Ops Handbooks"],
+    metricHeadline: "Transformative digital workflow without breaking core business continuity",
   },
   {
     slug: "application-development",
     name: "Application Development",
     icon: Code2,
     inputState: {
-      title: "Sluggish Web Interfaces",
-      subtitle: "Unmaintainable spaghetti codebases",
+      title: "Technical Debt & Bugs",
+      subtitle: "Untyped spaghetti code & high churn",
     },
     processState: {
-      title: "Modern React & App Router",
-      subtitle: "Strict TypeScript & typed REST/GraphQL",
+      title: "Type-Safe Full-Stack Design",
+      subtitle: "Next.js App Router, TypeScript & GraphQL",
     },
     outputState: {
-      title: "Scalable Full-Stack Apps",
-      subtitle: "Sub-second TTFB & accessible WCAG AA",
+      title: "High-Performance Workloads",
+      subtitle: "Sub-second p99 latency & automated test mesh",
     },
-    deliverables: ["Design System UI Primitives", "OpenAPI Schemas", "Automated Test Suites"],
-    metricHeadline: "High-performance, accessible enterprise web software",
+    deliverables: ["Modular Component Systems", "Strict TypeScript Schemas", "E2E Playwright Suites"],
+    metricHeadline: "Scalable software systems built for enterprise maintainability",
   },
   {
     slug: "it-infrastructure",
     name: "IT Infrastructure",
     icon: Server,
     inputState: {
-      title: "Manual Server Configurations",
-      subtitle: "Snowflake hosts & silent failure risk",
+      title: "Manual Server Drift",
+      subtitle: "Inconsistent configurations & blind spots",
     },
     processState: {
-      title: "Infrastructure as Code & SRE",
-      subtitle: "Declarative provisioning & centralized telemetry",
+      title: "Autonomous Fleet Orchestration",
+      subtitle: "Zero-drift IaC & continuous telemetry monitoring",
     },
     outputState: {
       title: "Self-Healing Infrastructure",
-      subtitle: "Continuous monitoring & tested restore",
+      subtitle: "Autonomous scaling & 99.999% SLA benchmark",
     },
-    deliverables: ["Ansible/Terraform Playbooks", "Prometheus & Grafana SLOs", "Automated Backup Drills"],
-    metricHeadline: "Predictable, auditable environments with zero drift",
+    deliverables: ["Ansible & Packer Blueprints", "Prometheus/Grafana Dashboards", "Disaster Recovery Runbooks"],
+    metricHeadline: "High-availability compute fleets operating with mathematical predictability",
   },
   {
     slug: "devops-automation",
     name: "DevOps & Automation",
     icon: Cpu,
     inputState: {
-      title: "High-Stress Manual Cutover",
-      subtitle: "Monthly deployments & midnight hotfixes",
+      title: "Manual Friday Night Deploys",
+      subtitle: "Rollback panic & inconsistent environments",
     },
     processState: {
-      title: "GitOps Continuous Delivery",
+      title: "Declarative GitOps Engine",
       subtitle: "Canary rollouts & automated quality gates",
     },
     outputState: {
@@ -173,21 +174,21 @@ export function ServiceInteractiveExplorer() {
   const Icon = current.icon;
 
   return (
-    <div className="rounded-2xl bg-brand-surface border border-brand-border p-6 md:p-8 shadow-xl">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-brand-border/60 gap-4">
+    <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 md:p-8 shadow-2xl backdrop-blur-xl">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-white/10 gap-4">
         <div>
-          <div className="flex items-center gap-2">
-            <Badge variant="gold" size="sm">
+          <div className="flex items-center gap-2 mb-2">
+            <Badge variant="emerald" size="sm" dot>
               INTERACTIVE ARCHITECTURE WORKFLOW
             </Badge>
-            <span className="text-xs font-mono text-brand-gray-400">
+            <span className="text-xs font-mono text-zinc-500">
               PRACTICE DRILL-DOWN
             </span>
           </div>
-          <h3 className="text-2xl font-bold text-white mt-1">
+          <h3 className="text-2xl font-bold text-white font-sans">
             How We Transform Your Infrastructure
           </h3>
-          <p className="text-xs text-brand-gray-400 mt-0.5">
+          <p className="text-xs text-zinc-400 mt-1 font-sans">
             Select a practice to inspect the end-to-end transformation flow from initial state to production outcome.
           </p>
         </div>
@@ -204,10 +205,10 @@ export function ServiceInteractiveExplorer() {
               type="button"
               onClick={() => setSelectedSlug(p.slug)}
               className={cn(
-                "inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold",
+                "inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 font-mono",
                 isSelected
-                  ? "bg-brand-gold text-brand-dark shadow-md"
-                  : "bg-brand-surfaceElevated border border-brand-border text-brand-gray-300 hover:text-white hover:border-brand-gray-500"
+                  ? "bg-white text-[#08090d] shadow-lg shadow-white/10 font-bold"
+                  : "bg-white/[0.03] border border-white/10 text-zinc-400 hover:text-white hover:bg-white/5 hover:border-white/20"
               )}
             >
               <PIcon className="w-3.5 h-3.5" />
@@ -217,79 +218,92 @@ export function ServiceInteractiveExplorer() {
         })}
       </div>
 
-      {/* Transformation Pipeline Diagram */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 relative">
-        {/* Step 1: Input State */}
-        <div className="rounded-xl bg-brand-dark border border-brand-border p-5 relative">
-          <div className="text-[10px] font-mono uppercase tracking-wider text-red-400 mb-2 flex items-center justify-between">
-            <span>01. Legacy / Pain Point</span>
-            <span className="w-2 h-2 rounded-full bg-red-500" />
-          </div>
-          <h4 className="text-sm font-bold text-white">
-            {current.inputState.title}
-          </h4>
-          <p className="text-xs text-brand-gray-400 mt-1">
-            {current.inputState.subtitle}
-          </p>
-        </div>
-
-        {/* Step 2: Aravanta Engine */}
-        <div className="rounded-xl bg-brand-surfaceElevated border border-brand-gold/40 p-5 relative shadow-md shadow-brand-gold/5">
-          <div className="text-[10px] font-mono uppercase tracking-wider text-brand-gold mb-2 flex items-center justify-between">
-            <span>02. Aravanta Tech Engineering</span>
-            <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse" />
-          </div>
-          <h4 className="text-sm font-bold text-white">
-            {current.processState.title}
-          </h4>
-          <p className="text-xs text-brand-gray-300 mt-1">
-            {current.processState.subtitle}
-          </p>
-        </div>
-
-        {/* Step 3: Production Outcome */}
-        <div className="rounded-xl bg-brand-dark border border-brand-border p-5 relative">
-          <div className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 mb-2 flex items-center justify-between">
-            <span>03. Target Production State</span>
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-          </div>
-          <h4 className="text-sm font-bold text-white">
-            {current.outputState.title}
-          </h4>
-          <p className="text-xs text-brand-gray-400 mt-1">
-            {current.outputState.subtitle}
-          </p>
-        </div>
-      </div>
-
-      {/* Deliverables & CTA */}
-      <div className="p-4 rounded-xl bg-brand-surfaceElevated border border-brand-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="text-xs font-mono text-brand-gold font-semibold uppercase mb-1">
-            Delivered Technical Artifacts:
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {current.deliverables.map((del, dIdx) => (
-              <span
-                key={dIdx}
-                className="text-xs text-brand-gray-300 font-mono bg-brand-surface border border-brand-border px-2 py-0.5 rounded"
-              >
-                ✓ {del}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <Button
-          href={`/services/${current.slug}`}
-          variant="primary"
-          size="sm"
-          className="shrink-0 font-semibold"
+      {/* Animated Transformation Pipeline Diagram */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current.slug}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-6"
         >
-          <span>Explore {current.name}</span>
-          <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-        </Button>
-      </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Step 1: Input State */}
+            <div className="rounded-2xl bg-[#08090d] border border-white/10 p-5 relative">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-rose-400 mb-2.5 flex items-center justify-between">
+                <span>01. Legacy Friction</span>
+                <span className="w-2 h-2 rounded-full bg-rose-500" />
+              </div>
+              <h4 className="text-sm font-bold text-white font-sans">
+                {current.inputState.title}
+              </h4>
+              <p className="text-xs text-zinc-400 mt-1 font-sans leading-relaxed">
+                {current.inputState.subtitle}
+              </p>
+            </div>
+
+            {/* Step 2: Aravanta Engine */}
+            <div className="rounded-2xl bg-white/[0.03] border border-emerald-500/30 p-5 relative shadow-lg shadow-emerald-500/5">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 mb-2.5 flex items-center justify-between">
+                <span>02. Aravanta Engineering</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              </div>
+              <h4 className="text-sm font-bold text-white font-sans">
+                {current.processState.title}
+              </h4>
+              <p className="text-xs text-zinc-300 mt-1 font-sans leading-relaxed">
+                {current.processState.subtitle}
+              </p>
+            </div>
+
+            {/* Step 3: Production Outcome */}
+            <div className="rounded-2xl bg-[#08090d] border border-white/10 p-5 relative">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 mb-2.5 flex items-center justify-between">
+                <span>03. Target State</span>
+                <span className="w-2 h-2 rounded-full bg-cyan-400" />
+              </div>
+              <h4 className="text-sm font-bold text-white font-sans">
+                {current.outputState.title}
+              </h4>
+              <p className="text-xs text-zinc-400 mt-1 font-sans leading-relaxed">
+                {current.outputState.subtitle}
+              </p>
+            </div>
+          </div>
+
+          {/* Deliverables & CTA */}
+          <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div className="text-xs font-mono text-emerald-400 font-semibold uppercase mb-2">
+                Delivered Architecture Artifacts:
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {current.deliverables.map((del, dIdx) => (
+                  <span
+                    key={dIdx}
+                    className="text-xs text-zinc-300 font-mono bg-[#08090d] border border-white/10 px-2.5 py-1 rounded-lg"
+                  >
+                    ✓ {del}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <Button
+              href={`/services/${current.slug}`}
+              variant="primary"
+              size="sm"
+              className="shrink-0 font-semibold"
+            >
+              <span>Explore {current.name}</span>
+              <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+            </Button>
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
+
+export default ServiceInteractiveExplorer;

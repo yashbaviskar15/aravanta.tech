@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Sparkles, ArrowRight, Layers, Cpu, Shield, Activity, Terminal, RefreshCw, FileCode, CheckCircle2, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import DynamicIsland from "@/components/ui/dynamic-island";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 interface CloudOSLayer {
   id: string;
@@ -118,7 +119,7 @@ export function Scene06CloudOS() {
     >
       <div className="max-w-7xl mx-auto w-full">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
+        <ScrollReveal direction="up" delay={0.05} duration={0.7} distance={20} className="text-center max-w-3xl mx-auto space-y-4 mb-12">
           <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#0a0e14]/90 border border-brand-gold/40 backdrop-blur-md shadow-xl">
             <Sparkles className="w-3.5 h-3.5 text-brand-gold animate-spin" />
             <span className="text-xs font-semibold tracking-widest uppercase text-brand-gold font-mono">
@@ -137,7 +138,7 @@ export function Scene06CloudOS() {
           <div className="inline-block px-3 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-[11px] font-mono text-amber-400">
             PLATFORM PREVIEW • ARCHITECTURAL CONCEPT SPECIFICATION
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Dynamic Island Live Telemetry Dock */}
         <div className="mb-8 flex flex-col items-center justify-center">
@@ -145,7 +146,7 @@ export function Scene06CloudOS() {
         </div>
 
         {/* Interactive Platform Console */}
-        <div className="max-w-5xl mx-auto p-6 sm:p-8 rounded-2xl bg-[#0a0e14]/95 border border-[#222533] backdrop-blur-xl shadow-2xl space-y-6">
+        <ScrollReveal direction="up" delay={0.15} duration={0.8} distance={24} className="max-w-5xl mx-auto p-6 sm:p-8 rounded-2xl bg-[#0a0e14]/95 border border-[#222533] backdrop-blur-xl shadow-2xl space-y-6">
           
           {/* Top Bar with Mode Switcher & Drift Simulator Trigger */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-brand-border/70">
@@ -338,7 +339,7 @@ export function Scene06CloudOS() {
             </Button>
           </div>
 
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

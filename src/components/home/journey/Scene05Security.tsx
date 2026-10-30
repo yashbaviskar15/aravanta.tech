@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ShieldCheck, ArrowRight, Lock, KeyRound, Eye, ShieldAlert, CheckCircle2, Shield, RefreshCw, Zap } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 type SecurityPillar = "iam" | "crypto" | "network" | "hygiene";
 
@@ -106,7 +107,7 @@ export function Scene05Security() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           
           {/* Left Column: Interactive Zero-Trust Security Matrix */}
-          <div className="lg:col-span-6 order-2 lg:order-1">
+          <ScrollReveal direction="right" delay={0.15} duration={0.75} distance={20} className="lg:col-span-6 order-2 lg:order-1">
             <div className="p-6 sm:p-7 rounded-2xl bg-[#0a0e14]/95 border border-[#222533] backdrop-blur-xl shadow-2xl space-y-6">
               
               {/* Card Header */}
@@ -292,10 +293,10 @@ export function Scene05Security() {
               </div>
 
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column: Narrative Copy */}
-          <div className="lg:col-span-6 space-y-6 text-left order-1 lg:order-2">
+          <ScrollReveal direction="up" delay={0.05} duration={0.7} distance={20} className="lg:col-span-6 space-y-6 text-left order-1 lg:order-2">
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
               Build With Security <br />
               <span className="gold-gradient-text">In Mind.</span>
@@ -340,7 +341,7 @@ export function Scene05Security() {
                 <span>→</span>
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
       </div>

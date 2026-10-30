@@ -12,8 +12,29 @@
 }
 
 html {
-  scroll-behavior: smooth;
   color-scheme: dark;
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 body {
@@ -96,5 +117,17 @@ body {
   .hairline-border {
     border-width: 1px;
     border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* GPU accelerated rendering for silky 60/120fps animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+
+  /* Swiss enterprise smooth transition curve */
+  .transition-swiss {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 }

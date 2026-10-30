@@ -18,12 +18,12 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-2xl p-6 md:p-8 transition-all duration-300 relative",
+        "rounded-2xl p-6 md:p-8 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] relative gpu-accelerated",
         variant === "default" && "bg-[#0d0f15] border border-white/10",
         variant === "glass" && "bg-[#0d0f15]/80 backdrop-blur-xl border border-white/10",
         variant === "subtle" && "bg-white/[0.02] border border-white/5",
         hoverEffect &&
-          "hover:border-white/20 hover:bg-[#12151e] hover:shadow-[0_12px_40px_rgba(0,0,0,0.6)] hover:-translate-y-0.5",
+          "hover:border-white/25 hover:bg-[#12151e] hover:shadow-[0_16px_45px_rgba(0,0,0,0.7)] hover:-translate-y-1",
         activeBorder && "border-emerald-500/40 shadow-sm shadow-emerald-500/10",
         className
       )}

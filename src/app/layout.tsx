@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { SmoothScrollProvider } from "@/components/layout/SmoothScrollProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -127,15 +128,17 @@ export default function RootLayout({
           Skip to main content
         </a>
 
-        <CustomCursor />
-        <ScrollProgress />
-        <Navbar />
+        <SmoothScrollProvider>
+          <CustomCursor />
+          <ScrollProgress />
+          <Navbar />
 
-        <main id="main-content" className="flex-grow">
-          {children}
-        </main>
+          <main id="main-content" className="flex-grow">
+            {children}
+          </main>
 
-        <Footer />
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Cloud, ArrowRight, Server, Shield, Layers, RefreshCw, DollarSign, Zap, TrendingDown, CheckCircle2, Sliders } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 type CloudProvider = "aws" | "azure" | "gcp" | "hybrid";
 
@@ -44,7 +45,7 @@ export function Scene02Cloud() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           
           {/* Left Column: Narrative Copy & Practice Highlights */}
-          <div className="lg:col-span-6 space-y-6 text-left">
+          <ScrollReveal direction="up" delay={0.05} duration={0.7} distance={20} className="lg:col-span-6 space-y-6 text-left">
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
               Make Your Infrastructure <br />
               <span className="gold-gradient-text">Work Smarter.</span>
@@ -109,10 +110,10 @@ export function Scene02Cloud() {
                 <span>→</span>
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column: Interactive FinOps & Cloud ROI Calculator */}
-          <div className="lg:col-span-6">
+          <ScrollReveal direction="left" delay={0.15} duration={0.75} distance={20} className="lg:col-span-6">
             <div className="p-6 sm:p-7 rounded-2xl bg-[#0a0e14]/95 border border-[#222533] backdrop-blur-xl shadow-2xl space-y-6">
               
               {/* Tool Header */}
@@ -282,7 +283,7 @@ export function Scene02Cloud() {
               </div>
 
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
       </div>

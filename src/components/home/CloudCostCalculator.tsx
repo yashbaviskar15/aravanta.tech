@@ -6,6 +6,7 @@ import { Calculator, ArrowRight, DollarSign, TrendingDown, Clock, ShieldCheck, S
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function CloudCostCalculator() {
   const [monthlySpend, setMonthlySpend] = useState<number>(35000);
@@ -29,7 +30,7 @@ export function CloudCostCalculator() {
           align="center"
         />
 
-        <div className="max-w-4xl mx-auto rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 shadow-2xl">
+        <ScrollReveal direction="up" delay={0.1} duration={0.8} distance={24} className="max-w-4xl mx-auto rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 shadow-2xl">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             
             {/* Left Inputs */}
@@ -181,7 +182,7 @@ export function CloudCostCalculator() {
             </div>
 
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

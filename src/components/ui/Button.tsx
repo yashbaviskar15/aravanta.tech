@@ -35,7 +35,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-medium transition-all duration-200 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.98]";
+      "inline-flex items-center justify-center font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.97] gpu-accelerated";
 
     const sizeStyles = {
       sm: "text-xs px-3.5 py-1.5 gap-1.5 h-8 font-mono",
@@ -45,9 +45,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles = {
       primary:
-        "bg-white text-black font-semibold hover:bg-zinc-200 shadow-md transition-colors",
+        "bg-white text-black font-semibold hover:bg-zinc-100 hover:shadow-[0_8px_25px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 transition-all",
       emerald:
-        "bg-emerald-500 text-black font-semibold hover:bg-emerald-400 shadow-md shadow-emerald-950/40 transition-colors",
+        "bg-emerald-500 text-black font-semibold hover:bg-emerald-400 hover:shadow-[0_8px_25px_rgba(16,185,129,0.35)] hover:-translate-y-0.5 shadow-md shadow-emerald-950/40 transition-all",
       emeraldOutline:
         "border border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500 font-mono transition-colors",
       secondary:

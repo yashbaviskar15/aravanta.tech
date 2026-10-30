@@ -36,6 +36,8 @@ export function CinematicJourneyCanvas({
 }: CinematicJourneyCanvasProps) {
   const mountRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef(scrollProgress);
+  const smoothedProgressRef = useRef(scrollProgress);
+  const smoothedLookAtRef = useRef(new THREE.Vector3().copy(CAM_WAYPOINTS[0].t));
   const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
 
   useEffect(() => {
@@ -260,13 +262,17 @@ export function CinematicJourneyCanvas({
       animId = requestAnimationFrame(animate);
 
       const elapsedTime = clock.getElapsedTime();
-      const progress = progressRef.current;
+      const rawProgress = progressRef.current;
+
+      // Exponential smoothing for buttery scroll transitions
+      smoothedProgressRef.current += (rawProgress - smoothedProgressRef.current) * 0.08;
+      const progress = smoothedProgressRef.current;
 
       // Mouse Lerp
       mouseRef.current.x += (mouseRef.current.targetX - mouseRef.current.x) * 0.05;
       mouseRef.current.y += (mouseRef.current.targetY - mouseRef.current.y) * 0.05;
 
-      // Camera Waypoint Interpolation based on scroll
+      // Camera Waypoint Interpolation based on smoothed scroll
       const waypoints = CAM_WAYPOINTS;
       const totalSegments = waypoints.length - 1;
       const exactSegment = progress * totalSegments;
@@ -287,8 +293,10 @@ export function CinematicJourneyCanvas({
         targetCamPos.y += mouseRef.current.y * 0.6;
       }
 
-      camera.position.lerp(targetCamPos, 0.06);
-      camera.lookAt(targetLookAt);
+      // Smooth camera position and lookAt damping
+      camera.position.lerp(targetCamPos, 0.07);
+      smoothedLookAtRef.current.lerp(targetLookAt, 0.07);
+      camera.lookAt(smoothedLookAtRef.current);
 
       // Cursor Light follow
       cursorLight.position.x = mouseRef.current.x * 12;

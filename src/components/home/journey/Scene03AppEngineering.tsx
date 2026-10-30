@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Code2, ArrowRight, Layers, Cpu, Database, Network, Activity, Terminal, CheckCircle2, ChevronRight, FileCode } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 type ArchTier = "ingress" | "services" | "data";
 
@@ -107,7 +108,7 @@ export function Scene03AppEngineering() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           
           {/* Left Column: Interactive Multi-Tier Blueprint Explorer */}
-          <div className="lg:col-span-6 order-2 lg:order-1">
+          <ScrollReveal direction="right" delay={0.15} duration={0.75} distance={20} className="lg:col-span-6 order-2 lg:order-1">
             <div className="p-6 sm:p-7 rounded-2xl bg-[#0a0e14]/95 border border-[#222533] backdrop-blur-xl shadow-2xl space-y-6">
               
               {/* Header with Mode Switcher */}
@@ -273,10 +274,10 @@ export function Scene03AppEngineering() {
               </div>
 
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column: Narrative Copy */}
-          <div className="lg:col-span-6 space-y-6 text-left order-1 lg:order-2">
+          <ScrollReveal direction="up" delay={0.05} duration={0.7} distance={20} className="lg:col-span-6 space-y-6 text-left order-1 lg:order-2">
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
               Build Digital Experiences <br />
               <span className="gold-gradient-text">That Scale.</span>
@@ -316,7 +317,7 @@ export function Scene03AppEngineering() {
             </div>
 
             <div className="pt-2 flex flex-wrap items-center gap-4">
-              <Button href="/services/software-development" variant="primary" size="md">
+              <Button href="/services/application-development" variant="primary" size="md">
                 <span>Explore Software Engineering</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
@@ -328,7 +329,7 @@ export function Scene03AppEngineering() {
                 <span>→</span>
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
       </div>

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Search, Compass, Hammer, CheckCircle2, TrendingUp, ArrowRight, FileCheck, Clock, Users, ShieldAlert } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 interface StageInfo {
   step: string;
@@ -106,7 +107,7 @@ export function Scene07Approach() {
     >
       <div className="max-w-7xl mx-auto w-full">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
+        <ScrollReveal direction="up" delay={0.05} duration={0.7} distance={20} className="text-center max-w-3xl mx-auto space-y-4 mb-14">
           <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-[#0a0e14]/90 border border-[#222533] backdrop-blur-md">
             <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse" />
             <span className="text-xs font-semibold tracking-wider uppercase text-brand-gold font-mono">
@@ -122,7 +123,7 @@ export function Scene07Approach() {
           <p className="text-base sm:text-lg text-brand-gray-300 leading-relaxed font-normal">
             Great engineering is deliberate, transparent, and iterative. We guide every project through five distinct stages designed to eliminate technical surprises.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* 5-Stage Stepper Buttons */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
@@ -152,7 +153,7 @@ export function Scene07Approach() {
         </div>
 
         {/* Active Stage Deep Dive Detail Card */}
-        <div className="p-6 sm:p-8 rounded-2xl bg-[#0a0e14]/95 border border-[#222533] backdrop-blur-xl shadow-2xl space-y-6">
+        <ScrollReveal direction="up" delay={0.15} duration={0.75} distance={20} className="p-6 sm:p-8 rounded-2xl bg-[#0a0e14]/95 border border-[#222533] backdrop-blur-xl shadow-2xl space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-brand-border/70">
             <div className="flex items-center gap-3">
               <div className="p-2.5 rounded-xl bg-brand-gold/15 text-brand-gold border border-brand-gold/30">
@@ -223,7 +224,7 @@ export function Scene07Approach() {
               <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
             </Button>
           </div>
-        </div>
+        </ScrollReveal>
 
       </div>
     </section>
