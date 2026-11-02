@@ -3,16 +3,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { Scene01Landscape } from "./Scene01Landscape";
-import { Scene02Cloud } from "./Scene02Cloud";
-import { Scene03AppEngineering } from "./Scene03AppEngineering";
-import { Scene04DevOps } from "./Scene04DevOps";
-import { Scene05Security } from "./Scene05Security";
-import { Scene06CloudOS } from "./Scene06CloudOS";
-import { Scene07Approach } from "./Scene07Approach";
-import { Scene08Conversion } from "./Scene08Conversion";
+import { CompanyIntroSection } from "@/components/home/CompanyIntroSection";
+import { CoreCapabilitiesSection } from "@/components/home/CoreCapabilitiesSection";
+import { FeaturedSolutionsSection } from "@/components/home/FeaturedSolutionsSection";
+import { CloudOSShowcaseSection } from "@/components/home/CloudOSShowcaseSection";
+import { EngineeringMethodologySection } from "@/components/home/EngineeringMethodologySection";
+import { TechEcosystemSection } from "@/components/home/TechEcosystemSection";
+import { ProjectsCaseStudiesSection } from "@/components/home/ProjectsCaseStudiesSection";
+import { InteractiveLabSection } from "@/components/home/InteractiveLabSection";
+import { TrustCredibilitySection } from "@/components/home/TrustCredibilitySection";
+import { HomeFAQSection } from "@/components/home/HomeFAQSection";
+import { ConversionContactSection } from "@/components/home/ConversionContactSection";
 import { ScrollableCardStack } from "@/components/ui/scrollable-card-stack";
 import { aravantaServiceCards } from "@/lib/content/cardStackData";
-import { CloudCostCalculator } from "@/components/home/CloudCostCalculator";
 import { CinematicHUD } from "./CinematicHUD";
 
 // Dynamically import the Three.js WebGL canvas (client-only)
@@ -27,10 +30,7 @@ export function JourneyContainer() {
   const [isReducedMotion, setIsReducedMotion] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // 1. Motion state defaults to active for rich interactive experience
-  // Users can manually toggle via the HUD controls anytime
-
-  // 2. Track window scroll and calculate active scene & progress
+  // Track window scroll and calculate active scene & progress
   useEffect(() => {
     let ticking = false;
 
@@ -48,22 +48,22 @@ export function JourneyContainer() {
           const progress = Math.max(0, Math.min(1, currentScroll / (totalHeight || 1)));
           setScrollProgress(progress);
 
-          // Detect active scene by measuring each scene section
-          const sceneIds = [
+          // Detect active section
+          const sectionIds = [
             "scene-01",
-            "scene-02",
-            "scene-03",
-            "scene-04",
-            "scene-05",
-            "scene-06",
-            "scene-07",
-            "scene-08",
+            "company-intro",
+            "capabilities",
+            "solutions",
+            "cloudos",
+            "methodology",
+            "technology",
+            "case-studies",
           ];
 
           let detectedIndex = 0;
           const threshold = window.innerHeight * 0.45;
 
-          sceneIds.forEach((id, idx) => {
+          sectionIds.forEach((id, idx) => {
             const el = document.getElementById(id);
             if (el) {
               const elRect = el.getBoundingClientRect();
@@ -103,26 +103,31 @@ export function JourneyContainer() {
         onToggleReducedMotion={() => setIsReducedMotion(!isReducedMotion)}
       />
 
-      {/* 8-Scene Narrative Scroll Progression: FROM COMPLEXITY TO CLARITY */}
+      {/* Complete 14-Section Architecture */}
       <div className="relative z-10">
+        {/* SECTION 02: HERO EXPERIENCE */}
         <Scene01Landscape />
-        <Scene02Cloud />
 
-        {/* SmoothUI 3D Scrollable Card Stack Section */}
-        {/* Flagship Architecture Practices Card Stack Section */}
+        {/* SECTION 03: COMPANY INTRODUCTION */}
+        <CompanyIntroSection />
+
+        {/* SECTION 04: CORE CAPABILITIES */}
+        <CoreCapabilitiesSection />
+
+        {/* Core Architecture Practices Card Stack */}
         <section id="capabilities-stack" className="py-20 sm:py-28 bg-[#06080e]/95 border-y border-brand-border/60 relative overflow-hidden backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-surfaceElevated border border-brand-border mb-3">
               <span className="w-2 h-2 rounded-full bg-[#d4a342] animate-pulse" />
               <span className="text-xs font-mono text-[#d4a342] font-semibold uppercase tracking-wider">
-                Core Engineering Disciplines
+                FLAGSHIP DISCIPLINE DOSSIERS
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Flagship Architecture Practices
+              Interactive Architecture Practices
             </h2>
             <p className="text-sm sm:text-base text-brand-gray-300 max-w-2xl mx-auto mt-3">
-              Battle-tested engineering capabilities engineered for multi-cloud resiliency, distributed microservices, automated GitOps pipelines, and zero-trust security postures.
+              Examine live blueprints, service deliverables, and target metrics across our engineering practices.
             </p>
           </div>
           <div className="max-w-6xl mx-auto px-4 pb-6">
@@ -134,16 +139,32 @@ export function JourneyContainer() {
           </div>
         </section>
 
-        <Scene03AppEngineering />
-        <Scene04DevOps />
-        <Scene05Security />
-        <Scene06CloudOS />
+        {/* SECTION 05: FEATURED SOLUTIONS */}
+        <FeaturedSolutionsSection />
 
-        {/* FinOps & Cloud Value Estimator */}
-        <CloudCostCalculator />
+        {/* SECTION 06: ARAVANTA CLOUDOS SHOWCASE */}
+        <CloudOSShowcaseSection />
 
-        <Scene07Approach />
-        <Scene08Conversion />
+        {/* SECTION 07: ENGINEERING METHODOLOGY */}
+        <EngineeringMethodologySection />
+
+        {/* SECTION 08: TECHNOLOGY ECOSYSTEM */}
+        <TechEcosystemSection />
+
+        {/* SECTION 09: ENGINEERING PROJECTS / CASE STUDIES */}
+        <ProjectsCaseStudiesSection />
+
+        {/* SECTION 10: INTERACTIVE ENGINEERING LAB */}
+        <InteractiveLabSection />
+
+        {/* SECTION 11: TRUST & CREDIBILITY */}
+        <TrustCredibilitySection />
+
+        {/* SECTION 12: FREQUENTLY ASKED QUESTIONS */}
+        <HomeFAQSection />
+
+        {/* SECTION 13: CONTACT & CONVERSION CTA */}
+        <ConversionContactSection />
       </div>
     </div>
   );

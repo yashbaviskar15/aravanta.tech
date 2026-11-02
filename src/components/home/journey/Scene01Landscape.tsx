@@ -17,6 +17,7 @@ import {
   Layers,
   Activity,
   Zap,
+  ChevronDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -48,16 +49,16 @@ export function Scene01Landscape() {
   return (
     <section
       id="scene-01"
-      className="relative min-h-screen flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-32 pb-24 md:pt-40 md:pb-32 z-10 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-28 pb-20 md:pt-36 md:pb-28 z-10 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           
-          {/* Left Column: Swiss Enterprise Split Hero Copy */}
-          <div className="lg:col-span-7 space-y-8 text-left">
+          {/* Left Column: Phase 3 Section 02 Hero Copy */}
+          <div className="lg:col-span-7 space-y-7 text-left">
             <ScrollReveal direction="up" delay={0.05} duration={0.75} distance={20}>
               {/* Telemetry Status Ticker Eyebrow */}
-              <div className="inline-flex flex-wrap items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6 hover:border-[#d4a342]/40 transition-colors shadow-sm">
+              <div className="inline-flex flex-wrap items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-4 hover:border-[#d4a342]/40 transition-colors shadow-sm">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4a342] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4a342]" />
@@ -71,43 +72,41 @@ export function Scene01Landscape() {
                 </span>
               </div>
 
-              {/* Main Headline matching Swiss Enterprise editorial style */}
+              {/* Exact Phase 3 Section 02 Headline */}
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] font-sans">
-                People who care <br />
-                about your <span className="gold-gradient-text">growth.</span>
+                Engineering the <br />
+                <span className="gold-gradient-text">Infrastructure</span> of Tomorrow.
               </h1>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.15} duration={0.75} distance={20}>
-              {/* Subtext */}
+              {/* Exact Phase 3 Section 02 Supporting Text */}
               <p className="text-lg sm:text-xl text-zinc-300 leading-relaxed font-normal max-w-2xl font-sans">
-                Powerful, self-serve cloud infrastructure, resilient software engineering, and modern DevOps built to help you convert, scale, and retain more.
+                We engineer intelligent cloud infrastructure, resilient software systems and modern automation to help businesses build, scale and evolve.
               </p>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.25} duration={0.75} distance={20}>
-              {/* CTA Buttons side-by-side matching Swiss Enterprise editorial style */}
+              {/* Exact Phase 3 Section 02 CTAs */}
               <div className="pt-2 flex flex-wrap items-center gap-4">
-                {/* Primary Start Project Button */}
+                {/* CTA 1: Explore Our Capabilities */}
                 <Link
-                  href="/contact"
+                  href="/technology"
                   className="relative group overflow-hidden inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-zinc-100 text-[#08090d] font-bold text-sm shadow-[0_8px_30px_rgba(255,255,255,0.2)] transition-all select-none active:scale-[0.98]"
                 >
-                  <span className="relative z-10">Start a Project</span>
+                  <span className="relative z-10">Explore Our Capabilities</span>
                   <ArrowRight className="relative z-10 w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-[#08090d]" />
                   <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
                 </Link>
 
-                {/* Secondary Demo Button */}
-                <a
-                  href="#scene-06"
+                {/* CTA 2: Discover Aravanta CloudOS */}
+                <Link
+                  href="/cloudos"
                   className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm transition-all backdrop-blur-md shadow-sm group select-none cursor-pointer active:scale-[0.98]"
                 >
-                  <div className="w-5 h-5 rounded-full border border-white/40 flex items-center justify-center group-hover:scale-105 group-hover:border-[#d4a342] transition-all">
-                    <Play className="w-2.5 h-2.5 fill-white text-white ml-0.5 group-hover:fill-[#d4a342] group-hover:text-[#d4a342] transition-colors" />
-                  </div>
-                  <span>Interactive CloudOS Demo</span>
-                </a>
+                  <Cloud className="w-4 h-4 text-[#d4a342] group-hover:scale-110 transition-transform" />
+                  <span>Discover Aravanta CloudOS</span>
+                </Link>
               </div>
             </ScrollReveal>
 
@@ -215,7 +214,7 @@ export function Scene01Landscape() {
                   </div>
                 </div>
 
-                {/* Overlapping Floating UI Cards with Smooth Continuous Float */}
+                {/* Overlapping Floating UI Cards */}
                 <div className="absolute -bottom-6 -left-3 sm:-left-8 z-20 flex flex-col gap-3 w-[94%] sm:w-[380px] pointer-events-auto">
                   
                   {/* Floating Card 1: Core Migration Progress */}
@@ -296,6 +295,24 @@ export function Scene01Landscape() {
             </ScrollReveal>
           </div>
 
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="pt-16 pb-4 flex flex-col items-center justify-center text-center">
+          <a
+            href="#company-intro"
+            aria-label="Scroll to introduction"
+            className="inline-flex flex-col items-center gap-2 text-zinc-500 hover:text-white transition-colors group"
+          >
+            <span className="text-[11px] font-mono uppercase tracking-widest">Scroll to explore</span>
+            <div className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center p-1 group-hover:border-[#d4a342] transition-colors">
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+                className="w-1.5 h-1.5 rounded-full bg-[#d4a342]"
+              />
+            </div>
+          </a>
         </div>
       </div>
     </section>

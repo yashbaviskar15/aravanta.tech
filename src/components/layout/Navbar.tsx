@@ -1,18 +1,17 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Home,
+  Compass,
   Layers,
   Workflow,
   Sparkles,
   Cloud,
   Building2,
-  Send,
   ChevronDown,
   Menu,
   X,
@@ -21,29 +20,76 @@ import {
   Server,
   Cpu,
   ShieldCheck,
-  Compass,
   FileText,
   Users,
   HelpCircle,
   FileCheck,
   Boxes,
   Activity,
+  BookOpen,
+  ArrowUpRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// Dropdown data definitions
-const servicesList = [
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// NAVIGATION CATEGORIES DATA (Phase 3 Section 01 & Phase 5)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+type DropdownId = "explore" | "services" | "solutions" | "platform" | "resources" | "about";
+
+interface DropdownItem {
+  title: string;
+  href: string;
+  description: string;
+  icon: React.ElementType;
+  badge?: string;
+}
+
+const exploreList: DropdownItem[] = [
+  {
+    title: "About ARAVANTA TECH",
+    href: "/about",
+    description: "Enterprise cloud engineering, digital philosophy & 3 core pillars.",
+    icon: Building2,
+  },
+  {
+    title: "Technology Capabilities",
+    href: "/technology",
+    description: "Battle-tested primitives from high-speed runtime code to cloud.",
+    icon: Layers,
+  },
+  {
+    title: "Case Studies & Blueprints",
+    href: "/case-studies",
+    description: "Documented real-world enterprise engineering outcomes & architectures.",
+    icon: FileText,
+  },
+  {
+    title: "Industry Solutions",
+    href: "/solutions",
+    description: "Engineered solutions for FinTech, SaaS, Healthcare & Enterprise.",
+    icon: Boxes,
+  },
+  {
+    title: "Culture & Careers",
+    href: "/careers",
+    description: "How we solve high-stakes challenges and current open engineering roles.",
+    icon: Users,
+  },
+  {
+    title: "Frequently Asked Questions",
+    href: "/faq",
+    description: "Direct answers regarding our services, SLA benchmarks & CloudOS.",
+    icon: HelpCircle,
+  },
+];
+
+const servicesList: DropdownItem[] = [
   {
     title: "Cloud Solutions",
     href: "/services/cloud-solutions",
     description: "Multi-cloud architecture, zero-downtime migration & FinOps.",
     icon: Cloud,
-  },
-  {
-    title: "Digital Transformation",
-    href: "/services/digital-transformation",
-    description: "Legacy-system modernization and event-driven automation.",
-    icon: Workflow,
   },
   {
     title: "Application Development",
@@ -52,76 +98,104 @@ const servicesList = [
     icon: Code2,
   },
   {
-    title: "IT Infrastructure",
+    title: "IT Infrastructure & SRE",
     href: "/services/it-infrastructure",
-    description: "Predictable, automated compute fleets & SRE telemetry.",
+    description: "Predictable, automated compute fleets & bare-metal hypervisors.",
     icon: Server,
   },
   {
     title: "DevOps & Automation",
     href: "/services/devops-automation",
-    description: "Zero-downtime CI/CD pipelines, Docker & GitOps.",
+    description: "Zero-downtime CI/CD pipelines, Docker, Kubernetes & GitOps.",
     icon: Cpu,
   },
   {
-    title: "Cybersecurity",
+    title: "Cybersecurity & Zero-Trust",
     href: "/services/cybersecurity",
-    description: "Zero-trust IAM, dependency scanning & SOC 2 compliance.",
+    description: "Zero-trust IAM, dependency scanning & continuous compliance.",
     icon: ShieldCheck,
   },
   {
-    title: "IT Consulting",
+    title: "Digital Transformation",
+    href: "/services/digital-transformation",
+    description: "Legacy-system modernization and event-driven automation.",
+    icon: Workflow,
+  },
+  {
+    title: "IT Consulting & Architecture",
     href: "/services/it-consulting",
     description: "Unbiased technical architecture reviews & roadmaps.",
     icon: Compass,
   },
 ];
 
-const solutionsList = [
+const solutionsList: DropdownItem[] = [
   {
     title: "Financial Services & FinTech",
     href: "/solutions#fintech",
-    description: "Resilient transactional ledgers and PCI-DSS compliance.",
+    description: "Resilient transactional ledgers, microburst tuning & PCI-DSS compliance.",
     icon: Layers,
   },
   {
     title: "Enterprise SaaS Scale",
     href: "/solutions#enterprise-saas",
-    description: "Multi-tenant tenant isolation and rapid release velocity.",
+    description: "Multi-tenant tenant isolation, rapid release velocity & auto-scaling.",
     icon: Boxes,
   },
   {
     title: "Healthcare & Life Sciences",
     href: "/solutions#healthcare",
-    description: "HIPAA-compliant data enclaves and zero-trust telemetry.",
+    description: "HIPAA-compliant data enclaves, cryptographic isolation & telemetry.",
     icon: ShieldCheck,
   },
   {
-    title: "Architecture Blueprints",
-    href: "/case-studies",
-    description: "Documented real-world enterprise engineering outcomes.",
-    icon: FileText,
+    title: "Enterprise Modernization",
+    href: "/solutions#modernization",
+    description: "Strangler-fig migration for monolithic architectures with zero downtime.",
+    icon: Workflow,
   },
 ];
 
-const companyList = [
+const platformList: DropdownItem[] = [
   {
-    title: "About ARAVANTA TECH",
-    href: "/about",
-    description: "Our mission, engineering values & digital philosophy.",
-    icon: Building2,
+    title: "Aravanta CloudOS Overview",
+    href: "/cloudos",
+    description: "The Unified Operating Environment for Intelligent Cloud Transformation.",
+    icon: Cloud,
+    badge: "Platform",
+  },
+  {
+    title: "Architecture Explorer",
+    href: "/cloudos#architecture",
+    description: "Interactive 4-layer inspection from ingress policy to FinOps kernel.",
+    icon: Layers,
+  },
+  {
+    title: "Platform Roadmap",
+    href: "/cloudos#roadmap",
+    description: "Milestones from declarative CLI convergence to autonomous self-healing.",
+    icon: Activity,
+  },
+  {
+    title: "Request Briefing",
+    href: "/contact?interest=CloudOS",
+    description: "Schedule a dedicated technical briefing with our platform architects.",
+    icon: Sparkles,
+  },
+];
+
+const resourcesList: DropdownItem[] = [
+  {
+    title: "Architecture Blueprints",
+    href: "/case-studies",
+    description: "Documented real-world enterprise engineering outcomes & specs.",
+    icon: FileText,
   },
   {
     title: "Technology Capabilities",
     href: "/technology",
-    description: "Battle-tested engineering primitives from code to cloud.",
+    description: "Technical evaluation criteria and architectural primitives.",
     icon: Layers,
-  },
-  {
-    title: "Culture & Careers",
-    href: "/careers",
-    description: "How we solve high-stakes challenges and open roles.",
-    icon: Users,
   },
   {
     title: "Trust Center & Security",
@@ -132,25 +206,63 @@ const companyList = [
   {
     title: "SLA Guarantees",
     href: "/sla",
-    description: "Contractual 99.999% availability benchmarks and MTTR.",
+    description: "Contractual 99.999% availability benchmarks and MTTR matrices.",
     icon: FileCheck,
   },
   {
-    title: "FAQs",
+    title: "Compliance & Disclosure",
+    href: "/compliance",
+    description: "Safe harbor disclosures, audit attestations & corporate ethics.",
+    icon: BookOpen,
+  },
+  {
+    title: "Frequently Asked Questions",
     href: "/faq",
-    description: "Direct answers regarding our services and CloudOS platform.",
+    description: "Direct answers regarding our services, SLA benchmarks & CloudOS.",
     icon: HelpCircle,
+  },
+];
+
+const aboutList: DropdownItem[] = [
+  {
+    title: "About ARAVANTA TECH",
+    href: "/about",
+    description: "Our mission, engineering values & digital transformation philosophy.",
+    icon: Building2,
+  },
+  {
+    title: "Culture & Careers",
+    href: "/careers",
+    description: "How we solve high-stakes challenges and open roles.",
+    icon: Users,
+  },
+  {
+    title: "Trust & Security",
+    href: "/security",
+    description: "Zero-trust verification and cryptographic security.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Contact & Inquiries",
+    href: "/contact",
+    description: "Direct engineering contact for proposals and architecture audits.",
+    icon: Sparkles,
   },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<"services" | "solutions" | "company" | null>(null);
+  const [activeDropdown, setActiveDropdown] = useState<DropdownId | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<DropdownId | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  const navRef = useRef<HTMLDivElement>(null);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Scroll Progress Tracker for subtle top/capsule progress glow
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // SCROLL PROGRESS TRACKER
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   useEffect(() => {
     const handleScroll = () => {
       const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -162,13 +274,49 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menus on route change
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ROUTE CHANGE: Close all menus
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   useEffect(() => {
     setMobileMenuOpen(false);
     setActiveDropdown(null);
+    setMobileExpanded(null);
   }, [pathname]);
 
-  // Lock body scroll when mobile menu is open
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // CLICK OUTSIDE HANDLER (Requirement 3: Clicking outside closes dropdown)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, []);
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ESCAPE KEY HANDLER (Requirement 4: Escape closes menu)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveDropdown(null);
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // LOCK BODY SCROLL WHEN MOBILE MENU OPEN
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -180,102 +328,150 @@ export function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  // Escape key handler
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setMobileMenuOpen(false);
-        setActiveDropdown(null);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  const handleMouseEnter = (menu: "services" | "solutions" | "company") => {
-    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // HOVER & CLICK LOGIC (Requirements 1, 2, 5, 6)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const handleMouseEnter = (menu: DropdownId) => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
     setActiveDropdown(menu);
   };
 
   const handleMouseLeave = () => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
     dropdownTimeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
-    }, 180);
+    }, 220); // 220ms generous buffer eliminates flickering over hover gaps
   };
 
-  // Nav item list matching the Swiss Enterprise capsule design
-  const navItems = [
+  const handleTriggerClick = (e: React.MouseEvent, menu: DropdownId) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveDropdown((prev) => (prev === menu ? null : menu));
+  };
+
+  const handleTriggerKeyDown = (e: React.KeyboardEvent, menu: DropdownId) => {
+    if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveDropdown((prev) => (prev === menu ? null : menu));
+    }
+  };
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // DESKTOP NAVIGATION CATEGORIES (Phase 3 Section 01)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const navCategories: {
+    id: DropdownId;
+    label: string;
+    href: string;
+    items: DropdownItem[];
+    headerTitle: string;
+    exploreAllHref: string;
+    widthClass: string;
+    colsClass: string;
+    isActive: boolean;
+  }[] = [
     {
-      id: "home",
-      label: "Home",
-      href: "/",
-      icon: Home,
-      isActive: pathname === "/",
+      id: "explore",
+      label: "Explore",
+      href: "/about",
+      items: exploreList,
+      headerTitle: "Explore Aravanta Tech",
+      exploreAllHref: "/about",
+      widthClass: "w-[420px]",
+      colsClass: "grid-cols-1",
+      isActive: pathname === "/" || pathname === "/about" || pathname === "/technology",
     },
     {
       id: "services",
       label: "Services",
       href: "/services",
-      icon: Layers,
+      items: servicesList,
+      headerTitle: "Core Engineering Practices",
+      exploreAllHref: "/services",
+      widthClass: "w-[560px]",
+      colsClass: "grid-cols-2",
       isActive: pathname.startsWith("/services"),
-      hasDropdown: "services" as const,
     },
     {
       id: "solutions",
       label: "Solutions",
       href: "/solutions",
-      icon: Workflow,
+      items: solutionsList,
+      headerTitle: "Engineered Solutions",
+      exploreAllHref: "/solutions",
+      widthClass: "w-[440px]",
+      colsClass: "grid-cols-1",
       isActive: pathname.startsWith("/solutions"),
-      hasDropdown: "solutions" as const,
     },
     {
-      id: "case-studies",
-      label: "Case Studies",
-      href: "/case-studies",
-      icon: Sparkles,
-      isActive: pathname.startsWith("/case-studies"),
-    },
-    {
-      id: "cloudos",
-      label: "CloudOS",
+      id: "platform",
+      label: "Platform",
       href: "/cloudos",
-      icon: Cloud,
+      items: platformList,
+      headerTitle: "Aravanta CloudOS",
+      exploreAllHref: "/cloudos",
+      widthClass: "w-[440px]",
+      colsClass: "grid-cols-1",
       isActive: pathname.startsWith("/cloudos"),
     },
     {
-      id: "company",
-      label: "Company",
-      href: "/about",
-      icon: Building2,
+      id: "resources",
+      label: "Resources",
+      href: "/case-studies",
+      items: resourcesList,
+      headerTitle: "Architecture & Evidence",
+      exploreAllHref: "/case-studies",
+      widthClass: "w-[440px]",
+      colsClass: "grid-cols-1",
       isActive:
-        pathname.startsWith("/about") ||
-        pathname.startsWith("/technology") ||
-        pathname.startsWith("/careers") ||
+        pathname.startsWith("/case-studies") ||
         pathname.startsWith("/security") ||
         pathname.startsWith("/sla") ||
+        pathname.startsWith("/compliance") ||
         pathname.startsWith("/faq"),
-      hasDropdown: "company" as const,
+    },
+    {
+      id: "about",
+      label: "About",
+      href: "/about",
+      items: aboutList,
+      headerTitle: "Company & Organization",
+      exploreAllHref: "/about",
+      widthClass: "w-[400px]",
+      colsClass: "grid-cols-1",
+      isActive: pathname.startsWith("/about") || pathname.startsWith("/careers"),
     },
   ];
 
   return (
-    <header className="fixed top-4 sm:top-5 left-0 right-0 z-[100] px-3 sm:px-6 pointer-events-none flex justify-center">
-      {/* Floating Pill Capsule Bar */}
-      <div className="pointer-events-auto relative inline-flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-[#12141a]/95 backdrop-blur-2xl border border-white/12 shadow-[0_12px_40px_rgba(0,0,0,0.85),0_0_20px_rgba(212,163,66,0.08)] max-w-full overflow-hidden">
+    <header
+      ref={navRef}
+      className="fixed top-4 sm:top-5 left-0 right-0 z-[100] px-3 sm:px-6 pointer-events-none flex justify-center"
+    >
+      {/* 
+        IMPORTANT: NO overflow-hidden on the capsule container! 
+        This is what previously clipped all dropdown menus! 
+      */}
+      <div className="pointer-events-auto relative inline-flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-[#12141a]/95 backdrop-blur-2xl border border-white/12 shadow-[0_12px_40px_rgba(0,0,0,0.85),0_0_20px_rgba(212,163,66,0.08)] max-w-full">
         
-        {/* Subtle Bottom Scroll Progress Line */}
-        <div
-          className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-emerald-500 via-[#d4a342] to-cyan-400 opacity-80 pointer-events-none transition-all duration-100 ease-out"
-          style={{ width: `${scrollProgress * 100}%` }}
-        />
+        {/* Subtle Bottom Scroll Progress Line with its own rounded boundary */}
+        <div className="absolute inset-x-3 bottom-0 h-[2px] overflow-hidden rounded-full pointer-events-none">
+          <div
+            className="h-full bg-gradient-to-r from-emerald-500 via-[#d4a342] to-cyan-400 opacity-90 transition-all duration-100 ease-out"
+            style={{ width: `${scrollProgress * 100}%` }}
+          />
+        </div>
 
         {/* Brand Emblem on Left */}
         <Link
           href="/"
-          className="flex items-center gap-2 pl-2 sm:pl-3 pr-2 py-1 rounded-full hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
+          className="flex items-center gap-2 pl-2 sm:pl-3 pr-2 py-1 rounded-full hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a342]"
           aria-label="ARAVANTA TECH - Home"
         >
-          <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-b from-[#ffffff] via-[#f4f4f6] to-[#d8dade] p-1 border border-brand-gold/60 shadow-sm flex items-center justify-center shrink-0">
+          <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-b from-[#ffffff] via-[#f4f4f6] to-[#d8dade] p-1 border border-[#d4a342]/60 shadow-sm flex items-center justify-center shrink-0">
             <Image
               src="/brand/icon.png"
               alt="Aravanta Tech"
@@ -286,7 +482,7 @@ export function Navbar() {
             />
           </div>
           <span className="font-extrabold text-xs sm:text-sm tracking-tight text-white hidden md:inline font-mono">
-            ARAVANTA<span className="text-brand-gold ml-0.5">TECH</span>
+            ARAVANTA<span className="text-[#d4a342] ml-0.5">TECH</span>
           </span>
         </Link>
 
@@ -299,149 +495,139 @@ export function Navbar() {
         {/* Divider */}
         <div className="hidden lg:block h-5 w-[1px] bg-white/12 mx-1" />
 
-        {/* Desktop Navigation Links (Pill Stack) */}
+        {/* Desktop Navigation Categories */}
         <nav
-          className="hidden lg:flex items-center gap-1"
+          className="hidden lg:flex items-center gap-0.5"
           aria-label="Main Navigation"
         >
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isCurrent = item.isActive;
-            const isMenuOpen = activeDropdown === item.hasDropdown;
+          {navCategories.map((cat) => {
+            const isMenuOpen = activeDropdown === cat.id;
+            const isCurrent = cat.isActive;
 
             return (
               <div
-                key={item.id}
+                key={cat.id}
                 className="relative"
-                onMouseEnter={() => item.hasDropdown && handleMouseEnter(item.hasDropdown)}
+                onMouseEnter={() => handleMouseEnter(cat.id)}
                 onMouseLeave={handleMouseLeave}
               >
-                <Link
-                  href={item.href}
+                {/* Trigger Button with full Click + Hover + Keyboard accessibility */}
+                <button
+                  type="button"
+                  onClick={(e) => handleTriggerClick(e, cat.id)}
+                  onKeyDown={(e) => handleTriggerKeyDown(e, cat.id)}
+                  aria-haspopup="true"
+                  aria-expanded={isMenuOpen}
+                  aria-controls={`dropdown-${cat.id}`}
                   className={cn(
-                    "relative flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 select-none group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold",
+                    "relative flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 select-none group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a342]",
                     isCurrent || isMenuOpen
                       ? "text-white font-semibold"
                       : "text-zinc-400 hover:text-white"
                   )}
                 >
-                  {/* Sliding Pill Active Background via layoutId */}
+                  {/* Sliding Pill Active Background */}
                   {isCurrent && (
                     <motion.div
-                      layoutId="active-pill-bg"
-                      className="absolute inset-0 rounded-full bg-[#272a33] border border-white/15 shadow-sm"
+                      layoutId="active-nav-pill"
+                      className="absolute inset-0 rounded-full bg-[#242833] border border-white/15 shadow-sm"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
 
-                  {/* Icon */}
-                  <span className="relative z-10">
-                    <Icon
-                      className={cn(
-                        "w-4 h-4 transition-colors",
-                        isCurrent || isMenuOpen
-                          ? "text-white"
-                          : "text-zinc-400 group-hover:text-white"
-                      )}
-                    />
-                  </span>
+                  <span className="relative z-10 leading-none">{cat.label}</span>
 
-                  {/* Label */}
-                  <span className="relative z-10 leading-none">{item.label}</span>
+                  <ChevronDown
+                    className={cn(
+                      "relative z-10 w-3 h-3 text-zinc-400 transition-transform duration-200",
+                      isMenuOpen && "rotate-180 text-white"
+                    )}
+                  />
+                </button>
 
-                  {/* Subtle chevron for items with dropdowns */}
-                  {item.hasDropdown && (
-                    <ChevronDown
-                      className={cn(
-                        "relative z-10 w-3 h-3 text-zinc-400 transition-transform duration-200",
-                        isMenuOpen && "rotate-180 text-white"
-                      )}
-                    />
-                  )}
-                </Link>
+                {/* Dropdown Flyout Card with Hover Bridge Buffer */}
+                <AnimatePresence>
+                  {isMenuOpen && (
+                    <div
+                      id={`dropdown-${cat.id}`}
+                      role="menu"
+                      aria-label={`${cat.label} Menu`}
+                      className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 z-[110] pointer-events-auto"
+                      onMouseEnter={() => handleMouseEnter(cat.id)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      {/* Invisible Hover Bridge Buffer */}
+                      <div className="absolute -top-3 inset-x-0 h-3" />
 
-                {/* Dropdown Flyout Card */}
-                {item.hasDropdown && (
-                  <AnimatePresence>
-                    {isMenuOpen && (
                       <motion.div
                         initial={{ opacity: 0, y: -6, scale: 0.98 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -6, scale: 0.98 }}
-                        transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50 pointer-events-auto gpu-accelerated"
+                        transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                        className={cn(
+                          "bg-[#0e1017]/95 border border-white/12 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.92),0_0_30px_rgba(212,163,66,0.12)] backdrop-blur-2xl max-h-[80vh] overflow-y-auto",
+                          cat.widthClass
+                        )}
                       >
-                        <div
-                          className="bg-[#0e1017]/95 border border-white/12 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(212,163,66,0.1)] backdrop-blur-2xl"
-                          style={{
-                            width:
-                              item.hasDropdown === "services"
-                                ? "440px"
-                                : item.hasDropdown === "company"
-                                ? "420px"
-                                : "380px",
-                          }}
-                        >
-                          {/* Dropdown Header */}
-                          <div className="px-2 pb-2 mb-2 border-b border-white/10 flex items-center justify-between">
-                            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-brand-gold">
-                              {item.hasDropdown === "services"
-                                ? "Core Engineering Practices"
-                                : item.hasDropdown === "solutions"
-                                ? "Enterprise Solutions"
-                                : "Aravanta Tech Resources"}
-                            </span>
-                            <Link
-                              href={item.href}
-                              className="text-xs text-zinc-400 hover:text-white flex items-center gap-1 font-mono transition-colors"
-                            >
-                              Explore all <ArrowRight className="w-3 h-3 text-brand-gold" />
-                            </Link>
-                          </div>
+                        {/* Dropdown Header */}
+                        <div className="px-2 pb-2.5 mb-2.5 border-b border-white/10 flex items-center justify-between">
+                          <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#d4a342]">
+                            {cat.headerTitle}
+                          </span>
+                          <Link
+                            href={cat.exploreAllHref}
+                            onClick={() => setActiveDropdown(null)}
+                            className="text-xs text-zinc-400 hover:text-white flex items-center gap-1 font-mono transition-colors"
+                          >
+                            Explore all <ArrowRight className="w-3 h-3 text-[#d4a342]" />
+                          </Link>
+                        </div>
 
-                          {/* Dropdown Items List */}
-                          <div className="space-y-1">
-                            {(item.hasDropdown === "services"
-                              ? servicesList
-                              : item.hasDropdown === "solutions"
-                              ? solutionsList
-                              : companyList
-                            ).map((subItem) => {
-                              const SubIcon =
-                                "icon" in subItem ? subItem.icon : Workflow;
-                              const isSubActive = pathname === subItem.href;
+                        {/* Dropdown Items Grid */}
+                        <div className={cn("grid gap-1.5", cat.colsClass)}>
+                          {cat.items.map((subItem) => {
+                            const SubIcon = subItem.icon;
+                            const isSubActive = pathname === subItem.href;
 
-                              return (
-                                <Link
-                                  key={subItem.href}
-                                  href={subItem.href}
-                                  className={cn(
-                                    "flex items-start gap-3 p-2 rounded-xl transition-all group",
-                                    isSubActive
-                                      ? "bg-white/10 text-brand-gold"
-                                      : "hover:bg-white/5 text-zinc-300"
-                                  )}
-                                >
-                                  <div className="w-7 h-7 rounded-lg bg-black/60 border border-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/40 group-hover:scale-105 transition-transform shrink-0 mt-0.5">
-                                    <SubIcon className="w-3.5 h-3.5" />
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <div className="text-xs font-semibold text-white group-hover:text-brand-gold transition-colors truncate">
+                            return (
+                              <Link
+                                key={subItem.href}
+                                href={subItem.href}
+                                onClick={() => setActiveDropdown(null)}
+                                role="menuitem"
+                                className={cn(
+                                  "flex items-start gap-3 p-2.5 rounded-xl transition-all group select-none",
+                                  isSubActive
+                                    ? "bg-white/10 text-[#d4a342]"
+                                    : "hover:bg-white/5 text-zinc-300"
+                                )}
+                              >
+                                <div className="w-7 h-7 rounded-lg bg-black/60 border border-white/10 flex items-center justify-center text-[#d4a342] group-hover:border-[#d4a342]/40 group-hover:scale-105 transition-transform shrink-0 mt-0.5">
+                                  <SubIcon className="w-3.5 h-3.5" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-1.5">
+                                    <span className="text-xs font-semibold text-white group-hover:text-[#d4a342] transition-colors truncate">
                                       {subItem.title}
-                                    </div>
-                                    <div className="text-[11px] text-zinc-400 line-clamp-1 mt-0.5 font-normal">
-                                      {subItem.description}
-                                    </div>
+                                    </span>
+                                    {subItem.badge && (
+                                      <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[#d4a342]/15 text-[#d4a342] border border-[#d4a342]/30">
+                                        {subItem.badge}
+                                      </span>
+                                    )}
                                   </div>
-                                </Link>
-                              );
-                            })}
-                          </div>
+                                  <p className="text-[11px] text-zinc-400 line-clamp-1 mt-0.5 font-normal">
+                                    {subItem.description}
+                                  </p>
+                                </div>
+                              </Link>
+                            );
+                          })}
                         </div>
                       </motion.div>
-                    )}
-                  </AnimatePresence>
-                )}
+                    </div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}
@@ -470,7 +656,9 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer Overlay */}
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          MOBILE DRAWER OVERLAY (Responsive, Accessible Touch Menus)
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -478,54 +666,106 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="pointer-events-auto fixed inset-x-3 top-20 z-50 rounded-3xl bg-[#0d0f15]/95 border border-white/15 p-5 shadow-2xl backdrop-blur-2xl max-h-[85vh] overflow-y-auto"
+            className="fixed inset-x-3 top-20 max-w-lg mx-auto bg-[#0a0d14]/98 border border-white/15 rounded-3xl p-5 shadow-[0_25px_60px_rgba(0,0,0,0.95)] backdrop-blur-3xl z-50 pointer-events-auto max-h-[82vh] overflow-y-auto"
           >
             {/* Header info */}
-            <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
-              <span className="text-xs font-mono text-brand-gold uppercase tracking-wider font-semibold">
-                ARAVANTA TECH NAVIGATION
+            <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-white">
+                  ARAVANTA TECH NAVIGATION
+                </span>
+              </div>
+              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">
+                SLA: 99.999%
               </span>
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-1 rounded-full text-zinc-400 hover:text-white"
-                aria-label="Close Navigation"
-              >
-                <X className="w-4 h-4" />
-              </button>
             </div>
 
-            {/* Pill items grid on mobile */}
-            <div className="grid grid-cols-2 gap-2 mb-4">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                const isCurrent = item.isActive;
+            {/* Accordion Categories on Mobile */}
+            <div className="space-y-2">
+              {navCategories.map((cat) => {
+                const isExpanded = mobileExpanded === cat.id;
 
                 return (
-                  <Link
-                    key={`mobile-${item.id}`}
-                    href={item.href}
-                    className={cn(
-                      "flex items-center gap-2 p-3 rounded-2xl border text-xs font-medium transition-colors",
-                      isCurrent
-                        ? "bg-[#272a33] border-brand-gold/40 text-white"
-                        : "bg-white/[0.03] border-white/8 text-zinc-300 hover:text-white hover:bg-white/[0.06]"
-                    )}
+                  <div
+                    key={`mob-${cat.id}`}
+                    className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden"
                   >
-                    <Icon className="w-4 h-4 text-brand-gold" />
-                    <span>{item.label}</span>
-                  </Link>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setMobileExpanded((prev) => (prev === cat.id ? null : cat.id))
+                      }
+                      className="w-full flex items-center justify-between p-3.5 text-xs font-mono font-bold uppercase tracking-wider text-white text-left focus:outline-none"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span>{cat.label}</span>
+                        <span className="text-[10px] text-zinc-500 font-normal">
+                          ({cat.items.length})
+                        </span>
+                      </div>
+                      <ChevronDown
+                        className={cn(
+                          "w-4 h-4 text-zinc-400 transition-transform duration-200",
+                          isExpanded && "rotate-180 text-[#d4a342]"
+                        )}
+                      />
+                    </button>
+
+                    {isExpanded && (
+                      <div className="px-3 pb-3 pt-1 space-y-1 border-t border-white/5">
+                        <Link
+                          href={cat.exploreAllHref}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center justify-between p-2 rounded-xl text-xs font-mono text-[#d4a342] bg-[#d4a342]/10 mb-2"
+                        >
+                          <span>Explore All {cat.label}</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                        {cat.items.map((sub) => {
+                          const SubIcon = sub.icon;
+                          const isSubActive = pathname === sub.href;
+
+                          return (
+                            <Link
+                              key={`mob-sub-${sub.href}`}
+                              href={sub.href}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className={cn(
+                                "flex items-start gap-2.5 p-2 rounded-xl text-xs transition-colors",
+                                isSubActive
+                                  ? "bg-white/10 text-[#d4a342] font-semibold"
+                                  : "text-zinc-300 hover:text-white hover:bg-white/5"
+                              )}
+                            >
+                              <SubIcon className="w-4 h-4 text-[#d4a342] shrink-0 mt-0.5" />
+                              <div className="flex-1 min-w-0">
+                                <div className="text-xs font-medium text-white truncate">
+                                  {sub.title}
+                                </div>
+                                <div className="text-[10px] text-zinc-400 line-clamp-1">
+                                  {sub.description}
+                                </div>
+                              </div>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </div>
 
-            {/* Direct Contact Shortcut on Mobile */}
-            <div className="pt-2 border-t border-white/10">
+            {/* Mobile Footer CTA */}
+            <div className="pt-4 mt-3 border-t border-white/10 space-y-2">
               <Link
                 href="/contact"
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-[#d4a342] to-[#e5b85a] text-[#08090d] font-bold text-xs font-mono uppercase tracking-wider shadow-lg"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#d4a342] via-[#e5b85a] to-[#f3cc72] text-[#090a0d] font-bold text-xs uppercase tracking-wider font-mono flex items-center justify-center gap-2 shadow-lg"
               >
-                <Sparkles className="w-3.5 h-3.5 text-[#08090d]" />
-                <span>Start Technical Scoping</span>
+                <Sparkles className="w-4 h-4 text-[#090a0d]" />
+                <span>Let's Talk — Start a Project</span>
               </Link>
             </div>
           </motion.div>
