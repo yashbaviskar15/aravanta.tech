@@ -49,7 +49,7 @@ export function Scene01Landscape() {
   return (
     <section
       id="scene-01"
-      className="relative min-h-screen flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-28 pb-20 md:pt-36 md:pb-28 z-10 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 z-10 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
@@ -73,7 +73,7 @@ export function Scene01Landscape() {
               </div>
 
               {/* Exact Phase 3 Section 02 Headline */}
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] font-sans">
+              <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12] font-sans">
                 Engineering the <br />
                 <span className="gold-gradient-text">Infrastructure</span> of Tomorrow.
               </h1>
@@ -88,11 +88,11 @@ export function Scene01Landscape() {
 
             <ScrollReveal direction="up" delay={0.25} duration={0.75} distance={20}>
               {/* Exact Phase 3 Section 02 CTAs */}
-              <div className="pt-2 flex flex-wrap items-center gap-4">
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
                 {/* CTA 1: Explore Our Capabilities */}
                 <Link
                   href="/technology"
-                  className="relative group overflow-hidden inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-zinc-100 text-[#08090d] font-bold text-sm shadow-[0_8px_30px_rgba(255,255,255,0.2)] transition-all select-none active:scale-[0.98]"
+                  className="relative group overflow-hidden inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-zinc-100 text-[#08090d] font-bold text-sm shadow-[0_8px_30px_rgba(255,255,255,0.2)] transition-all select-none active:scale-[0.98] w-full sm:w-auto"
                 >
                   <span className="relative z-10">Explore Our Capabilities</span>
                   <ArrowRight className="relative z-10 w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-[#08090d]" />
@@ -102,7 +102,7 @@ export function Scene01Landscape() {
                 {/* CTA 2: Discover Aravanta CloudOS */}
                 <Link
                   href="/cloudos"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm transition-all backdrop-blur-md shadow-sm group select-none cursor-pointer active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm transition-all backdrop-blur-md shadow-sm group select-none cursor-pointer active:scale-[0.98] w-full sm:w-auto"
                 >
                   <Cloud className="w-4 h-4 text-[#d4a342] group-hover:scale-110 transition-transform" />
                   <span>Discover Aravanta CloudOS</span>

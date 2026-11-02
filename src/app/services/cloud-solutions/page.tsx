@@ -105,14 +105,14 @@ export default function CloudSolutionsPage() {
   ];
 
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Bespoke Cloud Solutions Hero */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 md:mb-28">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-28">
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute -top-10 left-1/3 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
             <ScrollReveal direction="up" delay={0.05} duration={0.65} distance={16}>
               <div className="inline-flex items-center gap-2">
                 <Badge variant="emerald" size="sm" dot>
@@ -122,31 +122,31 @@ export default function CloudSolutionsPage() {
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
-              <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
                 Multi-Cloud <br />
                 <span className="emerald-gradient-text">Architecture &amp; Migration.</span>
               </h1>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
-              <p className="text-xl text-zinc-300 font-light font-mono">
+              <p className="text-base sm:text-xl text-zinc-300 font-light font-mono">
                 Zero Downtime. Zero Lock-In. Provable Resilience.
               </p>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.28} duration={0.7} distance={18}>
-              <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl font-normal">
+              <p className="text-sm sm:text-base lg:text-lg text-zinc-400 leading-relaxed max-w-2xl font-normal">
                 We design, build, and operate fault-tolerant multi-cloud environments engineered to withstand full regional provider blackouts. From complex zero-loss database migrations to rigorous FinOps cost engineering, our solutions guarantee deterministic uptime.
               </p>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.35} duration={0.7} distance={18}>
-              <div className="pt-2 flex flex-wrap items-center gap-4">
-                <Button href="/contact?service=Cloud%20Solutions" variant="primary" size="md">
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                <Button href="/contact?service=Cloud%20Solutions" variant="primary" size="md" className="w-full sm:w-auto justify-center">
                   <span>Scope Cloud Initiative</span>
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Button>
-                <Button href="/case-studies" variant="secondary" size="md">
+                <Button href="/case-studies" variant="secondary" size="md" className="w-full sm:w-auto justify-center">
                   <span>View Architecture Dossiers</span>
                   <ArrowUpRight className="w-4 h-4 ml-1.5" />
                 </Button>
@@ -157,13 +157,13 @@ export default function CloudSolutionsPage() {
           {/* Interactive Multi-Region Architecture Blueprint Card */}
           <div className="lg:col-span-5">
             <ScrollReveal direction="left" delay={0.2} duration={0.8} distance={26}>
-              <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-7 shadow-2xl relative overflow-hidden hover:border-emerald-500/30 transition-all">
-                <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
-                  <div className="flex items-center gap-2 font-mono text-xs text-emerald-400">
-                    <Activity className="w-4 h-4" />
-                    <span>MULTI-REGION ACTIVE-ACTIVE TOPOLOGY</span>
+              <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-4 sm:p-7 shadow-2xl relative overflow-hidden hover:border-emerald-500/30 transition-all">
+                <div className="flex items-center justify-between pb-3 sm:pb-4 mb-3 sm:mb-4 border-b border-white/10">
+                  <div className="flex items-center gap-2 font-mono text-[11px] sm:text-xs text-emerald-400">
+                    <Activity className="w-4 h-4 shrink-0" />
+                    <span className="truncate">MULTI-REGION ACTIVE-ACTIVE TOPOLOGY</span>
                   </div>
-                  <span className="text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded shrink-0">
                     HEALTH: NOMINAL
                   </span>
                 </div>
@@ -173,14 +173,14 @@ export default function CloudSolutionsPage() {
                   {/* Traffic Layer */}
                   <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Globe2 className="w-4 h-4 text-cyan-400" />
-                      <span>Global Anycast BGP Edge</span>
+                      <Globe2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span className="text-xs">Global Anycast BGP Edge</span>
                     </div>
-                    <span className="text-zinc-500">&lt; 15ms latency</span>
+                    <span className="text-zinc-500 text-[10px] sm:text-xs">&lt; 15ms latency</span>
                   </div>
 
-                  {/* Region Split */}
-                  <div className="grid grid-cols-2 gap-3">
+                  {/* Region Split: 1 col on mobile, 2 col on sm+ */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30 space-y-1.5">
                       <div className="flex items-center justify-between">
                         <span className="text-[11px] font-bold text-emerald-400">Region A (AWS us-east)</span>
@@ -201,17 +201,17 @@ export default function CloudSolutionsPage() {
                   </div>
 
                   {/* Replication Bus */}
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-between text-zinc-400">
+                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-between text-zinc-400 text-xs">
                     <div className="flex items-center gap-2">
-                      <RefreshCw className="w-3.5 h-3.5 text-emerald-400 animate-spin" style={{ animationDuration: "8s" }} />
-                      <span className="text-[11px]">Private WireGuard Cross-Cloud Sync</span>
+                      <RefreshCw className="w-3.5 h-3.5 text-emerald-400 animate-spin shrink-0" style={{ animationDuration: "8s" }} />
+                      <span className="text-[10px] sm:text-[11px] truncate">WireGuard Cross-Cloud Sync</span>
                     </div>
-                    <span className="text-emerald-400 text-[10px]">Lag: 42ms (Strict Sync)</span>
+                    <span className="text-emerald-400 text-[10px] shrink-0">Lag: 42ms</span>
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-500">
-                  <span>Telemetry: 100% IaC Managed</span>
+                <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-zinc-500">
+                  <span>Telemetry: 100% IaC</span>
                   <span className="text-emerald-400">SLA: 99.999%</span>
                 </div>
               </div>
@@ -382,7 +382,7 @@ export default function CloudSolutionsPage() {
                 </Link>
               </div>
             </div>
-            <Button href="/contact?service=Cloud%20Solutions" variant="primary" size="md">
+            <Button href="/contact?service=Cloud%20Solutions" variant="primary" size="md" className="w-full sm:w-auto justify-center">
               <span>Schedule Scoping Session</span>
               <ArrowRight className="w-4 h-4 ml-1.5" />
             </Button>

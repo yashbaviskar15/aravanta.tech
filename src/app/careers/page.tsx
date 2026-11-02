@@ -88,7 +88,7 @@ const hiringValues = [
 
 export default function CareersPage() {
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Header */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         {/* Subtle Ambient Radial Glow */}
@@ -112,14 +112,14 @@ export default function CareersPage() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
               Build Systems That <br />
               <span className="emerald-gradient-text">Matter.</span>
             </h1>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
-            <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
+            <p className="text-lg sm:text-2xl text-zinc-300 font-light font-mono">
               Simpler. Safer. Smarter.
             </p>
           </ScrollReveal>
@@ -178,7 +178,7 @@ export default function CareersPage() {
           {openRoles.map((role, i) => (
             <ScrollReveal key={i} direction="up" delay={0.08 + i * 0.06} duration={0.65}>
               <div
-                className="rounded-2xl bg-[#0d0f15] border border-white/10 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-emerald-500/40 hover:bg-[#10131d] transition-all shadow-lg"
+                className="rounded-2xl bg-[#0d0f15] border border-white/10 p-5 sm:p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-emerald-500/40 hover:bg-[#10131d] transition-all shadow-lg"
               >
                 <div className="space-y-2 max-w-2xl">
                   <div className="flex flex-wrap items-center gap-2.5">
@@ -200,11 +200,12 @@ export default function CareersPage() {
                   </p>
                 </div>
 
-                <div className="shrink-0">
+                <div className="shrink-0 w-full sm:w-auto">
                   <Button
                     href={`/contact?interest=Careers%20-%20${encodeURIComponent(role.title)}`}
                     variant="outline"
                     size="md"
+                    className="w-full sm:w-auto justify-center"
                   >
                     <span>Apply / Inquire</span>
                     <ArrowRight className="w-4 h-4 ml-1.5" />
@@ -219,7 +220,7 @@ export default function CareersPage() {
       {/* Closing General Inquiry */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal direction="up" delay={0.1} duration={0.65}>
-          <div className="rounded-2xl bg-[#0d0f15] border border-white/10 p-8 md:p-12 text-center max-w-3xl mx-auto space-y-4 shadow-xl">
+          <div className="rounded-2xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-12 text-center max-w-3xl mx-auto space-y-4 shadow-xl">
             <h3 className="text-2xl font-bold text-white">
               Don't see your specific specialization?
             </h3>
@@ -231,6 +232,7 @@ export default function CareersPage() {
                 href="/contact?interest=General%20Careers%20Inquiry"
                 variant="primary"
                 size="md"
+                className="w-full sm:w-auto justify-center"
               >
                 <span>Send General Inquiry</span>
                 <ArrowRight className="w-4 h-4 ml-1.5" />

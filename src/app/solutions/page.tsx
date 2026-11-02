@@ -93,7 +93,7 @@ const solutions = [
 
 export default function SolutionsPage() {
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Header */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         {/* Subtle Ambient Radial Glow */}
@@ -117,14 +117,14 @@ export default function SolutionsPage() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
               Tailored Industry <br />
               <span className="emerald-gradient-text">Solutions.</span>
             </h1>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
-            <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
+            <p className="text-lg sm:text-2xl text-zinc-300 font-light font-mono">
               Engineered for your domain&apos;s unique performance and compliance demands.
             </p>
           </ScrollReveal>
@@ -143,7 +143,7 @@ export default function SolutionsPage() {
           <ScrollReveal key={sol.slug} direction="up" delay={0.08 + idx * 0.08} duration={0.65}>
             <div
               id={sol.slug}
-              className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 hover:border-emerald-500/40 hover:bg-[#10131d] transition-all duration-300 shadow-xl"
+              className="rounded-3xl bg-[#0d0f15] border border-white/10 p-4 sm:p-8 md:p-10 hover:border-emerald-500/40 hover:bg-[#10131d] transition-all duration-300 shadow-xl"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 <div className="lg:col-span-7 space-y-4">
@@ -222,7 +222,7 @@ export default function SolutionsPage() {
             We frequently partner with organizations in aerospace, energy, and defense technology to solve extreme resilience and compliance challenges.
           </p>
           <div className="pt-4 flex justify-center">
-            <Button href="/contact" variant="primary" size="lg">
+            <Button href="/contact" variant="primary" size="lg" className="w-full sm:w-auto justify-center">
               <span>Consult Solutions Architects</span>
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

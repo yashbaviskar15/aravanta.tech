@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function CompliancePage() {
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[500px] h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />

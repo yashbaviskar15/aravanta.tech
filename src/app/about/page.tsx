@@ -78,7 +78,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Hero Header — Editorial Swiss Split Grid */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-24">
         {/* Subtle Ambient Glow */}
@@ -95,14 +95,14 @@ export default function AboutPage() {
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
-              <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
                 Empowering Cloud <br />
                 <span className="emerald-gradient-text">Transformation.</span>
               </h1>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
-              <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
+              <p className="text-lg sm:text-2xl text-zinc-300 font-light font-mono">
                 Build Smarter. Grow Faster.
               </p>
             </ScrollReveal>
@@ -114,12 +114,12 @@ export default function AboutPage() {
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.35} duration={0.7} distance={18}>
-              <div className="pt-2 flex flex-wrap items-center gap-4">
-                <Button href="/contact" variant="primary" size="md">
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                <Button href="/contact" variant="primary" size="md" className="w-full sm:w-auto justify-center">
                   <span>Start a Project</span>
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Button>
-                <Button href="/technology" variant="secondary" size="md">
+                <Button href="/technology" variant="secondary" size="md" className="w-full sm:w-auto justify-center">
                   <span>View Tech Stack</span>
                   <ArrowUpRight className="w-4 h-4 ml-1.5" />
                 </Button>
@@ -130,7 +130,7 @@ export default function AboutPage() {
           {/* Official Brand Identity Showcase */}
           <div className="lg:col-span-5 flex justify-center">
             <ScrollReveal direction="left" delay={0.2} duration={0.8} distance={26}>
-              <div className="relative p-2 rounded-3xl bg-[#0d0f15] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] hover:border-emerald-500/40 transition-colors">
+              <div className="relative p-2 rounded-3xl bg-[#0d0f15] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] hover:border-emerald-500/40 transition-colors w-full max-w-md">
                 <BrandPrimaryAsset
                   size="md"
                   caption="ARAVANTA TECH — Official Brand Identity & Mark"

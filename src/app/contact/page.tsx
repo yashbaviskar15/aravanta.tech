@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute -top-10 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -27,14 +27,14 @@ export default function ContactPage() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
               Discuss Your <br />
               <span className="emerald-gradient-text">Architecture Initiative.</span>
             </h1>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
-            <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
+            <p className="text-lg sm:text-2xl text-zinc-300 font-light font-mono">
               Build Smarter. Grow Faster.
             </p>
           </ScrollReveal>

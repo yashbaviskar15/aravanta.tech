@@ -67,7 +67,7 @@ const SEVERITY_LEVELS = [
 
 export default function SlaPage() {
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[600px] h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -81,7 +81,7 @@ export default function SlaPage() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
               Service Level Agreement <br />
               <span className="emerald-gradient-text">&amp; Uptime Commitments.</span>
             </h1>

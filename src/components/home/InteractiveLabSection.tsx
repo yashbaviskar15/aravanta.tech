@@ -161,7 +161,7 @@ export function InteractiveLabSection() {
         </ScrollReveal>
 
         {/* Tool Container Card */}
-        <div className="rounded-3xl bg-[#0d1017] border border-white/12 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+        <div className="rounded-3xl bg-[#0d1017] border border-white/12 p-4 sm:p-10 shadow-2xl relative overflow-hidden">
           
           {/* TOOL 1: FINOPS ESTIMATOR */}
           {activeTool === "finops" && (
@@ -256,7 +256,7 @@ export function InteractiveLabSection() {
 
               {/* FinOps Output Panel */}
               <div className="lg:col-span-5 space-y-4">
-                <div className="p-6 rounded-2xl bg-[#121622] border border-white/15 space-y-4 shadow-xl">
+                <div className="p-4 sm:p-6 rounded-2xl bg-[#121622] border border-white/15 space-y-4 shadow-xl">
                   <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider flex items-center justify-between">
                     <span>ESTIMATED ANNUAL SAVINGS</span>
                     <span className="text-emerald-400 font-bold">{(savingsRate * 100).toFixed(0)}% REDUCTION</span>

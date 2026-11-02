@@ -102,14 +102,14 @@ export default function DigitalTransformationPage() {
   ];
 
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Bespoke Transformation Hero */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 md:mb-28">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-28">
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute -top-10 left-1/3 w-96 h-96 bg-[#d4a342]/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
             <ScrollReveal direction="up" delay={0.05} duration={0.65} distance={16}>
               <div className="inline-flex items-center gap-2">
                 <Badge variant="gold" size="sm" dot>
@@ -119,31 +119,31 @@ export default function DigitalTransformationPage() {
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
-              <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
                 Legacy Monolith <br />
                 <span className="gold-gradient-text">Decoupling &amp; Modernization.</span>
               </h1>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
-              <p className="text-xl text-zinc-300 font-light font-mono">
+              <p className="text-base sm:text-xl text-zinc-300 font-light font-mono">
                 Zero Big-Bang Rewrites. Zero Downtime. Controlled Migration.
               </p>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.28} duration={0.7} distance={18}>
-              <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl font-normal">
+              <p className="text-sm sm:text-base lg:text-lg text-zinc-400 leading-relaxed max-w-2xl font-normal">
                 Big-bang software rewrites fail. We employ the Strangler-Fig architecture pattern and event-driven data streaming to systematically decouple monolithic systems into high-velocity, cloud-native microservices while your business continues operating without interruption.
               </p>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.35} duration={0.7} distance={18}>
-              <div className="pt-2 flex flex-wrap items-center gap-4">
-                <Button href="/contact?service=Digital%20Transformation" variant="primary" size="md">
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                <Button href="/contact?service=Digital%20Transformation" variant="primary" size="md" className="w-full sm:w-auto justify-center">
                   <span>Plan Monolith Modernization</span>
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Button>
-                <Button href="/case-studies" variant="secondary" size="md">
+                <Button href="/case-studies" variant="secondary" size="md" className="w-full sm:w-auto justify-center">
                   <span>View Decoupling Case Studies</span>
                   <ArrowUpRight className="w-4 h-4 ml-1.5" />
                 </Button>
@@ -154,7 +154,7 @@ export default function DigitalTransformationPage() {
           {/* Interactive Strangler-Fig Visualizer Card */}
           <div className="lg:col-span-5">
             <ScrollReveal direction="left" delay={0.2} duration={0.8} distance={26}>
-              <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-7 shadow-2xl relative overflow-hidden hover:border-[#d4a342]/40 transition-all">
+              <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-4 sm:p-7 shadow-2xl relative overflow-hidden hover:border-[#d4a342]/40 transition-all">
                 <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
                   <div className="flex items-center gap-2 font-mono text-xs text-brand-gold">
                     <Workflow className="w-4 h-4" />
@@ -312,7 +312,7 @@ export default function DigitalTransformationPage() {
                 </Link>
               </div>
             </div>
-            <Button href="/contact?service=Digital%20Transformation" variant="primary" size="md">
+            <Button href="/contact?service=Digital%20Transformation" variant="primary" size="md" className="w-full sm:w-auto justify-center">
               <span>Schedule Modernization Review</span>
               <ArrowRight className="w-4 h-4 ml-1.5" />
             </Button>

@@ -34,7 +34,7 @@ const COOKIE_TABLE = [
 
 export default function CookiesPage() {
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -42,7 +42,7 @@ export default function CookiesPage() {
           <Badge variant="emerald" size="sm" dot>
             LEGAL &amp; TRACKING TRANSPARENCY
           </Badge>
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
             Cookie <br />
             <span className="emerald-gradient-text">Transparency.</span>
           </h1>

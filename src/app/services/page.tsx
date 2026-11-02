@@ -43,7 +43,7 @@ export default function ServicesPage() {
   const serviceKeys = Object.keys(servicesData);
 
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Hero Header */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20">
         {/* Subtle Ambient Radial Glow */}
@@ -57,14 +57,14 @@ export default function ServicesPage() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
               Our Core <br />
               <span className="emerald-gradient-text">Engineering Practices.</span>
             </h1>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
-            <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
+            <p className="text-lg sm:text-2xl text-zinc-300 font-light font-mono">
               Pragmatic architecture, scalable development, and zero-compromise reliability.
             </p>
           </ScrollReveal>
@@ -80,7 +80,7 @@ export default function ServicesPage() {
       {/* Featured Practice Stack - SmoothUI Scrollable Card Stack */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
         <ScrollReveal direction="up" delay={0.15} duration={0.75} distance={24}>
-          <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-10 md:p-12 shadow-2xl relative overflow-hidden">
+          <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-4 sm:p-10 md:p-12 shadow-2xl relative overflow-hidden">
             <div className="text-center max-w-2xl mx-auto mb-10 space-y-3 relative z-10">
               <Badge variant="emerald" size="sm" dot>
                 CORE DISCIPLINES
@@ -122,7 +122,7 @@ export default function ServicesPage() {
               <ScrollReveal key={service.slug} direction="up" delay={0.06 + idx * 0.05} duration={0.65}>
                 <div
                   id={service.slug}
-                  className="rounded-2xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 hover:border-emerald-500/40 hover:bg-[#10131c] transition-all duration-300 shadow-xl"
+                  className="rounded-2xl bg-[#0d0f15] border border-white/10 p-4 sm:p-8 md:p-10 hover:border-emerald-500/40 hover:bg-[#10131c] transition-all duration-300 shadow-xl"
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Left Overview */}
@@ -149,11 +149,12 @@ export default function ServicesPage() {
                         {service.overview}
                       </p>
 
-                      <div className="pt-3 flex flex-wrap items-center gap-3">
+                      <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
                         <Button
                           href={`/services/${service.slug}`}
                           variant="primary"
                           size="sm"
+                          className="w-full sm:w-auto justify-center"
                         >
                           <span>View Practice Dossier</span>
                           <ArrowRight className="w-4 h-4 ml-1.5" />
@@ -162,6 +163,7 @@ export default function ServicesPage() {
                           href={`/contact?service=${encodeURIComponent(service.title)}`}
                           variant="secondary"
                           size="sm"
+                          className="w-full sm:w-auto justify-center"
                         >
                           <span>Scope Initiative</span>
                         </Button>

@@ -93,7 +93,7 @@ export function CloudOSOverview() {
   }));
 
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Hero & Positioning */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         {/* Subtle Ambient Radial Glow */}
@@ -112,13 +112,13 @@ export function CloudOSOverview() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
               Aravanta <span className="emerald-gradient-text">CloudOS.</span>
             </h1>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
-            <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
+            <p className="text-lg sm:text-2xl text-zinc-300 font-light font-mono">
               {cloudosData.tagline}
             </p>
           </ScrollReveal>
@@ -130,11 +130,12 @@ export function CloudOSOverview() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.35} duration={0.7} distance={18}>
-            <div className="pt-3 flex flex-wrap gap-4">
+            <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <Button
                 href="/contact?interest=CloudOS"
                 variant="primary"
                 size="md"
+                className="w-full sm:w-auto justify-center"
               >
                 <span>Request Technical Briefing</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -143,6 +144,7 @@ export function CloudOSOverview() {
                 href="#roadmap"
                 variant="secondary"
                 size="md"
+                className="w-full sm:w-auto justify-center"
               >
                 <span>View Architecture Roadmap</span>
               </Button>
@@ -152,7 +154,7 @@ export function CloudOSOverview() {
 
         {/* Dynamic Island Live Operational Telemetry HUD */}
         <ScrollReveal direction="up" delay={0.25} duration={0.75} distance={24}>
-          <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-[#0d0f15] border border-white/10 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-6 hover:border-emerald-500/30 transition-all">
+          <div className="mt-12 p-4 sm:p-8 rounded-3xl bg-[#0d0f15] border border-white/10 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-6 hover:border-emerald-500/30 transition-all">
             <div className="space-y-1.5 text-center lg:text-left">
               <div className="inline-flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -233,7 +235,7 @@ export function CloudOSOverview() {
             </div>
 
             {/* Terminal Body */}
-            <div className="p-6 font-mono text-xs sm:text-sm space-y-3 bg-[#05060a] min-h-[220px]">
+            <div className="p-4 sm:p-6 font-mono text-xs sm:text-sm space-y-3 bg-[#05060a] min-h-[220px] overflow-x-auto">
               <div className="flex items-center gap-2 text-emerald-400 font-bold">
                 <span>❯</span>
                 <span>{cliCommands[activeCliTab].cmd}</span>
@@ -346,7 +348,7 @@ export function CloudOSOverview() {
             {cloudosData.corePillars.map((pillar, idx) => (
               <ScrollReveal key={idx} direction="up" delay={0.08 + idx * 0.08} duration={0.65}>
                 <div
-                  className="h-full rounded-2xl bg-[#0d0f15] border border-white/10 p-7 md:p-8 flex flex-col justify-between hover:border-emerald-500/40 hover:bg-[#12151e] transition-all shadow-lg"
+                  className="h-full rounded-2xl bg-[#0d0f15] border border-white/10 p-5 sm:p-7 md:p-8 flex flex-col justify-between hover:border-emerald-500/40 hover:bg-[#12151e] transition-all shadow-lg"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
@@ -414,7 +416,7 @@ export function CloudOSOverview() {
             {cloudosData.roadmapPhases.map((phase, idx) => (
               <ScrollReveal key={idx} direction="up" delay={0.08 + idx * 0.06} duration={0.65}>
                 <div
-                  className="rounded-2xl bg-[#0d0f15] border border-white/10 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-emerald-500/30 hover:bg-[#12151e] transition-all shadow-lg"
+                  className="rounded-2xl bg-[#0d0f15] border border-white/10 p-5 sm:p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-emerald-500/30 hover:bg-[#12151e] transition-all shadow-lg"
                 >
                   <div className="space-y-2 max-w-xl">
                     <div className="flex items-center gap-3">
@@ -475,7 +477,7 @@ export function CloudOSOverview() {
               </p>
             </div>
 
-            <div className="bg-[#0d0f15] border border-white/10 rounded-2xl p-6 md:p-8 shadow-xl">
+            <div className="bg-[#0d0f15] border border-white/10 rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl">
               <Accordion items={formattedFaqs} defaultOpenId="cloudos-faq-0" />
             </div>
           </ScrollReveal>
@@ -497,6 +499,7 @@ export function CloudOSOverview() {
                 href="/contact?interest=CloudOS"
                 variant="primary"
                 size="lg"
+                className="w-full sm:w-auto justify-center"
               >
                 <span>Request Technical Briefing</span>
                 <ArrowRight className="w-4 h-4 ml-2" />

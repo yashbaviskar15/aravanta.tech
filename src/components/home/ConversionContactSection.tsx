@@ -132,7 +132,7 @@ export function ConversionContactSection() {
           {/* Right Column: Project Inquiry Form */}
           <div className="lg:col-span-7">
             <ScrollReveal direction="left" delay={0.2} duration={0.8}>
-              <div className="rounded-3xl bg-[#0d1017] border border-white/12 p-7 sm:p-10 shadow-2xl relative overflow-hidden">
+              <div className="rounded-3xl bg-[#0d1017] border border-white/12 p-5 sm:p-10 shadow-2xl relative overflow-hidden">
                 
                 {status === "success" ? (
                   <div className="p-8 text-center space-y-4">

@@ -36,18 +36,18 @@ export default function FAQPage() {
   }, [activeCategory, searchQuery]);
 
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <div className="max-w-3xl space-y-4">
           <Badge variant="emerald" size="sm" dot>
             ENTERPRISE KNOWLEDGE BASE &amp; DISCLOSURES
           </Badge>
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
             Frequently Asked <br />
             <span className="emerald-gradient-text">Questions.</span>
           </h1>
-          <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
+          <p className="text-lg sm:text-2xl text-zinc-300 font-light font-mono">
             Clear, candid answers regarding our approach, services, and platform initiative.
           </p>
         </div>
@@ -87,7 +87,7 @@ export default function FAQPage() {
 
       {/* Accordion List */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 shadow-xl">
+        <div className="rounded-2xl bg-[#0d0f15] border border-white/10 p-4 sm:p-8 md:p-10 shadow-xl">
           {filteredFaqs.length > 0 ? (
             <Accordion
               items={filteredFaqs.map((f) => ({
@@ -119,7 +119,7 @@ export default function FAQPage() {
           Our engineering leads are always open to reviewing specific architecture requirements, custom compliance constraints, or scoping timelines.
         </p>
         <div className="pt-2 flex justify-center">
-          <Button href="/contact" variant="primary" size="lg">
+          <Button href="/contact" variant="primary" size="lg" className="w-full sm:w-auto justify-center">
             <span>Contact Engineering Leads</span>
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>

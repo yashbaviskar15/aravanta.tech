@@ -233,7 +233,7 @@ export function CoreCapabilitiesSection() {
         </ScrollReveal>
 
         {/* Active Capability Deep-Dive Composition */}
-        <div className="rounded-3xl bg-[#0d1017] border border-white/12 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+        <div className="rounded-3xl bg-[#0d1017] border border-white/12 p-4 sm:p-10 shadow-2xl relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left: Deep Descriptions & Specs */}

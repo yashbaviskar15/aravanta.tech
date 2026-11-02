@@ -32,7 +32,7 @@ import {
 import { cn } from "@/lib/utils";
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// NAVIGATION CATEGORIES DATA (Phase 3 Section 01 & Phase 5)
+// NAVIGATION CATEGORIES DATA
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 type DropdownId = "explore" | "services" | "solutions" | "platform" | "resources" | "about";
@@ -260,9 +260,7 @@ export function Navbar() {
   const navRef = useRef<HTMLDivElement>(null);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // SCROLL PROGRESS TRACKER
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Scroll Progress Tracker
   useEffect(() => {
     const handleScroll = () => {
       const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -274,18 +272,14 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // ROUTE CHANGE: Close all menus
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Route change: close all menus
   useEffect(() => {
     setMobileMenuOpen(false);
     setActiveDropdown(null);
     setMobileExpanded(null);
   }, [pathname]);
 
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // CLICK OUTSIDE HANDLER (Requirement 3: Clicking outside closes dropdown)
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Click outside listener
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
@@ -300,9 +294,7 @@ export function Navbar() {
     };
   }, []);
 
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // ESCAPE KEY HANDLER (Requirement 4: Escape closes menu)
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Escape key listener
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -314,9 +306,7 @@ export function Navbar() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // LOCK BODY SCROLL WHEN MOBILE MENU OPEN
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -328,9 +318,6 @@ export function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // HOVER & CLICK LOGIC (Requirements 1, 2, 5, 6)
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   const handleMouseEnter = (menu: DropdownId) => {
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
@@ -343,7 +330,7 @@ export function Navbar() {
     if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
     dropdownTimeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
-    }, 220); // 220ms generous buffer eliminates flickering over hover gaps
+    }, 220);
   };
 
   const handleTriggerClick = (e: React.MouseEvent, menu: DropdownId) => {
@@ -359,9 +346,6 @@ export function Navbar() {
     }
   };
 
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // DESKTOP NAVIGATION CATEGORIES (Phase 3 Section 01)
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   const navCategories: {
     id: DropdownId;
     label: string;
@@ -449,15 +433,16 @@ export function Navbar() {
   return (
     <header
       ref={navRef}
-      className="fixed top-4 sm:top-5 left-0 right-0 z-[100] px-3 sm:px-6 pointer-events-none flex justify-center"
+      className="fixed top-3 sm:top-5 left-0 right-0 z-[100] px-2.5 sm:px-6 pointer-events-none flex justify-center"
     >
       {/* 
-        IMPORTANT: NO overflow-hidden on the capsule container! 
-        This is what previously clipped all dropdown menus! 
+        Responsive Capsule Bar:
+        - Mobile: Spans comfortably (w-[calc(100%-0.5rem)] max-w-lg) with space-between layout
+        - Desktop: Centers as unified luxury capsule
       */}
-      <div className="pointer-events-auto relative inline-flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-[#12141a]/95 backdrop-blur-2xl border border-white/12 shadow-[0_12px_40px_rgba(0,0,0,0.85),0_0_20px_rgba(212,163,66,0.08)] max-w-full">
+      <div className="pointer-events-auto relative flex items-center justify-between lg:justify-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-[#12141a]/95 backdrop-blur-2xl border border-white/12 shadow-[0_12px_40px_rgba(0,0,0,0.85),0_0_20px_rgba(212,163,66,0.08)] w-[calc(100%-0.5rem)] sm:w-auto max-w-7xl">
         
-        {/* Subtle Bottom Scroll Progress Line with its own rounded boundary */}
+        {/* Subtle Bottom Scroll Progress Line */}
         <div className="absolute inset-x-3 bottom-0 h-[2px] overflow-hidden rounded-full pointer-events-none">
           <div
             className="h-full bg-gradient-to-r from-emerald-500 via-[#d4a342] to-cyan-400 opacity-90 transition-all duration-100 ease-out"
@@ -468,7 +453,7 @@ export function Navbar() {
         {/* Brand Emblem on Left */}
         <Link
           href="/"
-          className="flex items-center gap-2 pl-2 sm:pl-3 pr-2 py-1 rounded-full hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a342]"
+          className="flex items-center gap-2 pl-2 sm:pl-3 pr-2 py-1 rounded-full hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a342] shrink-0"
           aria-label="ARAVANTA TECH - Home"
         >
           <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-b from-[#ffffff] via-[#f4f4f6] to-[#d8dade] p-1 border border-[#d4a342]/60 shadow-sm flex items-center justify-center shrink-0">
@@ -481,19 +466,19 @@ export function Navbar() {
               className="object-contain w-full h-full"
             />
           </div>
-          <span className="font-extrabold text-xs sm:text-sm tracking-tight text-white hidden md:inline font-mono">
+          <span className="font-extrabold text-xs sm:text-sm tracking-tight text-white font-mono flex items-center">
             ARAVANTA<span className="text-[#d4a342] ml-0.5">TECH</span>
           </span>
         </Link>
 
-        {/* Live Systems Nominal Micro-Badge */}
-        <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/8 text-[10px] font-mono text-zinc-300">
+        {/* Live Systems Nominal Micro-Badge (Desktop only) */}
+        <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/8 text-[10px] font-mono text-zinc-300 shrink-0">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span>99.999% SLA</span>
         </div>
 
-        {/* Divider */}
-        <div className="hidden lg:block h-5 w-[1px] bg-white/12 mx-1" />
+        {/* Divider (Desktop only) */}
+        <div className="hidden lg:block h-5 w-[1px] bg-white/12 mx-1 shrink-0" />
 
         {/* Desktop Navigation Categories */}
         <nav
@@ -633,142 +618,158 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Divider */}
-        <div className="hidden lg:block h-5 w-[1px] bg-white/12 mx-1" />
+        {/* Divider (Desktop only) */}
+        <div className="hidden lg:block h-5 w-[1px] bg-white/12 mx-1 shrink-0" />
 
-        {/* CTA "Let's Talk" Button */}
-        <Link
-          href="/contact"
-          className="relative inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-bold text-[#090a0d] bg-gradient-to-r from-[#d4a342] via-[#e5b85a] to-[#f3cc72] hover:brightness-110 shadow-[0_0_15px_rgba(212,163,66,0.35)] transition-all duration-200 select-none group shrink-0 active:scale-[0.98]"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-[#090a0d] group-hover:rotate-12 transition-transform" />
-          <span className="font-mono uppercase tracking-wider">Let's Talk</span>
-        </Link>
+        {/* Right Actions Cluster on Mobile & Desktop */}
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+          {/* CTA "Let's Talk" Button */}
+          <Link
+            href="/contact"
+            className="relative inline-flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold text-[#090a0d] bg-gradient-to-r from-[#d4a342] via-[#e5b85a] to-[#f3cc72] hover:brightness-110 shadow-[0_0_15px_rgba(212,163,66,0.35)] transition-all duration-200 select-none group shrink-0 active:scale-[0.98]"
+          >
+            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#090a0d] group-hover:rotate-12 transition-transform" />
+            <span className="font-mono uppercase tracking-wider whitespace-nowrap">Let's Talk</span>
+          </Link>
 
-        {/* Mobile Hamburger Button */}
-        <button
-          type="button"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
-          className="lg:hidden p-1.5 sm:p-2 rounded-full text-zinc-300 hover:text-white hover:bg-white/10 transition-colors ml-1 focus:outline-none"
-        >
-          {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-        </button>
+          {/* Mobile Hamburger Button */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
+            className="lg:hidden p-1.5 sm:p-2 rounded-full text-zinc-300 hover:text-white hover:bg-white/10 transition-colors focus:outline-none"
+          >
+            {mobileMenuOpen ? <X className="w-4 h-4 text-[#d4a342]" /> : <Menu className="w-4 h-4" />}
+          </button>
+        </div>
       </div>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          MOBILE DRAWER OVERLAY (Responsive, Accessible Touch Menus)
+          MOBILE DRAWER OVERLAY & BACKDROP
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-x-3 top-20 max-w-lg mx-auto bg-[#0a0d14]/98 border border-white/15 rounded-3xl p-5 shadow-[0_25px_60px_rgba(0,0,0,0.95)] backdrop-blur-3xl z-50 pointer-events-auto max-h-[82vh] overflow-y-auto"
-          >
-            {/* Header info */}
-            <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-white">
-                  ARAVANTA TECH NAVIGATION
+          <>
+            {/* Backdrop Blur Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 pointer-events-auto"
+            />
+
+            {/* Mobile Drawer */}
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-x-3 top-16 sm:top-20 max-w-lg mx-auto bg-[#0a0d14]/98 border border-white/15 rounded-3xl p-4 sm:p-5 shadow-[0_25px_60px_rgba(0,0,0,0.95)] backdrop-blur-3xl z-50 pointer-events-auto max-h-[82vh] overflow-y-auto"
+            >
+              {/* Header info */}
+              <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-white">
+                    ARAVANTA TECH NAVIGATION
+                  </span>
+                </div>
+                <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">
+                  SLA: 99.999%
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">
-                SLA: 99.999%
-              </span>
-            </div>
 
-            {/* Accordion Categories on Mobile */}
-            <div className="space-y-2">
-              {navCategories.map((cat) => {
-                const isExpanded = mobileExpanded === cat.id;
+              {/* Accordion Categories on Mobile */}
+              <div className="space-y-2">
+                {navCategories.map((cat) => {
+                  const isExpanded = mobileExpanded === cat.id;
 
-                return (
-                  <div
-                    key={`mob-${cat.id}`}
-                    className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden"
-                  >
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setMobileExpanded((prev) => (prev === cat.id ? null : cat.id))
-                      }
-                      className="w-full flex items-center justify-between p-3.5 text-xs font-mono font-bold uppercase tracking-wider text-white text-left focus:outline-none"
+                  return (
+                    <div
+                      key={`mob-${cat.id}`}
+                      className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden"
                     >
-                      <div className="flex items-center gap-2">
-                        <span>{cat.label}</span>
-                        <span className="text-[10px] text-zinc-500 font-normal">
-                          ({cat.items.length})
-                        </span>
-                      </div>
-                      <ChevronDown
-                        className={cn(
-                          "w-4 h-4 text-zinc-400 transition-transform duration-200",
-                          isExpanded && "rotate-180 text-[#d4a342]"
-                        )}
-                      />
-                    </button>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setMobileExpanded((prev) => (prev === cat.id ? null : cat.id))
+                        }
+                        className="w-full flex items-center justify-between p-3.5 text-xs font-mono font-bold uppercase tracking-wider text-white text-left focus:outline-none"
+                      >
+                        <div className="flex items-center gap-2">
+                          <span>{cat.label}</span>
+                          <span className="text-[10px] text-zinc-500 font-normal">
+                            ({cat.items.length})
+                          </span>
+                        </div>
+                        <ChevronDown
+                          className={cn(
+                            "w-4 h-4 text-zinc-400 transition-transform duration-200",
+                            isExpanded && "rotate-180 text-[#d4a342]"
+                          )}
+                        />
+                      </button>
 
-                    {isExpanded && (
-                      <div className="px-3 pb-3 pt-1 space-y-1 border-t border-white/5">
-                        <Link
-                          href={cat.exploreAllHref}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between p-2 rounded-xl text-xs font-mono text-[#d4a342] bg-[#d4a342]/10 mb-2"
-                        >
-                          <span>Explore All {cat.label}</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </Link>
-                        {cat.items.map((sub) => {
-                          const SubIcon = sub.icon;
-                          const isSubActive = pathname === sub.href;
+                      {isExpanded && (
+                        <div className="px-3 pb-3 pt-1 space-y-1 border-t border-white/5">
+                          <Link
+                            href={cat.exploreAllHref}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center justify-between p-2 rounded-xl text-xs font-mono text-[#d4a342] bg-[#d4a342]/10 mb-2"
+                          >
+                            <span>Explore All {cat.label}</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </Link>
+                          {cat.items.map((sub) => {
+                            const SubIcon = sub.icon;
+                            const isSubActive = pathname === sub.href;
 
-                          return (
-                            <Link
-                              key={`mob-sub-${sub.href}`}
-                              href={sub.href}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className={cn(
-                                "flex items-start gap-2.5 p-2 rounded-xl text-xs transition-colors",
-                                isSubActive
-                                  ? "bg-white/10 text-[#d4a342] font-semibold"
-                                  : "text-zinc-300 hover:text-white hover:bg-white/5"
-                              )}
-                            >
-                              <SubIcon className="w-4 h-4 text-[#d4a342] shrink-0 mt-0.5" />
-                              <div className="flex-1 min-w-0">
-                                <div className="text-xs font-medium text-white truncate">
-                                  {sub.title}
+                            return (
+                              <Link
+                                key={`mob-sub-${sub.href}`}
+                                href={sub.href}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className={cn(
+                                  "flex items-start gap-2.5 p-2 rounded-xl text-xs transition-colors",
+                                  isSubActive
+                                    ? "bg-white/10 text-[#d4a342] font-semibold"
+                                    : "text-zinc-300 hover:text-white hover:bg-white/5"
+                                )}
+                              >
+                                <SubIcon className="w-4 h-4 text-[#d4a342] shrink-0 mt-0.5" />
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-xs font-medium text-white truncate">
+                                    {sub.title}
+                                  </div>
+                                  <div className="text-[10px] text-zinc-400 line-clamp-1">
+                                    {sub.description}
+                                  </div>
                                 </div>
-                                <div className="text-[10px] text-zinc-400 line-clamp-1">
-                                  {sub.description}
-                                </div>
-                              </div>
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
 
-            {/* Mobile Footer CTA */}
-            <div className="pt-4 mt-3 border-t border-white/10 space-y-2">
-              <Link
-                href="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#d4a342] via-[#e5b85a] to-[#f3cc72] text-[#090a0d] font-bold text-xs uppercase tracking-wider font-mono flex items-center justify-center gap-2 shadow-lg"
-              >
-                <Sparkles className="w-4 h-4 text-[#090a0d]" />
-                <span>Let's Talk — Start a Project</span>
-              </Link>
-            </div>
-          </motion.div>
+              {/* Mobile Footer CTA */}
+              <div className="pt-4 mt-3 border-t border-white/10 space-y-2">
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#d4a342] via-[#e5b85a] to-[#f3cc72] text-[#090a0d] font-bold text-xs uppercase tracking-wider font-mono flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <Sparkles className="w-4 h-4 text-[#090a0d]" />
+                  <span>Let's Talk — Start a Project</span>
+                </Link>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

@@ -95,7 +95,7 @@ const evaluationPillars = [
 
 export default function TechnologyPage() {
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Hero Header */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20">
         {/* Subtle Ambient Radial Glow */}
@@ -109,14 +109,14 @@ export default function TechnologyPage() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
               Our Technology <br />
               <span className="emerald-gradient-text">Capability Stack.</span>
             </h1>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
-            <p className="text-xl sm:text-2xl text-zinc-300 font-light font-mono">
+            <p className="text-lg sm:text-2xl text-zinc-300 font-light font-mono">
               Modern, typed, and battle-tested engineering primitives.
             </p>
           </ScrollReveal>
@@ -132,7 +132,7 @@ export default function TechnologyPage() {
       {/* Tech Evaluation Philosophy Banner */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <ScrollReveal direction="up" delay={0.15} duration={0.7} distance={20}>
-          <div className="rounded-2xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 hover:border-emerald-500/30 transition-colors shadow-lg">
+          <div className="rounded-2xl bg-[#0d0f15] border border-white/10 p-4 sm:p-8 hover:border-emerald-500/30 transition-colors shadow-lg">
             <div className="text-xs font-mono font-semibold uppercase tracking-wider text-emerald-400 mb-3">
               ARCHITECTURAL CRITERIA FOR TOOLING ADOPTION
             </div>
@@ -159,7 +159,7 @@ export default function TechnologyPage() {
           return (
             <ScrollReveal key={idx} direction="up" delay={0.08 + idx * 0.06} duration={0.65}>
               <div
-                className="rounded-2xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 shadow-lg hover:border-white/20 transition-all"
+                className="rounded-2xl bg-[#0d0f15] border border-white/10 p-4 sm:p-8 md:p-10 shadow-lg hover:border-white/20 transition-all"
               >
                 <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-8 border-b border-white/10 gap-4">
                   <div className="flex items-center gap-3.5">
@@ -213,7 +213,7 @@ export default function TechnologyPage() {
             Our engineering team is fluent across legacy enterprise monoliths and modern cloud-native topologies. We adapt to your organization’s security constraints, existing CI/CD environments, and compliance requirements.
           </p>
           <div className="pt-4 flex justify-center">
-            <Button href="/contact" variant="primary" size="md">
+            <Button href="/contact" variant="primary" size="md" className="w-full sm:w-auto justify-center">
               <span>Schedule Architecture Review</span>
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

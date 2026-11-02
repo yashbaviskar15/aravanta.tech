@@ -163,7 +163,7 @@ export function ContactForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-8 md:p-10 space-y-6 shadow-2xl backdrop-blur-xl"
+      className="rounded-3xl bg-[#0d0f15] border border-white/10 p-4 sm:p-8 md:p-10 space-y-6 shadow-2xl backdrop-blur-xl"
     >
       <div className="border-b border-white/10 pb-5">
         <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs uppercase tracking-wider mb-1">

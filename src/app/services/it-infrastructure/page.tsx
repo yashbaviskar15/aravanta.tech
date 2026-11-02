@@ -98,14 +98,14 @@ export default function ITInfrastructurePage() {
   ];
 
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
       {/* Bespoke IT Infrastructure Hero */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 md:mb-28">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-28">
         {/* Ambient Radial Glow */}
         <div className="absolute -top-10 left-1/3 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
             <ScrollReveal direction="up" delay={0.05} duration={0.65} distance={16}>
               <div className="inline-flex items-center gap-2">
                 <Badge variant="emerald" size="sm" dot>
@@ -115,31 +115,31 @@ export default function ITInfrastructurePage() {
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.12} duration={0.7} distance={20}>
-              <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-sans">
                 Predictable Compute &amp; <br />
                 <span className="emerald-gradient-text">Autonomous SRE Fleets.</span>
               </h1>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2} duration={0.7} distance={18}>
-              <p className="text-xl text-zinc-300 font-light font-mono">
+              <p className="text-base sm:text-xl text-zinc-300 font-light font-mono">
                 Hardware-Level Rigor. Sub-Second Telemetry. 99.999% Availability.
               </p>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.28} duration={0.7} distance={18}>
-              <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl font-normal">
+              <p className="text-sm sm:text-base lg:text-lg text-zinc-400 leading-relaxed max-w-2xl font-normal">
                 We design, automate, and operate enterprise compute fleets and high-throughput network backbones. By pairing Linux kernel optimizations with automated out-of-band IPMI controllers and eBPF observability, we guarantee unwavering infrastructure stability.
               </p>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.35} duration={0.7} distance={18}>
-              <div className="pt-3 flex flex-wrap items-center gap-4">
-                <Button href="/contact?service=IT%20Infrastructure" variant="primary" size="md">
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                <Button href="/contact?service=IT%20Infrastructure" variant="primary" size="md" className="w-full sm:w-auto justify-center">
                   <span>Scope Infrastructure Review</span>
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Button>
-                <Button href="/sla" variant="secondary" size="md">
+                <Button href="/sla" variant="secondary" size="md" className="w-full sm:w-auto justify-center">
                   <span>View SLA Guarantees</span>
                   <ArrowUpRight className="w-4 h-4 ml-1.5" />
                 </Button>
@@ -150,19 +150,19 @@ export default function ITInfrastructurePage() {
           {/* Interactive Fleet Telemetry Card */}
           <div className="lg:col-span-5">
             <ScrollReveal direction="left" delay={0.25} duration={0.8} distance={24}>
-              <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-6 sm:p-7 shadow-2xl relative overflow-hidden">
-                <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
-                  <div className="flex items-center gap-2 font-mono text-xs text-emerald-400">
-                    <Server className="w-4 h-4" />
-                    <span>AUTONOMOUS FLEET TELEMETRY DOCK</span>
+              <div className="rounded-3xl bg-[#0d0f15] border border-white/10 p-4 sm:p-7 shadow-2xl relative overflow-hidden">
+                <div className="flex items-center justify-between pb-3 sm:pb-4 mb-3 sm:mb-4 border-b border-white/10">
+                  <div className="flex items-center gap-2 font-mono text-[11px] sm:text-xs text-emerald-400">
+                    <Server className="w-4 h-4 shrink-0" />
+                    <span className="truncate">AUTONOMOUS FLEET TELEMETRY DOCK</span>
                   </div>
-                  <span className="text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded shrink-0">
                     CONVERGENCE: 100%
                   </span>
                 </div>
 
                 {/* SRE Metrics Grid */}
-                <div className="grid grid-cols-2 gap-3 font-mono text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
                   {infrastructureMetrics.map((met, idx) => (
                     <div
                       key={idx}
@@ -306,7 +306,7 @@ export default function ITInfrastructurePage() {
                 </Link>
               </div>
             </div>
-            <Button href="/contact?service=IT%20Infrastructure" variant="primary" size="md">
+            <Button href="/contact?service=IT%20Infrastructure" variant="primary" size="md" className="w-full sm:w-auto justify-center">
               <span>Schedule Infrastructure Review</span>
               <ArrowRight className="w-4 h-4 ml-1.5" />
             </Button>
