@@ -78,11 +78,11 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d] max-w-full overflow-x-clip">
       {/* Hero Header — Editorial Swiss Split Grid */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-24">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-24 overflow-hidden">
         {/* Subtle Ambient Glow */}
-        <div className="absolute -top-10 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-10 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none max-w-full" />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-6">

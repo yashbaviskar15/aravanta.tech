@@ -34,7 +34,7 @@ const COOKIE_TABLE = [
 
 export default function CookiesPage() {
   return (
-    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d] max-w-full overflow-x-clip">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

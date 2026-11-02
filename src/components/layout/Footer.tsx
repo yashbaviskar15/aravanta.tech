@@ -72,7 +72,7 @@ export function Footer() {
 
   return (
     <footer
-      className="relative z-30 bg-[#05070a] border-t border-white/10 text-zinc-400 pt-10 sm:pt-16 pb-8 shadow-2xl"
+      className="relative z-30 bg-[#05070a] border-t border-white/10 text-zinc-400 pt-10 sm:pt-16 pb-8 shadow-2xl overflow-hidden"
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">

@@ -13,6 +13,8 @@
 
 html {
   color-scheme: dark;
+  max-width: 100vw;
+  overflow-x: clip !important;
 }
 
 /* Lenis smooth scrolling rules */
@@ -41,7 +43,9 @@ body {
   color: var(--foreground);
   background-color: var(--background);
   min-height: 100vh;
-  overflow-x: hidden;
+  max-width: 100vw;
+  overflow-x: clip !important;
+  position: relative;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

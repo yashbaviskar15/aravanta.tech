@@ -309,12 +309,12 @@ export function Navbar() {
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflowY = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflowY = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflowY = "";
     };
   }, [mobileMenuOpen]);
 
@@ -433,14 +433,14 @@ export function Navbar() {
   return (
     <header
       ref={navRef}
-      className="fixed top-3 sm:top-5 left-0 right-0 z-[100] px-2.5 sm:px-6 pointer-events-none flex justify-center"
+      className="fixed top-2.5 sm:top-5 left-0 right-0 z-[100] px-2 sm:px-6 pointer-events-none flex justify-center max-w-full"
     >
       {/* 
         Responsive Capsule Bar:
-        - Mobile: Spans comfortably (w-[calc(100%-0.5rem)] max-w-lg) with space-between layout
+        - Mobile: Fits within 100% of viewport without overflowing, balanced spacing
         - Desktop: Centers as unified luxury capsule
       */}
-      <div className="pointer-events-auto relative flex items-center justify-between lg:justify-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-[#12141a]/95 backdrop-blur-2xl border border-white/12 shadow-[0_12px_40px_rgba(0,0,0,0.85),0_0_20px_rgba(212,163,66,0.08)] w-[calc(100%-0.5rem)] sm:w-auto max-w-7xl">
+      <div className="pointer-events-auto relative flex items-center justify-between lg:justify-center gap-1 sm:gap-1.5 p-1 sm:p-2 rounded-full bg-[#12141a]/95 backdrop-blur-2xl border border-white/12 shadow-[0_12px_40px_rgba(0,0,0,0.85),0_0_20px_rgba(212,163,66,0.08)] w-full sm:w-auto max-w-7xl">
         
         {/* Subtle Bottom Scroll Progress Line */}
         <div className="absolute inset-x-3 bottom-0 h-[2px] overflow-hidden rounded-full pointer-events-none">
@@ -453,20 +453,20 @@ export function Navbar() {
         {/* Brand Emblem on Left */}
         <Link
           href="/"
-          className="flex items-center gap-2 pl-2 sm:pl-3 pr-2 py-1 rounded-full hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a342] shrink-0"
+          className="flex items-center gap-1.5 sm:gap-2 pl-1.5 sm:pl-3 pr-1 sm:pr-2 py-0.5 sm:py-1 rounded-full hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a342] shrink-0"
           aria-label="ARAVANTA TECH - Home"
         >
-          <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-b from-[#ffffff] via-[#f4f4f6] to-[#d8dade] p-1 border border-[#d4a342]/60 shadow-sm flex items-center justify-center shrink-0">
+          <div className="relative w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-b from-[#ffffff] via-[#f4f4f6] to-[#d8dade] p-0.5 sm:p-1 border border-[#d4a342]/60 shadow-sm flex items-center justify-center shrink-0">
             <Image
               src="/brand/icon.png"
               alt="Aravanta Tech"
-              width={26}
-              height={26}
+              width={24}
+              height={24}
               priority
               className="object-contain w-full h-full"
             />
           </div>
-          <span className="font-extrabold text-xs sm:text-sm tracking-tight text-white font-mono flex items-center">
+          <span className="font-extrabold text-[11px] sm:text-sm tracking-tight text-white font-mono flex items-center">
             ARAVANTA<span className="text-[#d4a342] ml-0.5">TECH</span>
           </span>
         </Link>
@@ -626,9 +626,9 @@ export function Navbar() {
           {/* CTA "Let's Talk" Button */}
           <Link
             href="/contact"
-            className="relative inline-flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold text-[#090a0d] bg-gradient-to-r from-[#d4a342] via-[#e5b85a] to-[#f3cc72] hover:brightness-110 shadow-[0_0_15px_rgba(212,163,66,0.35)] transition-all duration-200 select-none group shrink-0 active:scale-[0.98]"
+            className="relative inline-flex items-center gap-1 px-2.5 py-1 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold text-[#090a0d] bg-gradient-to-r from-[#d4a342] via-[#e5b85a] to-[#f3cc72] hover:brightness-110 shadow-[0_0_12px_rgba(212,163,66,0.3)] transition-all duration-200 select-none group shrink-0 active:scale-[0.98]"
           >
-            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#090a0d] group-hover:rotate-12 transition-transform" />
+            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#090a0d] group-hover:rotate-12 transition-transform shrink-0" />
             <span className="font-mono uppercase tracking-wider whitespace-nowrap">Let's Talk</span>
           </Link>
 
@@ -637,7 +637,7 @@ export function Navbar() {
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
-            className="lg:hidden p-1.5 sm:p-2 rounded-full text-zinc-300 hover:text-white hover:bg-white/10 transition-colors focus:outline-none"
+            className="lg:hidden p-1 sm:p-2 rounded-full text-zinc-300 hover:text-white hover:bg-white/10 transition-colors focus:outline-none shrink-0"
           >
             {mobileMenuOpen ? <X className="w-4 h-4 text-[#d4a342]" /> : <Menu className="w-4 h-4" />}
           </button>

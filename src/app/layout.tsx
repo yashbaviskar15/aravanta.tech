@@ -91,7 +91,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark max-w-full overflow-x-clip">
       <head>
         <meta name="theme-color" content="#090a0d" />
         {/* Favicons */}
@@ -118,7 +118,7 @@ export default function RootLayout({
         <meta name="twitter:image" content="https://aravanta.tech/brand/primary-logo.png" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans bg-brand-dark text-white min-h-screen flex flex-col antialiased selection:bg-brand-gold/20 selection:text-brand-gold`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans bg-brand-dark text-white min-h-screen flex flex-col antialiased selection:bg-brand-gold/20 selection:text-brand-gold max-w-full overflow-x-clip relative`}
       >
         {/* Skip to main content landmark for keyboard accessibility */}
         <a
@@ -133,7 +133,7 @@ export default function RootLayout({
           <ScrollProgress />
           <Navbar />
 
-          <main id="main-content" className="flex-grow">
+          <main id="main-content" className="flex-grow max-w-full overflow-x-clip">
             {children}
           </main>
 

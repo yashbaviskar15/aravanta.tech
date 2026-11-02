@@ -93,11 +93,11 @@ export function CloudOSOverview() {
   }));
 
   return (
-    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d] max-w-full overflow-x-clip">
       {/* Hero & Positioning */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 overflow-hidden">
         {/* Subtle Ambient Radial Glow */}
-        <div className="absolute -top-12 left-1/3 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-12 left-1/3 w-72 sm:w-96 h-72 sm:h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none max-w-full" />
 
         <div className="max-w-3xl space-y-5 relative z-10">
           <ScrollReveal direction="up" delay={0.05} duration={0.65} distance={16}>

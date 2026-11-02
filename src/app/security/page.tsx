@@ -103,10 +103,10 @@ const SECURITY_PILLARS = [
 
 export default function SecurityTrustPage() {
   return (
-    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d] max-w-full overflow-x-clip">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Subtle Ambient Radial Glow */}
-        <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[600px] h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-72 sm:w-[600px] h-72 sm:h-96 max-w-full bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Header Hero */}
         <div className="max-w-4xl mx-auto text-center space-y-4 mb-16 relative z-10">

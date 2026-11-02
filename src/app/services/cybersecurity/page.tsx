@@ -98,11 +98,11 @@ export default function CybersecurityPage() {
   ];
 
   return (
-    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d] max-w-full overflow-x-clip">
       {/* Bespoke Cybersecurity Hero */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-28">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-28 overflow-hidden">
         {/* Subtle Ambient Radial Glow */}
-        <div className="absolute -top-10 left-1/3 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-10 left-1/3 w-72 sm:w-96 h-72 sm:h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none max-w-full" />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <div className="lg:col-span-7 space-y-5 sm:space-y-6">

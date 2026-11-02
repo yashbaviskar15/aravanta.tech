@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d]">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+    <div className="pt-24 pb-16 sm:pt-28 md:pt-36 md:pb-28 text-white min-h-screen bg-[#08090d] max-w-full overflow-x-clip">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 overflow-hidden">
         {/* Subtle Ambient Radial Glow */}
-        <div className="absolute -top-10 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-10 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none max-w-full" />
 
         <div className="max-w-3xl space-y-4 relative z-10">
           <ScrollReveal direction="up" delay={0.05} duration={0.65} distance={16}>
